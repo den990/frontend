@@ -10,7 +10,9 @@ function openPresentation(presentation: Presentation, file: object): Presentatio
 function renamePresentation(presentation: Presentation, name: string): Presentation {
     return presentation;
 }
-
+function editPresentationSlidesResolution(presentation: Presentation, resolution: Resolution): Presentation {
+    return presentation;
+}
 
 function createSlide(presentation: Presentation): Presentation {
     return presentation;
@@ -22,9 +24,6 @@ function removeSlides(presentation: Presentation, Slides: Array<Slide>): Present
     return presentation;
 }
 function editBackground(presentation: Presentation, slide: Slide, background: string): Presentation {
-    return presentation;
-}
-function editResolution(presentation: Presentation, slide: Slide, resolution: Resolution): Presentation {
     return presentation;
 }
 function selectSlide(presentation: Presentation, slideId: number): Presentation {

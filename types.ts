@@ -3,12 +3,7 @@ type Presentation = {
     slideList: Slide[];
     currentSlide: Slide;
     selectedSlide: Slide[];
-}
-type Slide = {
-    blockList: Block[];
-    background: string;
-    slideId: number;
-    resolution: Resolution;
+    slideResolution: Resolution;
 }
 
 type Resolution = {
@@ -25,6 +20,12 @@ type Small = {
     type: string;
     width: 1280;
     height: 1024;
+}
+
+type Slide = {
+    blockList: Block[];
+    background: string;
+    slideId: number;
 }
 
 type Block = {
@@ -49,6 +50,7 @@ type text = {
     height: number;
     symbols: string;
 }
+
 type picture = {
     type: string;
     url: string;
