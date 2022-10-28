@@ -1,8 +1,7 @@
 type Presentation = {
     name: string;
     slideList: Slide[];
-    currentSlide: Slide;
-    selectedSlide: Slide[];
+    selectedSlides: Slide[];
     slideResolution: Resolution;
 }
 
@@ -11,30 +10,39 @@ type Resolution = {
 }
 
 type Big = {
-    type: string;
+    type: "Big";
     width: 1920;
     height: 1080;
 }
 
 type Small = {
-    type: string;
+    type: "Small";
     width: 1280;
     height: 1024;
 }
 
 type Slide = {
     blockList: Block[];
-    background: string;
-    slideId: number;
+    background: color | pictureBackground;
+    slideId: string;
 }
 
+type color = {
+    codeColor: string;
+}
+type pictureBackground = {
+    url: string;
+    resolution : Big | Small;
+}
 type Block = {
     content: blockContent;
-    blockId: number;
-    point: {
+    blockId: string;
+    position: {
         x: number;
         y: number;
     };
+    width: number;
+    height: number;
 }
 
 type blockContent = {
@@ -42,7 +50,7 @@ type blockContent = {
 }
 
 type text = {
-    type: string;
+    type: "text";
     fontFamily: string;
     fontColor: string;
     fontSize: number;
@@ -52,7 +60,7 @@ type text = {
 }
 
 type picture = {
-    type: string;
+    type: "picture";
     url: string;
     width: number;
     height: number;
@@ -65,18 +73,13 @@ type primitive = {
 }
 
 type Triangle = {
-    type: string;
-    width: number;
-    height: number;
+    type: "Triangle";
 }
 
 type Rectangle = {
-    type: string;
-    width: number;
-    height: number;
+    type: "Rectangle";
 }
 
 type Circle = {
-    type: string;
-    radius: number;
+    type: "Circle";
 }
