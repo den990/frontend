@@ -83,3 +83,20 @@ type Rectangle = {
 type Circle = {
     type: "Circle";
 }
+export type{
+    Presentation,
+    Resolution,
+    Big,
+    Small,
+    Slide,
+    color,
+    pictureBackground,
+    Block,
+    blockContent,
+    text,
+    picture,
+    primitive,
+    Triangle,
+    Rectangle,
+    Circle
+};
