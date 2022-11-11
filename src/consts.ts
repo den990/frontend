@@ -7,3 +7,7 @@ const bigResolution: Big = {
 const HDResolution: Resolution = {
     content: bigResolution
 }
+
+const defaultcolor: color = {
+    codeColor : "#000000"
+}

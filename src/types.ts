@@ -24,7 +24,7 @@ type Small = {
 type Slide = {
     blockList: Block[];
     background: color | pictureBackground;
-    slideId: string;
+    slideId: number;
 }
 
 type color = {

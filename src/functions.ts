@@ -1,5 +1,5 @@
 // presentation functions
-function createPresentation(presentation: Presentation, name: string): Presentation {
+function createPresentation(): Presentation {
     return {
         name: 'Новая презентация',
         slideList: [],
@@ -13,17 +13,31 @@ function savePresentation(presentation: Presentation): Presentation {
 function openPresentation(presentation: Presentation, file: object): Presentation {
     return presentation;
 }
-function renamePresentation(presentation: Presentation, name: string): Presentation {
-    return presentation;
+function renamePresentation(presentation: Presentation, inputName: string): Presentation {
+    return{
+        ...presentation,
+        name: inputName
+    };
 }
-function editPresentationSlidesResolution(presentation: Presentation, resolution: Resolution): Presentation {
-    return presentation;
+function editPresentationSlidesResolution(presentation: Presentation, inputResolution: Resolution): Presentation {
+    return{
+        ...presentation,
+        slideResolution: inputResolution
+    };
 }
 
 // slide functions
 function createSlide(presentation: Presentation): Presentation {
-
-    return presentation;
+    let blankSlide: Slide = {
+        slideId: presentation.slideList.length + 1,
+        blockList: [],
+        background: defaultcolor,
+    }
+    const newSlideList = [...presentation.slideList, blankSlide]
+    return {
+        ...presentation,
+        slideList: newSlideList,
+    };
 }
 function removeSlide(presentation: Presentation): Presentation {
     return presentation;
@@ -31,8 +45,18 @@ function removeSlide(presentation: Presentation): Presentation {
 function removeSlides(presentation: Presentation, Slides: Array<Slide>): Presentation {
     return presentation;
 }
-function editBackground(presentation: Presentation, slide: Slide, background: string): Presentation {
-    return presentation;
+function editBackground(presentation: Presentation, slide: Slide, background: color | pictureBackground): Presentation {
+    let newSlide: Slide = {
+        blockList: [],
+        background: background,
+        slideId: slide.slideId,
+    };
+    let newSlideList = presentation.slideList;
+    newSlideList[slide.slideId] = newSlide;
+    return{
+        ...presentation,
+        slideList: newSlideList
+    }
 }
 function selectSlide(presentation: Presentation, slideId: number): Presentation {
     return presentation;
