@@ -10,15 +10,15 @@ type Resolution = {
 }
 
 type Big = {
-    type: "Big";
-    width: 1920;
-    height: 1080;
+    type: 'Big';
+    width: number;
+    height: number;
 }
 
 type Small = {
-    type: "Small";
-    width: 1280;
-    height: 1024;
+    type: 'Small';
+    width: number;
+    height: number;
 }
 
 type Slide = {
@@ -50,7 +50,7 @@ type blockContent = {
 }
 
 type text = {
-    type: "text";
+    type: 'text';
     fontFamily: string;
     fontColor: string;
     fontSize: number;
@@ -60,7 +60,7 @@ type text = {
 }
 
 type picture = {
-    type: "picture";
+    type: 'picture';
     url: string;
     width: number;
     height: number;
@@ -73,13 +73,13 @@ type primitive = {
 }
 
 type Triangle = {
-    type: "Triangle";
+    type: 'Triangle';
 }
 
 type Rectangle = {
-    type: "Rectangle";
+    type: 'Rectangle';
 }
 
 type Circle = {
-    type: "Circle";
+    type: 'Circle';
 }

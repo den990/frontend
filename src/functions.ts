@@ -1,5 +1,11 @@
+// presentation functions
 function createPresentation(presentation: Presentation, name: string): Presentation {
-    return presentation;
+    return {
+        name: 'Новая презентация',
+        slideList: [],
+        selectedSlides: [],
+        slideResolution: HDResolution
+    };
 }
 function savePresentation(presentation: Presentation): Presentation {
     return presentation;
@@ -14,7 +20,9 @@ function editPresentationSlidesResolution(presentation: Presentation, resolution
     return presentation;
 }
 
+// slide functions
 function createSlide(presentation: Presentation): Presentation {
+
     return presentation;
 }
 function removeSlide(presentation: Presentation): Presentation {
@@ -36,7 +44,7 @@ function moveSlide(presentation: Presentation, slide: Slide, position: Object): 
     return presentation;
 }
 
-
+// block functions
 function copyBlock(presentation: Presentation, block: Block): Presentation {
     return presentation;
 }
@@ -59,7 +67,7 @@ function editBlockSize(presentation: Presentation, block: Block, width: number, 
     return presentation;
 }
 
-
+// content of block functions
 function editFontFamily(presentation: Presentation, block: Block, fontFamily: string): Presentation {
     return presentation;
 }

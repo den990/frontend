@@ -1,6 +1,6 @@
 import './App.css';
-import './header.css';
-import icon from './image/icon.png';
+import '../header.css';
+import icon from '../image/icon.png';
 
 function App() {
   return (
