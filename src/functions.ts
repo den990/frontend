@@ -1,82 +1,80 @@
-import type * as types from './types';
-function createPresentation(presentation: types.Presentation, name: string): types.Presentation {
-
+function createPresentation(presentation: Presentation, name: string): Presentation {
     return presentation;
 }
-function savePresentation(presentation: types.Presentation): types.Presentation {
+function savePresentation(presentation: Presentation): Presentation {
     return presentation;
 }
-function openPresentation(presentation: types.Presentation, file: object): types.Presentation {
+function openPresentation(presentation: Presentation, file: object): Presentation {
     return presentation;
 }
-function renamePresentation(presentation: types.Presentation, name: string): types.Presentation {
+function renamePresentation(presentation: Presentation, name: string): Presentation {
     return presentation;
 }
-function editPresentationSlidesResolution(presentation: types.Presentation, resolution: types.Resolution): types.Presentation {
+function editPresentationSlidesResolution(presentation: Presentation, resolution: Resolution): Presentation {
     return presentation;
 }
 
-function createSlide(presentation: types.Presentation): types.Presentation {
+function createSlide(presentation: Presentation): Presentation {
     return presentation;
 }
-function removeSlide(presentation: types.Presentation): types.Presentation {
+function removeSlide(presentation: Presentation): Presentation {
     return presentation;
 }
-function removeSlides(presentation: types.Presentation, Slides: Array<types.Slide>): types.Presentation {
+function removeSlides(presentation: Presentation, Slides: Array<Slide>): Presentation {
     return presentation;
 }
-function editBackground(presentation: types.Presentation, slide: types.Slide, background: string): types.Presentation {
+function editBackground(presentation: Presentation, slide: Slide, background: string): Presentation {
     return presentation;
 }
-function selectSlide(presentation: types.Presentation, slideId: number): types.Presentation {
+function selectSlide(presentation: Presentation, slideId: number): Presentation {
     return presentation;
 }
-function selectSlides(presentation:types.Presentation, slideId: number): types.Presentation {
+function selectSlides(presentation:Presentation, slideId: number): Presentation {
     return presentation;
 }
-function moveSlide(presentation: types.Presentation, slide: types.Slide, position: Object): types.Presentation {
+function moveSlide(presentation: Presentation, slide: Slide, position: Object): Presentation {
     return presentation;
 }
 
 
-function copyBlock(presentation: types.Presentation, block: types.Block): types.Presentation {
+function copyBlock(presentation: Presentation, block: Block): Presentation {
     return presentation;
 }
-function insertBlock(presentation: types.Presentation, block: types.Block): types.Presentation {
+function insertBlock(presentation: Presentation, block: Block): Presentation {
     return presentation;
 }
-function createBlock(presentation: types.Presentation, content: types.blockContent): types.Presentation {
+function createBlock(presentation: Presentation, content: blockContent): Presentation {
     return presentation;
 }
-function removeBlock(presentation: types.Presentation, block: types.Block): types.Presentation {
+function removeBlock(presentation: Presentation, block: Block): Presentation {
     return presentation;
 }
-function selectBlock(presentation: types.Presentation, blockId: number): types.Presentation {
+function selectBlock(presentation: Presentation, blockId: number): Presentation {
     return presentation;
 }
-function moveBlock(presentation: types.Presentation, block: types.Block): types.Presentation {
+function moveBlock(presentation: Presentation, block: Block): Presentation {
     return presentation;
 }
-function editBlockSize(presentation: types.Presentation, block: types.Block, width: number, height: number): types.Presentation {
+function editBlockSize(presentation: Presentation, block: Block, width: number, height: number): Presentation {
     return presentation;
 }
 
 
-function editFontFamily(presentation: types.Presentation, block: types.Block, fontFamily: string): types.Presentation {
+function editFontFamily(presentation: Presentation, block: Block, fontFamily: string): Presentation {
     return presentation;
 }
-function editFontSize(presentation: types.Presentation, block: types.Block, size: number): types.Presentation {
+function editFontSize(presentation: Presentation, block: Block, size: number): Presentation {
     return presentation;
 }
-function editFontColor(presentation: types.Presentation, block: types.Block, color: string): types.Presentation {
+function editFontColor(presentation: Presentation, block: Block, color: string): Presentation {
     return presentation;
 }
-function editTextSymbols(presentation: types.Presentation, block: types.Block, symbols: string): types.Presentation {
+function editTextSymbols(presentation: Presentation, block: Block, symbols: string): Presentation {
     return presentation;
 }
-function editPrimitiveBackground(presentation: types.Presentation, block: types.Block, color: string): types.Presentation {
+function editPrimitiveBackground(presentation: Presentation, block: Block, color: string): Presentation {
     return presentation;
 }
-function editPrimitiveBorder(presentation: types.Presentation, block: types.Block, color: string): types.Presentation {
+function editPrimitiveBorder(presentation: Presentation, block: Block, color: string): Presentation {
     return presentation;
 }
