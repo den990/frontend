@@ -31,12 +31,12 @@ function createSlide(presentation: Presentation): Presentation {
     let blankSlide: Slide = {
         slideId: presentation.slideList.length + 1,
         blockList: [],
-        background: defaultcolor,
-    }
-    const newSlideList = [...presentation.slideList, blankSlide]
+        background: defaultColor
+    };
+    const newSlideList = [...presentation.slideList, blankSlide];
     return {
         ...presentation,
-        slideList: newSlideList,
+        slideList: newSlideList
     };
 }
 function removeSlide(presentation: Presentation): Presentation {
@@ -59,12 +59,38 @@ function editBackground(presentation: Presentation, slide: Slide, background: co
     }
 }
 function selectSlide(presentation: Presentation, slideId: number): Presentation {
+    let i: number = 0;
+    while (presentation.slideList[i].slideId != slideId) {
+        i++;
+    }
+    const selectedSlide = presentation.slideList[i];
+    const newSelectedSlides = [...presentation.selectedSlides, selectedSlide];
+    return {
+        ...presentation,
+        selectedSlides: newSelectedSlides
+    };
+}
+function selectSlides(presentation:Presentation, slideIds: []): Presentation {
+    for (let i = 0; i < slideIds.length; i++) {
+        selectSlide(presentation, slideIds[i]);
+    }
     return presentation;
 }
-function selectSlides(presentation:Presentation, slideId: number): Presentation {
-    return presentation;
-}
-function moveSlide(presentation: Presentation, slide: Slide, position: Object): Presentation {
+function moveSlide(presentation: Presentation, oldSlideId: number, newSlideId: number): Presentation {
+    if (newSlideId <= 1) {
+        newSlideId = 1;
+    }
+    if (newSlideId > presentation.slideList.length + 1) {
+        newSlideId = presentation.slideList.length + 1;
+    }
+    let i: number = 0;
+    while (presentation.slideList[i].slideId != oldSlideId) {
+        i++;
+    }
+    presentation.slideList[i].slideId = newSlideId
+    for (i; i < presentation.slideList.length; i++) {
+        presentation.slideList[i].slideId++;
+    }
     return presentation;
 }
 
