@@ -19,5 +19,5 @@ const BBResolution: Resolution = {
 }
 
 const defaultColor: color = {
-    codeColor : "#000000"
+    codeColor : '#000000'
 }

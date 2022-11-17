@@ -23,6 +23,7 @@ type Small = {
 
 type Slide = {
     blockList: Block[];
+    selectedBlockList: Block[];
     background: color | pictureBackground;
     slideId: number;
 }
@@ -36,7 +37,7 @@ type pictureBackground = {
 }
 type Block = {
     content: blockContent;
-    blockId: string;
+    blockId: number;
     position: {
         x: number;
         y: number;
