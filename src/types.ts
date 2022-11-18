@@ -47,7 +47,7 @@ type Block = {
 }
 
 type blockContent = {
-    content:  primitive | picture | text;
+    data:  primitive | picture | text;
 }
 
 type text = {
@@ -55,16 +55,12 @@ type text = {
     fontFamily: string;
     fontColor: string;
     fontSize: number;
-    width: number;
-    height: number;
     symbols: string;
 }
 
 type picture = {
     type: 'picture';
     url: string;
-    width: number;
-    height: number;
 }
 
 type primitive = {

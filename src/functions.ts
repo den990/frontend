@@ -147,8 +147,39 @@ function editBlockSize(presentation: Presentation, block: Block, width: number, 
 }
 
 // content of block functions
-function editFontFamily(presentation: Presentation, block: Block, fontFamily: string): Presentation {
-    return presentation;
+function editFontFamily(presentation: Presentation, slideIndex: number, blockIndex: number, newFontFamily: string): Presentation {
+    const slide = presentation.slideList[slideIndex]
+    const block = slide.blockList[blockIndex]
+    const newBlock = {
+        ...block,
+        fontFamily: newFontFamily
+    }
+    const newSlide = {
+        ...slide,
+        blockList: slide.blockList.map(( currentBlock, index) => {
+            if (index == blockIndex)
+            {
+                return newBlock
+            }
+            else
+            {
+                return currentBlock
+            }
+        // Возвращает элемент для new_array
+    })}
+    return {
+        ...presentation,
+        slideList: presentation.slideList.map(( currentSlide, index) => {
+            if (index == slideIndex)
+            {
+                return newSlide
+            }
+            else
+            {
+                return currentSlide
+            }
+        })
+    }
 }
 function editFontSize(presentation: Presentation, block: Block, size: number): Presentation {
     return presentation;

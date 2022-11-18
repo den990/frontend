@@ -21,3 +21,10 @@ const BBResolution: Resolution = {
 const defaultColor: color = {
     codeColor : '#000000'
 }
+const defaultText : text = {
+    type: 'text',
+    fontFamily: 'Arial',
+    fontColor: '#000',
+    fontSize: 12,
+    symbols: 'Новый текст'
+}
