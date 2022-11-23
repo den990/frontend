@@ -28,13 +28,13 @@ function editPresentationSlidesResolution(presentation: Presentation, inputResol
 
 // slide functions
 function createSlide(presentation: Presentation): Presentation {
-    let blankSlide: Slide = {
-        slideId: presentation.slideList.length + 1,
+    const newSlide: Slide = {
+        slideIndex: presentation.slideList.length + 1,
         blockList: [],
         selectedBlockList: [],
         background: defaultColor
     };
-    const newSlideList = [...presentation.slideList, blankSlide];
+    const newSlideList = [...presentation.slideList, newSlide];
     return {
         ...presentation,
         slideList: newSlideList
@@ -46,54 +46,62 @@ function removeSlide(presentation: Presentation): Presentation {
 function removeSlides(presentation: Presentation, Slides: Array<Slide>): Presentation {
     return presentation;
 }
-function editBackground(presentation: Presentation, slide: Slide, background: color | pictureBackground): Presentation {
-    let newSlide: Slide = {
-        blockList: [...slide.blockList],
-        selectedBlockList: [],
-        background: background,
-        slideId: slide.slideId,
+function editSlideBackground(presentation: Presentation, slideIndex: number, newBackground: color | pictureBackground): Presentation {
+    const slide = presentation.slideList[slideIndex];
+    const newSlide: Slide = {
+        ...slide,
+        background: newBackground
     };
-    let newSlideList = presentation.slideList;
-    newSlideList[slide.slideId] = newSlide;
-    return{
-        ...presentation,
-        slideList: newSlideList
-    }
-}
-function selectSlide(presentation: Presentation, slideId: number): Presentation {
-    let i: number = 0;
-    while (presentation.slideList[i].slideId != slideId) {
-        i++;
-    }
-    const selectedSlide = presentation.slideList[i];
-    const newSelectedSlides = [...presentation.selectedSlides, selectedSlide];
     return {
         ...presentation,
-        selectedSlides: newSelectedSlides
+        slideList: presentation.slideList.map((currentSlide, index) => {
+            return (index == slideIndex) ? newSlide : currentSlide;
+        })
+    }
+}
+function selectSlide(presentation: Presentation, slideIndex: number): Presentation {
+    const slide = presentation.slideList[slideIndex];
+    const newSelectedSlideList = [...presentation.selectedSlides, slide];
+    return {
+        ...presentation,
+        selectedSlides: newSelectedSlideList
     };
 }
-function selectSlides(presentation:Presentation, slideIds: []): Presentation {
-    for (let i = 0; i < slideIds.length; i++) {
-        selectSlide(presentation, slideIds[i]);
-    }
+
+function selectSlides(presentation:Presentation, slideIndexes: []): Presentation {
     return presentation;
 }
-function moveSlide(presentation: Presentation, oldSlideId: number, newSlideId: number): Presentation {
-    if (newSlideId <= 1) {
-        newSlideId = 1;
+function moveSlide(presentation: Presentation, oldSlideIndex: number, newSlideIndex: number): Presentation {
+    if (newSlideIndex <= 1) {
+        newSlideIndex = 1;
     }
-    if (newSlideId > presentation.slideList.length + 1) {
-        newSlideId = presentation.slideList.length + 1;
+    if (newSlideIndex > presentation.slideList.length + 1) {
+        newSlideIndex = presentation.slideList.length + 1;
     }
-    let i: number = 0;
-    while (presentation.slideList[i].slideId != oldSlideId) {
-        i++;
+    const slide = {
+        ...presentation.slideList[oldSlideIndex],
     }
-    presentation.slideList[i].slideId = newSlideId
-    for (i; i < presentation.slideList.length; i++) {
-        presentation.slideList[i].slideId++;
+    const newSlide = {
+        ...slide,
+        slideIndex: newSlideIndex
     }
-    return presentation;
+    const newSlideList = [];
+    const slideList = presentation.slideList;
+    for (let i = 0; i < presentation.slideList.length; i++) {
+        if (slideList[i].slideIndex < newSlideIndex) {
+            newSlideList.push(slideList[i]);
+        } else {
+            if (slideList[i].slideIndex == newSlideIndex) {
+                newSlideList.push(newSlide);
+            }
+            slideList[i].slideIndex++;
+            newSlideList.push(slideList[i]);
+        }
+    }
+    return {
+        ...presentation,
+        slideList: newSlideList
+    };
 }
 
 // block functions
@@ -103,10 +111,10 @@ function copyBlock(presentation: Presentation, block: Block): Presentation {
 function insertBlock(presentation: Presentation, block: Block): Presentation {
     return presentation;
 }
-function createBlock(presentation: Presentation, slideId: number, inputContent: blockContent): Presentation {
+function createBlock(presentation: Presentation, slideIndex: number, inputContent: blockContent): Presentation {
     const newBlock = {
         content: inputContent,
-        blockId: presentation.slideList[slideId].blockList.length++,
+        blockIndex: presentation.slideList[slideIndex].blockList.length++,
         position: {
             x: 1,
             y: 1
@@ -114,33 +122,56 @@ function createBlock(presentation: Presentation, slideId: number, inputContent: 
         width: 50,
         height: 50
     }
-    presentation.slideList[slideId].blockList = [...presentation.slideList[slideId].blockList, newBlock];
-    return presentation;
+    const newBlockList = [...presentation.slideList[slideIndex].blockList, newBlock];
+    const newSlide = {
+        ...presentation.slideList[slideIndex],
+        blockList: newBlockList
+    }
+    return {
+        ...presentation,
+        slideList: presentation.slideList.map(( currentSlide, index) => {
+            return (index == slideIndex) ? newSlide : currentSlide;
+        })
+    };
 }
 function removeBlock(presentation: Presentation, block: Block): Presentation {
     return presentation;
 }
-function selectBlock(presentation: Presentation, slideId: number, blockId: number): Presentation {
-    let i: number = 0;
-    while (presentation.slideList[i].slideId != slideId) {
-        i++;
+function selectBlock(presentation: Presentation, slideIndex: number, blockIndex: number): Presentation {
+    const newSelectedBlock = presentation.slideList[slideIndex].blockList[blockIndex];
+    const newSelectedBlockList = [...presentation.slideList[slideIndex].selectedBlockList, newSelectedBlock];
+    const newSlide = {
+        ...presentation.slideList[slideIndex],
+        selectedBlockList: newSelectedBlockList
     }
-    let j: number = 0;
-    while (presentation.slideList[i].blockList[j].blockId != blockId) {
-        j++;
-    }
-    presentation.slideList[i].selectedBlockList = [...presentation.slideList[i].selectedBlockList, presentation.slideList[i].blockList[j]];
-    return presentation;
+    return {
+        ...presentation,
+        slideList: presentation.slideList.map(( currentSlide, index) => {
+            return (index == slideIndex) ? newSlide : currentSlide;
+        })
+    };
 }
-function moveBlock(presentation: Presentation, slideId: number, blockId: number, inputX: number, inputY: number ): Presentation {
-    presentation.slideList[slideId].blockList[blockId] = {
-        ...presentation.slideList[slideId].blockList[blockId],
+function moveBlock(presentation: Presentation, slideIndex: number, blockIndex: number, inputX: number, inputY: number ): Presentation {
+    const slide = presentation.slideList[slideIndex];
+    const block = slide.blockList[blockIndex];
+    const newBlock = {
+        ...block,
         position: {
             x: inputX,
             y: inputY
         }
+    }
+    const newSlide = {
+        ...slide,
+        blockList: slide.blockList.map(( currentBlock, index) => {
+            return (index == blockIndex) ? newBlock : currentBlock;
+        })};
+    return {
+        ...presentation,
+        slideList: presentation.slideList.map(( currentSlide, index) => {
+            return (index == slideIndex) ? newSlide : currentSlide;
+        })
     };
-    return presentation;
 }
 function editBlockSize(presentation: Presentation, block: Block, width: number, height: number): Presentation {
     return presentation;
@@ -153,33 +184,18 @@ function editFontFamily(presentation: Presentation, slideIndex: number, blockInd
     const newBlock = {
         ...block,
         fontFamily: newFontFamily
-    }
+    };
     const newSlide = {
         ...slide,
         blockList: slide.blockList.map(( currentBlock, index) => {
-            if (index == blockIndex)
-            {
-                return newBlock
-            }
-            else
-            {
-                return currentBlock
-            }
-        // Возвращает элемент для new_array
-    })}
+            return (index == blockIndex) ? newBlock : currentBlock;
+    })};
     return {
         ...presentation,
         slideList: presentation.slideList.map(( currentSlide, index) => {
-            if (index == slideIndex)
-            {
-                return newSlide
-            }
-            else
-            {
-                return currentSlide
-            }
+            return (index == slideIndex) ? newSlide : currentSlide;
         })
-    }
+    };
 }
 function editFontSize(presentation: Presentation, block: Block, size: number): Presentation {
     return presentation;

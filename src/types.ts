@@ -25,7 +25,7 @@ type Slide = {
     blockList: Block[];
     selectedBlockList: Block[];
     background: color | pictureBackground;
-    slideId: number;
+    slideIndex: number;
 }
 
 type color = {
@@ -37,7 +37,7 @@ type pictureBackground = {
 }
 type Block = {
     content: blockContent;
-    blockId: number;
+    blockIndex: number;
     position: {
         x: number;
         y: number;
