@@ -197,18 +197,98 @@ function editFontFamily(presentation: Presentation, slideIndex: number, blockInd
         })
     };
 }
-function editFontSize(presentation: Presentation, block: Block, size: number): Presentation {
-    return presentation;
+function editFontSize(presentation: Presentation, slideIndex: number, blockIndex: number, newFontSize: string): Presentation {
+    const slide = presentation.slideList[slideIndex]
+    const block = slide.blockList[blockIndex]
+    const newBlock = {
+        ...block,
+        fontSize: newFontSize
+    };
+    const newSlide = {
+        ...slide,
+        blockList: slide.blockList.map(( currentBlock, index) => {
+            return (index == blockIndex) ? newBlock : currentBlock;
+        })};
+    return {
+        ...presentation,
+        slideList: presentation.slideList.map(( currentSlide, index) => {
+            return (index == slideIndex) ? newSlide : currentSlide;
+        })
+    };
 }
-function editFontColor(presentation: Presentation, block: Block, color: string): Presentation {
-    return presentation;
+function editFontColor(presentation: Presentation, slideIndex: number, blockIndex: number, newFontColor: string): Presentation {
+    const slide = presentation.slideList[slideIndex]
+    const block = slide.blockList[blockIndex]
+    const newBlock = {
+        ...block,
+        fontColor: newFontColor
+    };
+    const newSlide = {
+        ...slide,
+        blockList: slide.blockList.map(( currentBlock, index) => {
+            return (index == blockIndex) ? newBlock : currentBlock;
+        })};
+    return {
+        ...presentation,
+        slideList: presentation.slideList.map(( currentSlide, index) => {
+            return (index == slideIndex) ? newSlide : currentSlide;
+        })
+    };
 }
-function editTextSymbols(presentation: Presentation, block: Block, symbols: string): Presentation {
-    return presentation;
+function editTextSymbols(presentation: Presentation, slideIndex: number, blockIndex: number, newSymbols: string): Presentation {
+    const slide = presentation.slideList[slideIndex]
+    const block = slide.blockList[blockIndex]
+    const newBlock = {
+        ...block,
+        symbols: newSymbols
+    };
+    const newSlide = {
+        ...slide,
+        blockList: slide.blockList.map(( currentBlock, index) => {
+            return (index == blockIndex) ? newBlock : currentBlock;
+        })};
+    return {
+        ...presentation,
+        slideList: presentation.slideList.map(( currentSlide, index) => {
+            return (index == slideIndex) ? newSlide : currentSlide;
+        })
+    };
 }
-function editPrimitiveBackground(presentation: Presentation, block: Block, color: string): Presentation {
-    return presentation;
+function editPrimitiveBackground(presentation: Presentation, slideIndex: number, blockIndex: number, newPrimitiveBackground: string): Presentation {
+    const slide = presentation.slideList[slideIndex]
+    const block = slide.blockList[blockIndex]
+    const newBlock = {
+        ...block,
+        background: newPrimitiveBackground
+    };
+    const newSlide = {
+        ...slide,
+        blockList: slide.blockList.map(( currentBlock, index) => {
+            return (index == blockIndex) ? newBlock : currentBlock;
+        })};
+    return {
+        ...presentation,
+        slideList: presentation.slideList.map(( currentSlide, index) => {
+            return (index == slideIndex) ? newSlide : currentSlide;
+        })
+    };
 }
-function editPrimitiveBorder(presentation: Presentation, block: Block, color: string): Presentation {
-    return presentation;
+function editPrimitiveBorder(presentation: Presentation, slideIndex: number, blockIndex: number, newPrimitiveBorder: string): Presentation {
+    const slide = presentation.slideList[slideIndex]
+    const block = slide.blockList[blockIndex]
+    const newBlock = {
+        ...block,
+        border: newPrimitiveBorder
+    };
+    const newSlide = {
+        ...slide,
+        blockList: slide.blockList.map(( currentBlock, index) => {
+            return (index == blockIndex) ? newBlock : currentBlock;
+        })};
+    return {
+        ...presentation,
+        slideList: presentation.slideList.map(( currentSlide, index) => {
+            return (index == slideIndex) ? newSlide : currentSlide;
+        })
+    };
 }
