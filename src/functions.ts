@@ -41,9 +41,27 @@ function createSlide(presentation: Presentation): Presentation {
     };
 }
 function removeSlide(presentation: Presentation, slideIndex: number): Presentation {
-    return presentation;
+    const slideList = presentation.slideList;
+    const newSlideList = [];
+    for (let i = 0; i < slideList.length; i++) {
+        if (slideList[i].slideIndex != slideIndex) {
+            if (slideList[i].slideIndex < slideIndex) {
+                newSlideList.push(slideList[i]);
+            } else {
+                slideList[i].slideIndex--;
+                newSlideList.push(slideList[i]);
+            }
+        }
+    }
+    return {
+        ...presentation,
+        slideList: newSlideList
+    };
 }
 function removeSlides(presentation: Presentation, slideIndexes: []): Presentation {
+    slideIndexes.forEach((item) => {
+        removeSlide(presentation, item);
+    });
     return presentation;
 }
 function editSlideBackground(presentation: Presentation, slideIndex: number, newBackground: color | pictureBackground): Presentation {
@@ -67,20 +85,13 @@ function selectSlide(presentation: Presentation, slideIndex: number): Presentati
         selectedSlides: newSelectedSlideList
     };
 }
-
 function selectSlides(presentation:Presentation, slideIndexes: []): Presentation {
     slideIndexes.forEach((item) => {
-        selectSlide(presentation, item)
+        selectSlide(presentation, item);
     });
     return presentation;
 }
 function moveSlide(presentation: Presentation, oldSlideIndex: number, newSlideIndex: number): Presentation {
-    if (newSlideIndex <= 1) {
-        newSlideIndex = 1;
-    }
-    if (newSlideIndex > presentation.slideList.length + 1) {
-        newSlideIndex = presentation.slideList.length + 1;
-    }
     const slide = {
         ...presentation.slideList[oldSlideIndex],
     }
