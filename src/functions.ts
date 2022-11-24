@@ -119,12 +119,6 @@ function moveSlide(presentation: Presentation, oldSlideIndex: number, newSlideIn
 }
 
 // block functions
-function copyBlock(presentation: Presentation, block: Block): Presentation {
-    return presentation;
-}
-function insertBlock(presentation: Presentation, block: Block): Presentation {
-    return presentation;
-}
 function createBlock(presentation: Presentation, slideIndex: number, inputContent: blockContent): Presentation {
     const newBlock = {
         content: inputContent,
@@ -148,7 +142,13 @@ function createBlock(presentation: Presentation, slideIndex: number, inputConten
         })
     };
 }
-function removeBlock(presentation: Presentation, blockIndex: number): Presentation {
+function removeBlock(presentation: Presentation, blockIndex: number, slideIndex: number): Presentation {
+    const maxBlockIndex = presentation.slideList[slideIndex].blockList.length;
+    let currentBlockIndex = blockIndex;
+    for (currentBlockIndex; currentBlockIndex < maxBlockIndex; currentBlockIndex++)
+    {
+        presentation.slideList[slideIndex].blockList[currentBlockIndex] = presentation.slideList[slideIndex].blockList[currentBlockIndex + 1];
+    }
     return presentation;
 }
 function selectBlock(presentation: Presentation, slideIndex: number, blockIndex: number): Presentation {
