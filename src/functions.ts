@@ -40,10 +40,10 @@ function createSlide(presentation: Presentation): Presentation {
         slideList: newSlideList
     };
 }
-function removeSlide(presentation: Presentation): Presentation {
+function removeSlide(presentation: Presentation, slideIndex: number): Presentation {
     return presentation;
 }
-function removeSlides(presentation: Presentation, Slides: Array<Slide>): Presentation {
+function removeSlides(presentation: Presentation, slideIndexes: []): Presentation {
     return presentation;
 }
 function editSlideBackground(presentation: Presentation, slideIndex: number, newBackground: color | pictureBackground): Presentation {
@@ -69,6 +69,9 @@ function selectSlide(presentation: Presentation, slideIndex: number): Presentati
 }
 
 function selectSlides(presentation:Presentation, slideIndexes: []): Presentation {
+    slideIndexes.forEach((item) => {
+        selectSlide(presentation, item)
+    });
     return presentation;
 }
 function moveSlide(presentation: Presentation, oldSlideIndex: number, newSlideIndex: number): Presentation {
@@ -134,7 +137,7 @@ function createBlock(presentation: Presentation, slideIndex: number, inputConten
         })
     };
 }
-function removeBlock(presentation: Presentation, block: Block): Presentation {
+function removeBlock(presentation: Presentation, blockIndex: number): Presentation {
     return presentation;
 }
 function selectBlock(presentation: Presentation, slideIndex: number, blockIndex: number): Presentation {
@@ -173,14 +176,31 @@ function moveBlock(presentation: Presentation, slideIndex: number, blockIndex: n
         })
     };
 }
-function editBlockSize(presentation: Presentation, block: Block, width: number, height: number): Presentation {
-    return presentation;
+function editBlockSize(presentation: Presentation, slideIndex: number, blockIndex: number, newWidth: number, newHeight: number): Presentation {
+    const slide = presentation.slideList[slideIndex];
+    const block = slide.blockList[blockIndex];
+    const newBlock = {
+        ...block,
+        width: newWidth,
+        height: newHeight
+    }
+    const newSlide = {
+        ...slide,
+        blockList: slide.blockList.map(( currentBlock, index) => {
+            return (index == blockIndex) ? newBlock : currentBlock;
+        })};
+    return {
+        ...presentation,
+        slideList: presentation.slideList.map(( currentSlide, index) => {
+            return (index == slideIndex) ? newSlide : currentSlide;
+        })
+    };
 }
 
 // content of block functions
 function editFontFamily(presentation: Presentation, slideIndex: number, blockIndex: number, newFontFamily: string): Presentation {
-    const slide = presentation.slideList[slideIndex]
-    const block = slide.blockList[blockIndex]
+    const slide = presentation.slideList[slideIndex];
+    const block = slide.blockList[blockIndex];
     const newBlock = {
         ...block,
         fontFamily: newFontFamily
@@ -198,8 +218,8 @@ function editFontFamily(presentation: Presentation, slideIndex: number, blockInd
     };
 }
 function editFontSize(presentation: Presentation, slideIndex: number, blockIndex: number, newFontSize: string): Presentation {
-    const slide = presentation.slideList[slideIndex]
-    const block = slide.blockList[blockIndex]
+    const slide = presentation.slideList[slideIndex];
+    const block = slide.blockList[blockIndex];
     const newBlock = {
         ...block,
         fontSize: newFontSize
@@ -217,8 +237,8 @@ function editFontSize(presentation: Presentation, slideIndex: number, blockIndex
     };
 }
 function editFontColor(presentation: Presentation, slideIndex: number, blockIndex: number, newFontColor: string): Presentation {
-    const slide = presentation.slideList[slideIndex]
-    const block = slide.blockList[blockIndex]
+    const slide = presentation.slideList[slideIndex];
+    const block = slide.blockList[blockIndex];
     const newBlock = {
         ...block,
         fontColor: newFontColor
@@ -236,8 +256,8 @@ function editFontColor(presentation: Presentation, slideIndex: number, blockInde
     };
 }
 function editTextSymbols(presentation: Presentation, slideIndex: number, blockIndex: number, newSymbols: string): Presentation {
-    const slide = presentation.slideList[slideIndex]
-    const block = slide.blockList[blockIndex]
+    const slide = presentation.slideList[slideIndex];
+    const block = slide.blockList[blockIndex];
     const newBlock = {
         ...block,
         symbols: newSymbols
@@ -255,8 +275,8 @@ function editTextSymbols(presentation: Presentation, slideIndex: number, blockIn
     };
 }
 function editPrimitiveBackground(presentation: Presentation, slideIndex: number, blockIndex: number, newPrimitiveBackground: string): Presentation {
-    const slide = presentation.slideList[slideIndex]
-    const block = slide.blockList[blockIndex]
+    const slide = presentation.slideList[slideIndex];
+    const block = slide.blockList[blockIndex];
     const newBlock = {
         ...block,
         background: newPrimitiveBackground
@@ -274,8 +294,8 @@ function editPrimitiveBackground(presentation: Presentation, slideIndex: number,
     };
 }
 function editPrimitiveBorder(presentation: Presentation, slideIndex: number, blockIndex: number, newPrimitiveBorder: string): Presentation {
-    const slide = presentation.slideList[slideIndex]
-    const block = slide.blockList[blockIndex]
+    const slide = presentation.slideList[slideIndex];
+    const block = slide.blockList[blockIndex];
     const newBlock = {
         ...block,
         border: newPrimitiveBorder
