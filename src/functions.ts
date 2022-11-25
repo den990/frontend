@@ -143,13 +143,32 @@ function createBlock(presentation: Presentation, slideIndex: number, inputConten
     };
 }
 function removeBlock(presentation: Presentation, blockIndex: number, slideIndex: number): Presentation {
-    const maxBlockIndex = presentation.slideList[slideIndex].blockList.length;
-    let currentBlockIndex = blockIndex;
-    for (currentBlockIndex; currentBlockIndex < maxBlockIndex; currentBlockIndex++)
-    {
-        presentation.slideList[slideIndex].blockList[currentBlockIndex] = presentation.slideList[slideIndex].blockList[currentBlockIndex + 1];
+    const slideList = presentation.slideList;
+    const slide = slideList[slideIndex];
+    const blockList = slide.blockList;
+    const newBlockList = [];
+    for (let i = 0; i < blockList.length; i++) {
+        if (blockList[i].blockIndex != blockIndex) {
+            if (blockList[i].blockIndex < blockIndex) {
+                newBlockList.push(blockList[i]);
+            } else {
+                blockList[i].blockIndex--;
+                newBlockList.push(blockList[i]);
+            }
+        }
     }
-    return presentation;
+    const newSlide = {
+        ...slide,
+        blockList: newBlockList
+    }
+    return {
+        ...presentation,
+        slideList: presentation.slideList.map(( currentSlide, index) => {
+            return (index == slideIndex) ? newSlide : currentSlide;
+        })
+    };
+
+
 }
 function selectBlock(presentation: Presentation, slideIndex: number, blockIndex: number): Presentation {
     const newSelectedBlock = presentation.slideList[slideIndex].blockList[blockIndex];
