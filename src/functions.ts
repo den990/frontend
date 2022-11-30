@@ -41,18 +41,6 @@ function createSlide(presentation: Presentation): Presentation {
     };
 }
 function removeSlide(presentation: Presentation, slideIndex: number): Presentation {
-    const slideList = presentation.slideList;
-    const newSlideList = [];
-    // for (let i = 0; i < slideList.length; i++) {
-    //     if (slideList[i].slideIndex != slideIndex) {
-    //         if (slideList[i].slideIndex < slideIndex) {
-    //             newSlideList.push(slideList[i]);
-    //         } else {
-    //             slideList[i].slideIndex--;
-    //             newSlideList.push(slideList[i]);
-    //         }
-    //     }
-    // }
     return {
         ...presentation,
         slideList: presentation.slideList.filter((slide, index) => index !== slideIndex)
@@ -73,7 +61,7 @@ function editSlideBackground(presentation: Presentation, slideIndex: number, new
     return {
         ...presentation,
         slideList: presentation.slideList.map((currentSlide, index) => {
-            return (index == slideIndex) ? newSlide : currentSlide;
+            return (index === slideIndex) ? newSlide : currentSlide;
         })
     }
 }
@@ -92,28 +80,8 @@ function selectSlides(presentation:Presentation, slideIndexes: []): Presentation
     return presentation;
 }
 function moveSlide(presentation: Presentation, oldSlideIndex: number, newSlideIndex: number): Presentation {
-    const slide = presentation.slideList[oldSlideIndex]
-
-    const newSlide = {
-        ...slide,
-        slideIndex: newSlideIndex
-    }
     const newSlideList = [...presentation.slideList];
-    //const slideList = presentation.slideList;
-
     [newSlideList[oldSlideIndex], newSlideList[newSlideIndex]] = [newSlideList[newSlideIndex], newSlideList[oldSlideIndex]]
-
-    // for (let i = 0; i < presentation.slideList.length; i++) {
-    //     if (slideList[i].slideIndex < newSlideIndex) {
-    //         newSlideList.push(slideList[i]);
-    //     } else {
-    //         if (slideList[i].slideIndex == newSlideIndex) {
-    //             newSlideList.push(newSlide);
-    //         }
-    //         slideList[i].slideIndex++;
-    //         newSlideList.push(slideList[i]);
-    //     }
-    // }
     return {
         ...presentation,
         slideList: newSlideList
@@ -140,33 +108,21 @@ function createBlock(presentation: Presentation, slideIndex: number, inputConten
     return {
         ...presentation,
         slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index == slideIndex) ? newSlide : currentSlide;
+            return (index === slideIndex) ? newSlide : currentSlide;
         })
     };
 }
 function removeBlock(presentation: Presentation, blockIndex: number, slideIndex: number): Presentation {
     const slideList = presentation.slideList;
     const slide = slideList[slideIndex];
-    const blockList = slide.blockList;
-    const newBlockList = [];
-    for (let i = 0; i < blockList.length; i++) {
-        if (blockList[i].blockIndex != blockIndex) {
-            if (blockList[i].blockIndex < blockIndex) {
-                newBlockList.push(blockList[i]);
-            } else {
-                blockList[i].blockIndex--;
-                newBlockList.push(blockList[i]);
-            }
-        }
-    }
     const newSlide = {
         ...slide,
-        blockList: newBlockList
+        blockList: slide.blockList.filter((block, index) => index !== slideIndex)
     }
     return {
         ...presentation,
         slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index == slideIndex) ? newSlide : currentSlide;
+            return (index === slideIndex) ? newSlide : currentSlide;
         })
     };
 
@@ -182,7 +138,7 @@ function selectBlock(presentation: Presentation, slideIndex: number, blockIndex:
     return {
         ...presentation,
         slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index == slideIndex) ? newSlide : currentSlide;
+            return (index === slideIndex) ? newSlide : currentSlide;
         })
     };
 }
@@ -199,12 +155,12 @@ function moveBlock(presentation: Presentation, slideIndex: number, blockIndex: n
     const newSlide = {
         ...slide,
         blockList: slide.blockList.map(( currentBlock, index) => {
-            return (index == blockIndex) ? newBlock : currentBlock;
+            return (index === blockIndex) ? newBlock : currentBlock;
         })};
     return {
         ...presentation,
         slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index == slideIndex) ? newSlide : currentSlide;
+            return (index === slideIndex) ? newSlide : currentSlide;
         })
     };
 }
@@ -219,12 +175,12 @@ function editBlockSize(presentation: Presentation, slideIndex: number, blockInde
     const newSlide = {
         ...slide,
         blockList: slide.blockList.map(( currentBlock, index) => {
-            return (index == blockIndex) ? newBlock : currentBlock;
+            return (index === blockIndex) ? newBlock : currentBlock;
         })};
     return {
         ...presentation,
         slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index == slideIndex) ? newSlide : currentSlide;
+            return (index === slideIndex) ? newSlide : currentSlide;
         })
     };
 }
@@ -240,12 +196,12 @@ function editFontFamily(presentation: Presentation, slideIndex: number, blockInd
     const newSlide = {
         ...slide,
         blockList: slide.blockList.map(( currentBlock, index) => {
-            return (index == blockIndex) ? newBlock : currentBlock;
+            return (index === blockIndex) ? newBlock : currentBlock;
     })};
     return {
         ...presentation,
         slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index == slideIndex) ? newSlide : currentSlide;
+            return (index === slideIndex) ? newSlide : currentSlide;
         })
     };
 }
@@ -259,12 +215,12 @@ function editFontSize(presentation: Presentation, slideIndex: number, blockIndex
     const newSlide = {
         ...slide,
         blockList: slide.blockList.map(( currentBlock, index) => {
-            return (index == blockIndex) ? newBlock : currentBlock;
+            return (index === blockIndex) ? newBlock : currentBlock;
         })};
     return {
         ...presentation,
         slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index == slideIndex) ? newSlide : currentSlide;
+            return (index === slideIndex) ? newSlide : currentSlide;
         })
     };
 }
@@ -278,12 +234,12 @@ function editFontColor(presentation: Presentation, slideIndex: number, blockInde
     const newSlide = {
         ...slide,
         blockList: slide.blockList.map(( currentBlock, index) => {
-            return (index == blockIndex) ? newBlock : currentBlock;
+            return (index === blockIndex) ? newBlock : currentBlock;
         })};
     return {
         ...presentation,
         slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index == slideIndex) ? newSlide : currentSlide;
+            return (index === slideIndex) ? newSlide : currentSlide;
         })
     };
 }
@@ -297,12 +253,12 @@ function editTextSymbols(presentation: Presentation, slideIndex: number, blockIn
     const newSlide = {
         ...slide,
         blockList: slide.blockList.map(( currentBlock, index) => {
-            return (index == blockIndex) ? newBlock : currentBlock;
+            return (index === blockIndex) ? newBlock : currentBlock;
         })};
     return {
         ...presentation,
         slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index == slideIndex) ? newSlide : currentSlide;
+            return (index === slideIndex) ? newSlide : currentSlide;
         })
     };
 }
@@ -316,12 +272,12 @@ function editPrimitiveBackground(presentation: Presentation, slideIndex: number,
     const newSlide = {
         ...slide,
         blockList: slide.blockList.map(( currentBlock, index) => {
-            return (index == blockIndex) ? newBlock : currentBlock;
+            return (index === blockIndex) ? newBlock : currentBlock;
         })};
     return {
         ...presentation,
         slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index == slideIndex) ? newSlide : currentSlide;
+            return (index === slideIndex) ? newSlide : currentSlide;
         })
     };
 }
@@ -335,12 +291,12 @@ function editPrimitiveBorder(presentation: Presentation, slideIndex: number, blo
     const newSlide = {
         ...slide,
         blockList: slide.blockList.map(( currentBlock, index) => {
-            return (index == blockIndex) ? newBlock : currentBlock;
+            return (index === blockIndex) ? newBlock : currentBlock;
         })};
     return {
         ...presentation,
         slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index == slideIndex) ? newSlide : currentSlide;
+            return (index === slideIndex) ? newSlide : currentSlide;
         })
     };
 }
