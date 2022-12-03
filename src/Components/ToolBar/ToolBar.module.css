@@ -1,0 +1,75 @@
+.toolbar {
+    width: 100%;
+    height: 101px; /* новый гитхаб токен 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*/
+    background: #F2FFFA;
+    border: 1px solid #737373;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toolbar__slideButtons {
+    padding-left: 39px;
+}
+
+.toolbar__slideButtons__addButton {
+    background: linear-gradient(94.98deg, rgba(0, 255, 25, 0.7) 10.5%, rgba(36, 255, 0, 0.7) 94.21%);
+    border-radius: 45px;
+    padding: 7px 20px;
+    border: none;
+    line-height: 50%;
+    box-sizing: border-box;
+}
+
+.toolbar__slideButtons__addButton__text {
+    position: relative;
+    bottom: 16px;
+    padding-left: 10px;
+    font: 700 16px/1.25 'Montserrat';
+    color: #000;
+}
+
+.toolbar__slideButtons__deleteButton {
+    background: linear-gradient(143.75deg, rgba(255, 0, 0, 0.8) 7.05%, rgba(255, 61, 0, 0.8) 95.77%);
+    border-radius: 21px;
+    padding: 8px 7px 7px 8px;
+    border: none;
+    margin-left: 40px;
+}
+
+.toolbar__blockFunctions__dividingLine_left {
+    padding-right: 35px;
+}
+
+.toolbar__blockFunctions__dividingLine_right {
+    padding-left: 26px;
+    padding-right: 24px;
+}
+
+.toolbar__blockFunctions__button {
+    border: none;
+    background: none;
+}
+
+.toolbar__blockFunctions__button:nth-last-child(n + 2) {
+    padding-right: 34px;
+}
+
+.toolbar__slideShow {
+    padding-right: 39px;
+}
+
+.toolbar__slideShowButton {
+    display: flex;
+    border:none;
+    background: linear-gradient(94.98deg, rgba(0, 255, 209, 0.5) 10.5%, rgba(0, 133, 255, 0.5) 94.21%);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 45px;
+    padding: 10px 35px 9px 18px;
+    align-items: center;
+}
+
+.toolbar__slideShowButton__text {
+    font: 700 16px/1.25 'Montserrat';
+    padding-left: 18px;
+}

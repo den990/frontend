@@ -6,7 +6,7 @@ export function MenuBar() {
         <div className={style.header}>
             <div className={style.header__icon}></div>
             <div className={style.header__input}>
-                <span className={style.header__input__text}>Новая презентация</span>
+                <span className={style.header__input__text}>Название презентации</span>
             </div>
             <div className={style.header__action}>
                 <div className={style.header__action__text}>Создать</div>
