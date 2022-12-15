@@ -18,10 +18,19 @@ export function ToolBar() {
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/redo.svg').default} alt={'RedoButton'} /></button>
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/undo.svg').default} alt={'UndoButton'} /></button>
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/text.svg').default} alt={'TextButton'} /></button>
-                <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/primitive.svg').default} alt={'PrimitiveButton'} /></button>
+
+                <button className={style.toolbar__blockFunctions__primitiveButton}><img src={require('../../images/primitive.svg').default} alt={'PrimitiveButton'} /></button>
+                <button className={style.toolbar__blockFunctions__expand}><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} /></button>
+                
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/picture.svg').default} alt={'PictureButton'} /></button>
+
+                <button className={style.toolbar__blockFunctions__backgroundButton}><img src={require('../../images/background.svg').default} alt={'BackgroundButton'} /></button>
+                <button className={style.toolbar__blockFunctions__expand}><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} /></button>
+
                 <img className={style.toolbar__blockFunctions__dividingLine_right} src={require('../../images/dividing-line.svg').default} alt={'DividingLine'} />
-                <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/background.svg').default} alt={'BackgroundButton'} /></button>
+
+                <img src={require('../../images/frame-font.svg').default} alt={'FrameFont'} />
+                <button className={style.toolbar__blockFunctions__expand}><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} /></button>
             </div>
             <div className={style.toolbar__slideShow}>
                 <button className={style.toolbar__slideShowButton}>

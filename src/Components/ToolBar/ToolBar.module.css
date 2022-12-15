@@ -15,6 +15,7 @@
 
 .toolbar__slideButtons__addButton {
     background: linear-gradient(94.98deg, rgba(0, 255, 25, 0.7) 10.5%, rgba(36, 255, 0, 0.7) 94.21%);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 45px;
     padding: 7px 20px;
     border: none;
@@ -32,6 +33,7 @@
 
 .toolbar__slideButtons__deleteButton {
     background: linear-gradient(143.75deg, rgba(255, 0, 0, 0.8) 7.05%, rgba(255, 61, 0, 0.8) 95.77%);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 21px;
     padding: 8px 7px 7px 8px;
     border: none;
@@ -39,12 +41,11 @@
 }
 
 .toolbar__blockFunctions__dividingLine_left {
-    padding-right: 35px;
+    padding-right: 20px;
 }
 
 .toolbar__blockFunctions__dividingLine_right {
-    padding-left: 26px;
-    padding-right: 24px;
+    padding-right: 20px;
 }
 
 .toolbar__blockFunctions__button {
@@ -73,4 +74,21 @@
 .toolbar__slideShowButton__text {
     font: 700 16px/1.25 'Montserrat';
     padding-left: 18px;
+}
+
+.toolbar__blockFunctions__primitiveButton{
+    border: none;
+    background: none;
+}
+
+.toolbar__blockFunctions__backgroundButton{
+    border: none;
+    background: none;
+}
+
+.toolbar__blockFunctions__expand{
+    vertical-align: super;
+    padding-right: 20px;
+    border: none;
+    background: none;
 }
