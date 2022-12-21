@@ -40,11 +40,7 @@
     margin-left: 40px;
 }
 
-.toolbar__blockFunctions__dividingLine_left {
-    padding-right: 20px;
-}
-
-.toolbar__blockFunctions__dividingLine_right {
+.toolbar__blockFunctions__dividingLine {
     padding-right: 20px;
 }
 
@@ -91,4 +87,44 @@
     padding-right: 20px;
     border: none;
     background: none;
+}
+
+.toolbar__blockFunction__editFontFamily{
+    border: 1px solid #BBBBBB;
+    vertical-align: bottom;
+    font: 400 16px/1.25 'Arial';
+    text-align: center;
+    width: 94px;
+    height: 36px;
+}
+
+.toolbar__blockFunctions__textSize{
+    border: none;
+    background: none;
+    vertical-align: bottom;
+    padding: 0;
+}
+
+.toolbar__blockFunction__editFontSize{
+    vertical-align: bottom;
+    text-align: center;
+    border: 1px solid #BBBBBB;
+    font: 400 16px/1.25 'Montserrat';
+    font-size: 16px;
+    width: 76px;
+    height: 36px;
+    padding-bottom: 2px;
+}
+
+.toolbar__blockFunctions__textColor{
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
+    background: none;
+}
+
+.toolbar__blockFunctions__primitiveColor{
+    border: none;
+    background: none;
+    padding-right: 20px;
 }

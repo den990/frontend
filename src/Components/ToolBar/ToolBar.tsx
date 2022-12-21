@@ -14,23 +14,32 @@ export function ToolBar() {
                 </button>
             </div>
             <div className={style.toolbar__blockFunctions}>
-                <img className={style.toolbar__blockFunctions__dividingLine_left} src={require('../../images/dividing-line.svg').default} alt={'DividingLine'} />
+                <img className={style.toolbar__blockFunctions__dividingLine} src={require('../../images/dividing-line.svg').default} alt={'DividingLine'} />
+
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/redo.svg').default} alt={'RedoButton'} /></button>
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/undo.svg').default} alt={'UndoButton'} /></button>
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/text.svg').default} alt={'TextButton'} /></button>
-
                 <button className={style.toolbar__blockFunctions__primitiveButton}><img src={require('../../images/primitive.svg').default} alt={'PrimitiveButton'} /></button>
                 <button className={style.toolbar__blockFunctions__expand}><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} /></button>
-                
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/picture.svg').default} alt={'PictureButton'} /></button>
-
                 <button className={style.toolbar__blockFunctions__backgroundButton}><img src={require('../../images/background.svg').default} alt={'BackgroundButton'} /></button>
                 <button className={style.toolbar__blockFunctions__expand}><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} /></button>
 
-                <img className={style.toolbar__blockFunctions__dividingLine_right} src={require('../../images/dividing-line.svg').default} alt={'DividingLine'} />
-
-                <img src={require('../../images/frame-font.svg').default} alt={'FrameFont'} />
+                <img className={style.toolbar__blockFunctions__dividingLine} src={require('../../images/dividing-line.svg').default} alt={'DividingLine'} />
+                
+                <input type={"button"} value="Arial" className={style.toolbar__blockFunction__editFontFamily} alt={"EditFontFamily"}/>
                 <button className={style.toolbar__blockFunctions__expand}><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} /></button>
+                <button className={style.toolbar__blockFunctions__textSize}><img src={require('../../images/decrease-text.svg').default} alt={'DecreaseText'} /></button>
+                <input type={"text"} value="36" className={style.toolbar__blockFunction__editFontSize} alt={"EditFontSize"}/>
+                <button className={style.toolbar__blockFunctions__textSize}><img src={require('../../images/increase-text.svg').default} alt={'IncreaseText'} /></button>
+                <button className={style.toolbar__blockFunctions__textColor}><img src={require('../../images/text-color.svg').default} alt={'EditTextColor'} /></button>
+
+                <img className={style.toolbar__blockFunctions__dividingLine} src={require('../../images/dividing-line.svg').default} alt={'DividingLine'} />
+
+                <button className={style.toolbar__blockFunctions__primitiveColor}><img src={require('../../images/primitive-color-background.svg').default} alt={'EditPrimitiveColorBackground'} /></button>
+                <button className={style.toolbar__blockFunctions__primitiveColor}><img src={require('../../images/primitive-color-border.svg').default} alt={'EditPrimitiveColorBorder'} /></button>
+
+                <img className={style.toolbar__blockFunctions__dividingLine} src={require('../../images/dividing-line.svg').default} alt={'DividingLine'} />
             </div>
             <div className={style.toolbar__slideShow}>
                 <button className={style.toolbar__slideShowButton}>
