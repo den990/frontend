@@ -6,7 +6,10 @@ import ToolBar from "../Components/ToolBar/ToolBar";
 import SlideList from "../Components/SlideList/SlideList";
 import WorkSpace from "../Components/WorkSpace/WorkSpace";
 
-function App() {
+interface propsApp{
+    editor: any
+}
+function App(props: propsApp) {
   return (
       <div>
           <MenuBar />
