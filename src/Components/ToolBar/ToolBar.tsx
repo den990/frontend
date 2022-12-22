@@ -1,7 +1,22 @@
 import React from 'react';
+import {useState} from 'react';
+import {useReducer} from "react";
 import style from './ToolBar.module.css';
 
+
+
+
 export function ToolBar() {
+    const [inputSize, setInputSize] = useState(36);
+
+    function increment(){
+        setInputSize(inputSize + 1)
+    }
+
+    function decrement(){
+        setInputSize(inputSize - 1)
+    }
+
     return (
         <div className={style.toolbar}>
             <div className={style.toolbar__slideButtons}>
@@ -29,9 +44,13 @@ export function ToolBar() {
                 
                 <input type={"button"} value="Arial" className={style.toolbar__blockFunction__editFontFamily} alt={"EditFontFamily"}/>
                 <button className={style.toolbar__blockFunctions__expand}><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} /></button>
-                <button className={style.toolbar__blockFunctions__textSize}><img src={require('../../images/decrease-text.svg').default} alt={'DecreaseText'} /></button>
-                <input type={"text"} value="36" className={style.toolbar__blockFunction__editFontSize} alt={"EditFontSize"}/>
-                <button className={style.toolbar__blockFunctions__textSize}><img src={require('../../images/increase-text.svg').default} alt={'IncreaseText'} /></button>
+
+
+                <button onClick={decrement} className={style.toolbar__blockFunctions__textSize}><img src={require('../../images/decrease-text.svg').default} alt={'DecreaseText'} /></button>
+                <input type={"number"} value={inputSize} onChange={e => setInputSize(e.target.valueAsNumber)} className={style.toolbar__blockFunction__editFontSize} alt={"EditFontSize"}/>
+                <button onClick={increment} className={style.toolbar__blockFunctions__textSize}><img src={require('../../images/increase-text.svg').default} alt={'IncreaseText'} /></button>
+
+
                 <button className={style.toolbar__blockFunctions__textColor}><img src={require('../../images/text-color.svg').default} alt={'EditTextColor'} /></button>
 
                 <img className={style.toolbar__blockFunctions__dividingLine} src={require('../../images/dividing-line.svg').default} alt={'DividingLine'} />
