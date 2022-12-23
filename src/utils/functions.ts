@@ -1,7 +1,7 @@
 // presentation functions
 export function createPresentation(): Presentation {
     return {
-        name: 'Новая презентация2',
+        name: 'Новая презентация',
         slideList: [],
         selectedSlides: []
     };
@@ -18,7 +18,6 @@ export function renamePresentation(presentation: Presentation, inputName: string
         name: inputName
     };
 }
-
 
 // slide functions
 export function createSlide(presentation: Presentation): Presentation {

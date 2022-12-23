@@ -47,5 +47,6 @@
 {
     font: 700 20px/1.2 'Bold Montserrat', sans-serif;
     color: #464646;
-    background-color: #F2FFFA; 
+    background-color: #F2FFFA;
+    border: none; 
 }

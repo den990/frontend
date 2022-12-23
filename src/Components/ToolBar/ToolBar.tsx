@@ -1,15 +1,38 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {useState} from 'react';
-import {useReducer} from "react";
 import style from './ToolBar.module.css';
 
-import { createBlock } from '../../utils/functions';
+
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { ButtonBase } from '@mui/material';
 
 
+const options = [{
+    value: 'square',
+    label: 'Квадрат'
+},{
+    value: 'triangle',
+    label: 'Треугольник'
+},{
+    value: 'circle',
+    label: 'Круг'
+}]
 
 export function ToolBar() {
     const [inputSize, setInputSize] = useState(36);
 
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+    
+    
     function increment(){
         setInputSize(inputSize + 1)
     }
@@ -37,11 +60,34 @@ export function ToolBar() {
 
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/redo.svg').default} alt={'RedoButton'} /></button>
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/undo.svg').default} alt={'UndoButton'} /></button>
-
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/text.svg').default} alt={'TextButton'} /></button>
-
                 <button className={style.toolbar__blockFunctions__primitiveButton}><img src={require('../../images/primitive.svg').default} alt={'PrimitiveButton'} /></button>
-                <button className={style.toolbar__blockFunctions__expand}><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} /></button>
+
+
+                <Button
+                    id="basic-button"
+                    aria-controls={open ? 'basic-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}>
+                    <img src={require('../../images/arrow.svg').default} alt={'ExpandButton'}/>
+                </Button>
+                <Menu
+                    id="basic-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                    }}
+                >
+                    <MenuItem onClick={handleClose}>Квадрат</MenuItem>
+                    <MenuItem onClick={handleClose}>Треугольник</MenuItem>
+                    <MenuItem onClick={handleClose}>Круг</MenuItem>
+                </Menu>
+                
+                
+
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/picture.svg').default} alt={'PictureButton'} /></button>
                 <button className={style.toolbar__blockFunctions__backgroundButton}><img src={require('../../images/background.svg').default} alt={'BackgroundButton'} /></button>
                 <button className={style.toolbar__blockFunctions__expand}><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} /></button>
