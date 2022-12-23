@@ -3,8 +3,7 @@ export function createPresentation(): Presentation {
     return {
         name: 'Новая презентация2',
         slideList: [],
-        selectedSlides: [],
-        slideResolution: HDResolution
+        selectedSlides: []
     };
 }
 export function savePresentation(presentation: Presentation): Presentation {
@@ -19,12 +18,7 @@ export function renamePresentation(presentation: Presentation, inputName: string
         name: inputName
     };
 }
-export function editPresentationSlidesResolution(presentation: Presentation, inputResolution: Resolution): Presentation {
-    return{
-        ...presentation,
-        slideResolution: inputResolution
-    };
-}
+
 
 // slide functions
 export function createSlide(presentation: Presentation): Presentation {

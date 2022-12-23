@@ -11,11 +11,11 @@ interface propsApp{
     editor: any
 }
 function App(props: propsApp) {
-  let NewPresentation : Presentation;
+  let NewPresentation : Presentation = createPresentation();
   
   return (
       <div>
-          <MenuBar name={'Новая презентация'} />
+          <MenuBar name ={NewPresentation.name} />
           <ToolBar />
           <div className={style.content}>
             <SlideList />

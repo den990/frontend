@@ -96,6 +96,7 @@
     text-align: center;
     width: 94px;
     height: 36px;
+    background-color: #F2FFFA; 
 }
 
 .toolbar__blockFunctions__textSize{
@@ -107,7 +108,7 @@
 
 
 .toolbar__blockFunction__editFontSize{
-    -webkit-appearance: none;
+    background-color: #F2FFFA; 
     margin: 0;
     vertical-align: bottom;
     text-align: center;

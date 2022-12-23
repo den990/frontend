@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {useReducer} from "react";
 import style from './ToolBar.module.css';
 
+import { createBlock } from '../../utils/functions';
 
 
 
@@ -14,7 +15,10 @@ export function ToolBar() {
     }
 
     function decrement(){
-        setInputSize(inputSize - 1)
+        if (inputSize > 1)
+        {
+            setInputSize(inputSize - 1)
+        }
     }
 
     return (
@@ -33,7 +37,9 @@ export function ToolBar() {
 
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/redo.svg').default} alt={'RedoButton'} /></button>
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/undo.svg').default} alt={'UndoButton'} /></button>
+
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/text.svg').default} alt={'TextButton'} /></button>
+
                 <button className={style.toolbar__blockFunctions__primitiveButton}><img src={require('../../images/primitive.svg').default} alt={'PrimitiveButton'} /></button>
                 <button className={style.toolbar__blockFunctions__expand}><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} /></button>
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/picture.svg').default} alt={'PictureButton'} /></button>

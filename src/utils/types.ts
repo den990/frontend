@@ -2,7 +2,6 @@ type Presentation = {
     name: string;
     slideList: Slide[];
     selectedSlides: Slide[];
-    slideResolution: Resolution;
 }
 
 type Resolution = {
