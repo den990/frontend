@@ -1,6 +1,7 @@
 import React from "react";
 import style from './MenuBar.module.css';
 
+
 export function MenuBar() {
     return (
         <div className={style.header}>
