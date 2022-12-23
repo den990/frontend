@@ -5,14 +5,17 @@ import MenuBar from "../Components/MenuBar/MenuBar"
 import ToolBar from "../Components/ToolBar/ToolBar";
 import SlideList from "../Components/SlideList/SlideList";
 import WorkSpace from "../Components/WorkSpace/WorkSpace";
+import { createPresentation } from '../utils/functions';
 
 interface propsApp{
     editor: any
 }
 function App(props: propsApp) {
+  let NewPresentation : Presentation;
+  
   return (
       <div>
-          <MenuBar />
+          <MenuBar name={'Новая презентация'} />
           <ToolBar />
           <div className={style.content}>
             <SlideList />

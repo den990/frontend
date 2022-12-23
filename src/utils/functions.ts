@@ -1,7 +1,7 @@
 // presentation functions
 export function createPresentation(): Presentation {
     return {
-        name: 'Новая презентация',
+        name: 'Новая презентация2',
         slideList: [],
         selectedSlides: [],
         slideResolution: HDResolution
