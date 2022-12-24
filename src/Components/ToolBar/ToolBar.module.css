@@ -13,6 +13,11 @@
     padding-left: 39px;
 }
 
+.toolbar__blockFunctions
+{
+    display: flex;
+    align-items: center;
+}
 .toolbar__slideButtons__addButton {
     background: linear-gradient(94.98deg, rgba(0, 255, 25, 0.7) 10.5%, rgba(36, 255, 0, 0.7) 94.21%);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -47,6 +52,10 @@
 .toolbar__blockFunctions__button {
     border: none;
     background: none;
+}
+.MuiButton-root
+{
+    padding-top: 100px;
 }
 
 .toolbar__blockFunctions__button:nth-last-child(n + 2) {
@@ -99,25 +108,29 @@
     background-color: #F2FFFA; 
 }
 
-.toolbar__blockFunctions__textSize{
+
+.toolbar__blockFunctions__textSize_decrement{
     border: none;
     background: none;
     vertical-align: bottom;
-    padding: 0;
+    padding: 3px 0px 0px 20px;
+}
+.toolbar__blockFunctions__textSize_increment {
+    border: none;
+    background: none;
+    vertical-align: bottom;
+    padding: 3px 0px 0px 0px;
 }
 
-
 .toolbar__blockFunction__editFontSize{
-    background-color: #F2FFFA; 
-    margin: 0;
+    background-color: #F2FFFA;
     vertical-align: bottom;
     text-align: center;
     border: 1px solid #BBBBBB;
     font: 400 16px/1.25 'Montserrat';
     font-size: 16px;
     width: 76px;
-    height: 36px;
-    padding-bottom: 2px;
+    height: 33px;
 }
 
 .toolbar__blockFunctions__textColor{
