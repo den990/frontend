@@ -1,23 +1,36 @@
 import React, { useEffect, useState } from "react";
 import style from './MenuBar.module.css';
+import { createPresentation, renamePresentation } from "../../utils/functions";
 
 type Props = {
-    name: string,
+    presentation: Presentation;
   };
 
-export function MenuBar({ name }: Props) {
+
+
+export function MenuBar({ presentation }: Props) {
+    let name= presentation.name
     const [namePresentation, setName] = useState(name);
 
     useEffect(() => {
         setName(name);
       }, [name]);
 
+    const setTitle = () => {
+        presentation = renamePresentation(presentation, namePresentation);
+      };
 
     return (
         <div className={style.header}>
             <div className={style.header__icon}></div>
             <div className={style.header__input}>
                 <input 
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.currentTarget.blur();
+                      setTitle();
+                    }
+                  }}
                 onFocus={(e) => {
                         e.currentTarget.select();
                       }}
@@ -26,7 +39,7 @@ export function MenuBar({ name }: Props) {
                 value={namePresentation} />
             </div>
             <div className={style.header__action}>
-                <div className={style.header__action__text}>Создать</div>
+                <button onClick={(e) => {{presentation = createPresentation()}; setName(name); setTitle()}} className={style.header__action__create}>Создать</button>
                 <div className={style.header__action__text}>Открыть</div>
                 <div className={style.header__action__text}>Сохранить</div>
             </div>

@@ -1,29 +1,9 @@
 import React, { ReactNode } from 'react';
 import {useState} from 'react';
 import style from './ToolBar.module.css';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 
-
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import {ButtonBase, experimentalStyled, styled} from '@mui/material';
-import * as events from "events";
-
-
-
-const optionsFonts = [
-    'None',
-    'Times New Roman',
-    'Calibri',
-    'Arial',
-    'Callisto',
-    'Dione',
-];
 
 export function ToolBar() {
-
 
     const [inputSize, setInputSize] = useState(36);
     function increment(){
@@ -36,30 +16,6 @@ export function ToolBar() {
             setInputSize(inputSize - 1)
         }
     }
-
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-      setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
-
-
-    const [anchorEl1, setAnchorEl1] = React.useState<null | HTMLElement>(null);
-    const open1 = Boolean(anchorEl1);
-    const handleClick1 = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl1(event.currentTarget);
-    };
-    const handleClose1 = () => {
-        setAnchorEl1(null);
-    };
-
-    const [value, setValue] = React.useState<string | null>(optionsFonts[0]);
-    const [inputValue, setInputValue] = React.useState('');
-
-
 
     return (
         <div className={style.toolbar}>
@@ -78,32 +34,9 @@ export function ToolBar() {
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/redo.svg').default} alt={'RedoButton'} /></button>
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/undo.svg').default} alt={'UndoButton'} /></button>
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/text.svg').default} alt={'TextButton'} /></button>
-
-
-
-                <Button
-                    id="basic-button"
-                    aria-controls={open ? 'basic-menu' : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    onClick={handleClick}>
-                    <img src={require('../../images/primitive.svg').default} alt={'ExpandButton'}/>
-                </Button>
-                <Menu
-                    id="basic-menu"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    MenuListProps={{
-                    'aria-labelledby': 'basic-button',
-                    }}
-
-                >
-                    <MenuItem onClick={handleClose}>Квадрат</MenuItem>
-                    <MenuItem onClick={handleClose}>Треугольник</MenuItem>
-                    <MenuItem onClick={handleClose}>Круг</MenuItem>
-                </Menu>
                 
+                <button className={style.toolbar__blockFunctions__primitiveButton}><img src={require('../../images/primitive.svg').default} alt={'PrimitiveButton'} /></button>
+                <button className={style.toolbar__blockFunctions__expand}><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} /></button>
                 
 
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/picture.svg').default} alt={'PictureButton'} /></button>
@@ -112,20 +45,8 @@ export function ToolBar() {
 
                 <img className={style.toolbar__blockFunctions__dividingLine} src={require('../../images/dividing-line.svg').default} alt={'DividingLine'} />
 
-                <Autocomplete
-                    value={value}
-                    onChange={(event: any, newValue: string | null) => {
-                        setValue(newValue);
-                    }}
-                    inputValue={inputValue}
-                    onInputChange={(event, newInputValue) => {
-                        setInputValue(newInputValue);
-                    }}
-                    id="controllable-states-demo"
-                    options={optionsFonts}
-                    sx={{ width: 300 }}
-                    renderInput={(params) => <TextField {...params} label="Font" />}
-                />
+                <input type={"button"} value="Arial" className={style.toolbar__blockFunction__editFontFamily} alt={"EditFontFamily"}/>
+                <button className={style.toolbar__blockFunctions__expand}><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} /></button>
 
 
                 <button onClick={decrement} className={style.toolbar__blockFunctions__textSize_decrement}><img src={require('../../images/decrease-text.svg').default} alt={'DecreaseText'} /></button>

@@ -50,3 +50,11 @@
     background-color: #F2FFFA;
     border: none; 
 }
+
+.header__action__create
+{
+    font: 700 20px/1.2 'Bold Montserrat', sans-serif;
+    color: #464646;
+    border: none;
+    background: none;
+}
