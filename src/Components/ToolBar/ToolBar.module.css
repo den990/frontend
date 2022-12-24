@@ -26,6 +26,7 @@
     border: none;
     line-height: 50%;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .toolbar__slideButtons__addButton__text {
@@ -43,6 +44,7 @@
     padding: 8px 7px 7px 8px;
     border: none;
     margin-left: 40px;
+    cursor: pointer;
 }
 
 .toolbar__blockFunctions__dividingLine {
@@ -52,10 +54,7 @@
 .toolbar__blockFunctions__button {
     border: none;
     background: none;
-}
-.MuiButton-root
-{
-    padding-top: 100px;
+    cursor: pointer;
 }
 
 .toolbar__blockFunctions__button:nth-last-child(n + 2) {
@@ -74,6 +73,7 @@
     border-radius: 45px;
     padding: 10px 35px 9px 18px;
     align-items: center;
+    cursor: pointer;
 }
 
 .toolbar__slideShowButton__text {
@@ -84,11 +84,13 @@
 .toolbar__blockFunctions__primitiveButton{
     border: none;
     background: none;
+    cursor: pointer;
 }
 
 .toolbar__blockFunctions__backgroundButton{
     border: none;
     background: none;
+    cursor: pointer;
 }
 
 .toolbar__blockFunctions__expand{
@@ -96,6 +98,7 @@
     padding-right: 20px;
     border: none;
     background: none;
+    cursor: pointer;
 }
 
 .toolbar__blockFunction__editFontFamily{
@@ -105,7 +108,8 @@
     text-align: center;
     width: 94px;
     height: 36px;
-    background-color: #F2FFFA; 
+    background-color: #F2FFFA;
+    cursor: pointer; 
 }
 
 
@@ -114,12 +118,14 @@
     background: none;
     vertical-align: bottom;
     padding: 3px 0px 0px 20px;
+    cursor: pointer;
 }
 .toolbar__blockFunctions__textSize_increment {
     border: none;
     background: none;
     vertical-align: bottom;
     padding: 3px 0px 0px 0px;
+    cursor: pointer;
 }
 
 .toolbar__blockFunction__editFontSize{
@@ -138,12 +144,14 @@
     padding-right: 20px;
     border: none;
     background: none;
+    cursor: pointer;
 }
 
 .toolbar__blockFunctions__primitiveColor{
     border: none;
     background: none;
     padding-right: 20px;
+    cursor: pointer;
 }
 
 input::-webkit-outer-spin-button,

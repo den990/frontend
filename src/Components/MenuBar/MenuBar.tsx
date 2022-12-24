@@ -22,7 +22,7 @@ export function MenuBar({ presentation }: Props) {
 
     return (
         <div className={style.header}>
-            <div className={style.header__icon}></div>
+            <button onClick={e => window.location.reload()} className={style.header__icon}></button>
             <div className={style.header__input}>
                 <input 
                 onKeyDown={(e) => {
@@ -40,8 +40,8 @@ export function MenuBar({ presentation }: Props) {
             </div>
             <div className={style.header__action}>
                 <button onClick={(e) => {{presentation = createPresentation()}; setName(name); setTitle()}} className={style.header__action__create}>Создать</button>
-                <div className={style.header__action__text}>Открыть</div>
-                <div className={style.header__action__text}>Сохранить</div>
+                <input type="button" value="Открыть" className={style.header__action__open}/>
+                <button className={style.header__action__save}>Сохранить</button>
             </div>
         </div>
     );
