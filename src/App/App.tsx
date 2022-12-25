@@ -16,7 +16,7 @@ function App(props: propsApp) {
   return (
       <div>
           <MenuBar presentation={NewPresentation} />
-          <ToolBar />
+          <ToolBar presentation={NewPresentation}/>
           <div className={style.content}>
             <SlideList />
             <WorkSpace />

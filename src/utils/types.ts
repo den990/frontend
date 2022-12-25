@@ -4,22 +4,6 @@ type Presentation = {
     selectedSlides: Slide[];
 }
 
-type Resolution = {
-    content: Big | Small;
-}
-
-type Big = {
-    type: 'Big';
-    width: number;
-    height: number;
-}
-
-type Small = {
-    type: 'Small';
-    width: number;
-    height: number;
-}
-
 type Slide = {
     blockList: Block[];
     selectedBlockList: Block[];
@@ -32,7 +16,6 @@ type color = {
 }
 type pictureBackground = {
     url: string;
-    resolution : Big | Small;
 }
 type Block = {
     content: blockContent;

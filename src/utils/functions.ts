@@ -1,3 +1,5 @@
+import { defaultColor } from "./consts";
+
 // presentation functions
 export function createPresentation(): Presentation {
     return {
