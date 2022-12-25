@@ -8,14 +8,6 @@ export function SlideList() {
             <div className={style.slideList__container}>
                 <span className={style.slideList__container__text}>1</span>
                 <Slide />
-                <span className={style.slideList__container__text}>2</span>
-                <Slide />
-                <span className={style.slideList__container__text}>3</span>
-                <Slide />
-                <span className={style.slideList__container__text}>4</span>
-                <Slide />
-                <span className={style.slideList__container__text}>5</span>
-                <Slide />
             </div>
         </div>
     );

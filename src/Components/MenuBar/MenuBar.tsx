@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from './MenuBar.module.css';
-import { createPresentation, renamePresentation } from "../../utils/functions";
+import { createPresentation, openPresentation, renamePresentation, savePresentation } from "../../utils/functions";
 
 type Props = {
     presentation: Presentation;
@@ -40,8 +40,8 @@ export function MenuBar({ presentation }: Props) {
             </div>
             <div className={style.header__action}>
                 <button onClick={(e) => {{presentation = createPresentation()}; setName(name); setTitle()}} className={style.header__action__create}>Создать</button>
-                <input type="button" value="Открыть" className={style.header__action__open}/>
-                <button className={style.header__action__save}>Сохранить</button>
+                <button onClick={(e) => console.log("Нужно сделать загрузку файла")} className={style.header__action__open}>Открыть</button>
+                <button onClick={(e) =>{presentation = savePresentation(presentation)}} className={style.header__action__save}>Сохранить</button>
             </div>
         </div>
     );

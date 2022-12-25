@@ -1,6 +1,9 @@
 .slideList {
+    position: relative;
     width: 385px;
-    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
     background: #F2FFFA;
     border: 1px solid #000000;
 }
@@ -12,7 +15,7 @@
 .slideList__container__text {
     font: 400 16px/1.25 'Montserrat';
     color: #000;
-    padding-left: 39px;
+    margin-right: 20px;
     position: relative;
     top: 54px;
 }
