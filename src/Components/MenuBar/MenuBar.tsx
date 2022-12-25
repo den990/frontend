@@ -6,8 +6,6 @@ type Props = {
     presentation: Presentation;
   };
 
-
-
 export function MenuBar({ presentation }: Props) {
     let name= presentation.name
     const [namePresentation, setName] = useState(name);
@@ -39,7 +37,7 @@ export function MenuBar({ presentation }: Props) {
                 value={namePresentation} />
             </div>
             <div className={style.header__action}>
-                <button onClick={(e) => {{presentation = createPresentation()}; setName(name); setTitle()}} className={style.header__action__create}>Создать</button>
+                <button onClick={(e) => {{presentation = createPresentation()} setName(name); setTitle()}} className={style.header__action__create}>Создать</button>
                 <button onClick={(e) => console.log("Нужно сделать загрузку файла")} className={style.header__action__open}>Открыть</button>
                 <button onClick={(e) =>{presentation = savePresentation(presentation)}} className={style.header__action__save}>Сохранить</button>
             </div>

@@ -24,7 +24,7 @@ export function ToolBar({ presentation }: Props) {
     return (
         <div className={style.toolbar}>
             <div className={style.toolbar__slideButtons}>
-                <button onClick={(e) => {presentation = createSlide(presentation); console.log(presentation)}} className={style.toolbar__slideButtons__addButton}>
+                <button onClick={(e) => {presentation = createSlide(presentation); console.log(presentation.slideList)}} className={style.toolbar__slideButtons__addButton}>
                     <img src={require('../../images/add-slide.svg').default} alt={'AddingSlide'} />
                     <span className={style.toolbar__slideButtons__addButton__text}>Добавить слайд</span>
                 </button>

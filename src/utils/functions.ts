@@ -1,11 +1,11 @@
-import { defaultColor } from "./consts";
+import {defaultColor, defaultSlide} from "./consts";
 
 // presentation functions
 export function createPresentation(): Presentation {
     return {
         name: 'Новая презентация',
-        slideList: [],
-        selectedSlides: []
+        slideList: [defaultSlide],
+        selectedSlides: [defaultSlide]
     };
 }
 export function savePresentation(presentation: Presentation): Presentation {

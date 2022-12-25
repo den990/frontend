@@ -33,7 +33,7 @@
     position: relative;
     bottom: 16px;
     padding-left: 10px;
-    font: 700 16px/1.25 'Montserrat';
+    font: 700 16px/1.25 'Bold Montserrat';
     color: #000;
 }
 
@@ -77,7 +77,7 @@
 }
 
 .toolbar__slideShowButton__text {
-    font: 700 16px/1.25 'Montserrat';
+    font: 700 16px/1.25 'Bold Montserrat';
     padding-left: 18px;
 }
 

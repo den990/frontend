@@ -12,13 +12,13 @@ interface propsApp{
 }
 function App(props: propsApp) {
   let NewPresentation : Presentation = createPresentation();
-  
-  return (
+
+    return (
       <div>
           <MenuBar presentation={NewPresentation} />
           <ToolBar presentation={NewPresentation}/>
           <div className={style.content}>
-            <SlideList />
+            <SlideList slideList={NewPresentation.slideList} />
             <WorkSpace />
           </div>
       </div>
