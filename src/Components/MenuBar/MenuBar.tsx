@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from './MenuBar.module.css';
-import { createPresentation, openPresentation, renamePresentation, savePresentation } from "../../utils/functions";
+import { createPresentation, renamePresentation, savePresentation } from "../../utils/functions";
 
 type Props = {
     presentation: Presentation;

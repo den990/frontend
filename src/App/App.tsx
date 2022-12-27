@@ -5,20 +5,18 @@ import MenuBar from "../Components/MenuBar/MenuBar"
 import ToolBar from "../Components/ToolBar/ToolBar";
 import SlideList from "../Components/SlideList/SlideList";
 import WorkSpace from "../Components/WorkSpace/WorkSpace";
-import { createPresentation } from '../utils/functions';
+import {getState} from "../stateManager/stateManager";
 
-interface propsApp{
-    editor: any
-}
-function App(props: propsApp) {
-  let NewPresentation : Presentation = createPresentation();
+function App() {
+
+    const presentation: Presentation = getState();
 
     return (
       <div>
-          <MenuBar presentation={NewPresentation} />
-          <ToolBar presentation={NewPresentation}/>
+          <MenuBar presentation={presentation} />
+          <ToolBar presentation={presentation}/>
           <div className={style.content}>
-            <SlideList slideList={NewPresentation.slideList} />
+            <SlideList slideList={presentation.slideList} />
             <WorkSpace />
           </div>
       </div>

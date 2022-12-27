@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import {useState} from 'react';
-import { createSlide, openPresentation } from '../../utils/functions';
 import style from './ToolBar.module.css';
+import {addSlideHandler} from "../../stateManager/stateManagerFunctions";
 
 type Props = {
     presentation: Presentation;
-  };
+};
 
 export function ToolBar({ presentation }: Props) {
 
@@ -24,7 +24,7 @@ export function ToolBar({ presentation }: Props) {
     return (
         <div className={style.toolbar}>
             <div className={style.toolbar__slideButtons}>
-                <button onClick={(e) => {presentation = createSlide(presentation); console.log(presentation.slideList)}} className={style.toolbar__slideButtons__addButton}>
+                <button onClick={addSlideHandler} className={style.toolbar__slideButtons__addButton}>
                     <img src={require('../../images/add-slide.svg').default} alt={'AddingSlide'} />
                     <span className={style.toolbar__slideButtons__addButton__text}>Добавить слайд</span>
                 </button>

@@ -9,8 +9,8 @@ export const defaultText: text = {
     symbols: 'Новый текст'
 }
 export const defaultSlide: Slide = {
+    slideIndex: 1,
     blockList: [],
     selectedBlockList: [],
-    background: defaultColor,
-    slideIndex: 1
+    background: defaultColor
 }
