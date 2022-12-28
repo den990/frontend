@@ -120,8 +120,6 @@ export function removeBlock(presentation: Presentation, blockIndex: number, slid
             return (index === slideIndex) ? newSlide : currentSlide;
         })
     };
-
-
 }
 export function selectBlock(presentation: Presentation, slideIndex: number, blockIndex: number): Presentation {
     const newSelectedBlock = presentation.slideList[slideIndex].blockList[blockIndex];

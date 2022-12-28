@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import style from './MenuBar.module.css';
-import { createPresentation, renamePresentation, savePresentation } from "../../utils/functions";
+import { renamePresentation, savePresentation } from "../../utils/functions";
+import {createPresentationHandler} from "../../stateManager/stateManagerFunctions";
 
-type Props = {
-    presentation: Presentation;
-  };
-
-export function MenuBar({ presentation }: Props) {
-    let name= presentation.name
+export function MenuBar(Props: { presentation: Presentation }) {
+    let name = Props.presentation.name
     const [namePresentation, setName] = useState(name);
 
     useEffect(() => {
@@ -15,7 +12,7 @@ export function MenuBar({ presentation }: Props) {
       }, [name]);
 
     const setTitle = () => {
-        presentation = renamePresentation(presentation, namePresentation);
+        Props.presentation = renamePresentation(Props.presentation, namePresentation);
       };
 
     return (
@@ -37,9 +34,9 @@ export function MenuBar({ presentation }: Props) {
                 value={namePresentation} />
             </div>
             <div className={style.header__action}>
-                <button onClick={(e) => {{presentation = createPresentation()} setName(name); setTitle()}} className={style.header__action__create}>Создать</button>
+                <button onClick={createPresentationHandler} className={style.header__action__create}>Создать</button>
                 <button onClick={(e) => console.log("Нужно сделать загрузку файла")} className={style.header__action__open}>Открыть</button>
-                <button onClick={(e) =>{presentation = savePresentation(presentation)}} className={style.header__action__save}>Сохранить</button>
+                <button onClick={(e) =>{Props.presentation = savePresentation(Props.presentation)}} className={style.header__action__save}>Сохранить</button>
             </div>
         </div>
     );

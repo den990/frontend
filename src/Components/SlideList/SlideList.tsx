@@ -1,19 +1,10 @@
 import React from "react";
 import style from './SlideList.module.css';
-import Slide from '../Slide/Slide';
+import MiniSlide from "../Slide/MiniSlide";
 
-type Props = {
-    slideList: Slide[];
-}
-
-export function SlideList({ slideList }: Props) {
-    const slides = slideList.map((slide, index) => (
-        <Slide
-            slideIndex={slide.slideIndex}
-            blockList={slide.blockList}
-            selectedBlockList={slide.selectedBlockList}
-            background={slide.background}
-        />
+export function SlideList( Props: { slideList: Slide[], selectedSlides: Slide[] }) {
+    const slides = Props.slideList.map((slide, index) => (
+        <MiniSlide slideIndex={slide.slideIndex} selected={Props.selectedSlides.some((Slide) => Slide.slideIndex === slide.slideIndex)}/>
     ));
     return (
         <div className={style.slideList}>

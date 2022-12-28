@@ -1,10 +1,14 @@
-import {createSlide} from "../utils/functions";
+import {createPresentation, createSlide, removeSlide} from "../utils/functions";
 import {dispatch} from "./stateManager";
-/**
- * @param {{}} editor
- * @param {Presentation} presentation,
- * @return {{}}
- */
+
 export const addSlideHandler = () => {
     dispatch(createSlide, {});
+}
+
+export const removeSlideHandler = (slideIndex: number) => {
+    dispatch(removeSlide, slideIndex);
+}
+
+export const createPresentationHandler = () => {
+    dispatch(createPresentation, {});
 }
