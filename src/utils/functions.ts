@@ -36,9 +36,23 @@ export function createSlide(presentation: Presentation): Presentation {
     };
 }
 export function removeSlide(presentation: Presentation, slideIndex: number): Presentation {
+    const slideList = presentation.slideList;
+    const newSlideList = [];
+    for (let i = 0; i < slideList.length; i++) {
+        if (slideList[i].slideIndex != slideIndex) {
+            if (slideList[i].slideIndex < slideIndex) {
+                newSlideList.push(slideList[i]);
+            } else {
+                slideList[i].slideIndex--;
+                newSlideList.push(slideList[i]);
+            }
+        }
+    }
+    const newSelectedSlides: Slide[] = [];
     return {
         ...presentation,
-        slideList: presentation.slideList.filter((slide, index) => index !== slideIndex)
+        slideList: newSlideList,
+        selectedSlides: newSelectedSlides
     };
 }
 export function removeSlides(presentation: Presentation, slideIndexes: []): Presentation {

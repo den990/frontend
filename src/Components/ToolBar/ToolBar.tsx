@@ -24,7 +24,7 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                     <img src={require('../../images/add-slide.svg').default} alt={'AddingSlide'} />
                     <span className={style.toolbar__slideButtons__addButton__text}>Добавить слайд</span>
                 </button>
-                <button className={style.toolbar__slideButtons__deleteButton}>
+                <button onClick={() => removeSlideHandler(Props.presentation.selectedSlides[0].slideIndex)} className={style.toolbar__slideButtons__deleteButton}>
                     <img src={require('../../images/delete-slide.svg').default} alt={'DeletingSlide'} />
                 </button>
             </div>
