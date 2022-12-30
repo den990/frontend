@@ -62,17 +62,19 @@ export function editSlideBackground(presentation: Presentation, slideIndex: numb
 }
 export function selectSlide(presentation: Presentation, slideIndex: number): Presentation {
     const slide = presentation.slideList[slideIndex];
-    const newSelectedSlideList = [...presentation.selectedSlides, slide];
+    const newSelectedSlideList = [slide];
     return {
         ...presentation,
         selectedSlides: newSelectedSlideList
     };
 }
-export function selectSlides(presentation:Presentation, slideIndexes: []): Presentation {
-    slideIndexes.forEach((item) => {
-        selectSlide(presentation, item);
-    });
-    return presentation;
+export function selectSlides(presentation:Presentation, slideIndex: number): Presentation {
+    const slide = presentation.slideList[slideIndex];
+    const newSelectedSlideList = [...presentation.selectedSlides, slide];
+    return {
+        ...presentation,
+        selectedSlides: newSelectedSlideList
+    };
 }
 export function moveSlide(presentation: Presentation, oldSlideIndex: number, newSlideIndex: number): Presentation {
     const newSlideList = [...presentation.slideList];
