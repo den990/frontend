@@ -38,6 +38,7 @@ export function createSlide(presentation: Presentation): Presentation {
 export function removeSlide(presentation: Presentation, slideIndex: number): Presentation {
     const slideList = presentation.slideList;
     const newSlideList = [];
+    let saveIndex = 0;
     for (let i = 0; i < slideList.length; i++) {
         if (slideList[i].slideIndex != slideIndex) {
             if (slideList[i].slideIndex < slideIndex) {
@@ -45,10 +46,11 @@ export function removeSlide(presentation: Presentation, slideIndex: number): Pre
             } else {
                 slideList[i].slideIndex--;
                 newSlideList.push(slideList[i]);
+                saveIndex = slideIndex - 1;
             }
         }
     }
-    const newSelectedSlides: Slide[] = [];
+    const newSelectedSlides: Slide[] = [presentation.slideList[saveIndex]];
     return {
         ...presentation,
         slideList: newSlideList,
