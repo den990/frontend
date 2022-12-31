@@ -18,7 +18,7 @@ function App() {
           <ToolBar presentation={presentation}/>
           <div className={style.content}>
             <SlideList slideList={presentationSlideList} selectedSlides={presentationSelectedSlideList}/>
-            <WorkSpace />
+            <WorkSpace presentation={presentation} slideIndex={presentation.selectedSlides[0].slideIndex}/>
           </div>
       </div>
   );

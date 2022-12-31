@@ -40,7 +40,7 @@ export function removeSlide(presentation: Presentation, slideIndex: number): Pre
     const newSlideList = [];
     let saveIndex = 0;
     for (let i = 0; i < slideList.length; i++) {
-        if (slideList[i].slideIndex != slideIndex) {
+        if (slideList[i].slideIndex !== slideIndex) {
             if (slideList[i].slideIndex < slideIndex) {
                 newSlideList.push(slideList[i]);
             } else {
@@ -102,26 +102,26 @@ export function moveSlide(presentation: Presentation, oldSlideIndex: number, new
 }
 
 // block functions
-export function createBlock(presentation: Presentation, slideIndex: number, inputContent: blockContent): Presentation {
+export function createBlock(presentation: Presentation, payload: {slideIndex: number, inputContent: blockContent}): Presentation {
     const newBlock = {
-        content: inputContent,
-        blockIndex: presentation.slideList[slideIndex].blockList.length++,
+        content: payload.inputContent,
+        blockIndex: presentation.slideList[payload.slideIndex - 1].blockList.length + 1,
         position: {
-            x: 1,
-            y: 1
+            x: 200,
+            y: 200
         },
         width: 50,
         height: 50
     }
-    const newBlockList = [...presentation.slideList[slideIndex].blockList, newBlock];
+    const newBlockList = [...presentation.slideList[payload.slideIndex - 1].blockList, newBlock];
     const newSlide = {
-        ...presentation.slideList[slideIndex],
+        ...presentation.slideList[payload.slideIndex - 1],
         blockList: newBlockList
     }
     return {
         ...presentation,
         slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index === slideIndex) ? newSlide : currentSlide;
+            return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
         })
     };
 }

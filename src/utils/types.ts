@@ -46,6 +46,7 @@ type picture = {
 }
 
 type primitive = {
+    type: 'primitive';
     content: Triangle | Rectangle | Circle;
     background: string;
     border: string;

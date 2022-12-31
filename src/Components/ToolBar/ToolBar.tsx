@@ -1,7 +1,8 @@
 import React from 'react';
 import {useState} from 'react';
 import style from './ToolBar.module.css';
-import { addSlideHandler, removeSlideHandler} from "../../stateManager/stateManagerFunctions";
+import {addBlockHandler, addSlideHandler, removeSlideHandler} from "../../stateManager/stateManagerFunctions";
+import {defaultTextType} from "../../utils/consts";
 
 export function ToolBar(Props:{ presentation: Presentation }) {
 
@@ -33,7 +34,9 @@ export function ToolBar(Props:{ presentation: Presentation }) {
 
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/redo.svg').default} alt={'RedoButton'} /></button>
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/undo.svg').default} alt={'UndoButton'} /></button>
-                <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/text.svg').default} alt={'TextButton'} /></button>
+                <button onClick={() => addBlockHandler(Props.presentation.selectedSlides[0].slideIndex, defaultTextType)} className={style.toolbar__blockFunctions__button}>
+                    <img src={require('../../images/text.svg').default} alt={'TextButton'} />
+                </button>
 
                 <button className={style.toolbar__blockFunctions__primitiveButton}><img src={require('../../images/primitive.svg').default} alt={'PrimitiveButton'} /></button>
                 <button className={style.toolbar__blockFunctions__expand}><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} /></button>
