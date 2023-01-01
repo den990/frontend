@@ -36,6 +36,9 @@ export function createSlide(presentation: Presentation): Presentation {
     };
 }
 export function removeSlide(presentation: Presentation, slideIndex: number): Presentation {
+    if (presentation.slideList.length === 1) {
+        return presentation;
+    }
     const slideList = presentation.slideList;
     const newSlideList = [];
     let saveIndex = 0;
