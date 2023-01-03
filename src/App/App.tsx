@@ -1,6 +1,6 @@
 import './App.module.css';
 import style from './App.module.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import MenuBar from "../Components/MenuBar/MenuBar"
 import ToolBar from "../Components/ToolBar/ToolBar";
 import SlideList from "../Components/SlideList/SlideList";
@@ -11,6 +11,10 @@ function App() {
     const presentation: Presentation = getState();
     const presentationSlideList: Slide[] = presentation.slideList;
     const presentationSelectedSlideList: Slide[]= presentation.selectedSlides;
+
+    useEffect(() => {
+      document.title = presentation.name;
+    }, [presentation]);
 
     return (
       <div>
