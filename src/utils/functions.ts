@@ -1,4 +1,5 @@
 import {defaultSlide, defaultSlideColor} from "./consts";
+import SlideList from "../Components/SlideList/SlideList";
 
 // presentation functions
 export function createPresentation(): Presentation {
@@ -39,26 +40,27 @@ export function removeSlide(presentation: Presentation, slideIndex: number): Pre
     if (presentation.slideList.length === 1) {
         return presentation;
     }
-    const slideList = presentation.slideList;
-    const newSlideList = [];
-    let saveIndex = 0;
-    for (let i = 0; i < slideList.length; i++) {
-        if (slideList[i].slideIndex !== slideIndex) {
-            if (slideList[i].slideIndex < slideIndex) {
-                newSlideList.push(slideList[i]);
-            } else {
-                slideList[i].slideIndex--;
-                newSlideList.push(slideList[i]);
-                saveIndex = slideIndex - 1;
+        const slideList = presentation.slideList;
+        const newSlideList = [];
+        let countNewSlideList = 0;
+        let saveIndex = 0;
+        for (let i = 1; i < slideList.length; i++) {
+            if (slideList[i].slideIndex !== slideIndex) {
+                if (slideList[i].slideIndex < slideIndex) {
+                    newSlideList[countNewSlideList] = slideList[i];
+                } else {
+                    slideList[i].slideIndex--;
+                    newSlideList[countNewSlideList] = slideList[i];
+                    saveIndex = slideIndex - 1;
+                }
             }
         }
-    }
-    const newSelectedSlides: Slide[] = [presentation.slideList[saveIndex]];
-    return {
-        ...presentation,
-        slideList: newSlideList,
-        selectedSlides: newSelectedSlides
-    };
+        const newSelectedSlides: Slide[] = [presentation.slideList[saveIndex]];
+        return {
+            ...presentation,
+            slideList: newSlideList,
+            selectedSlides: newSelectedSlides
+        };
 }
 export function removeSlides(presentation: Presentation, slideIndexes: []): Presentation {
     slideIndexes.forEach((item) => {
@@ -66,6 +68,7 @@ export function removeSlides(presentation: Presentation, slideIndexes: []): Pres
     });
     return presentation;
 }
+
 export function editSlideBackground(presentation: Presentation, payload: { slideIndex: number, newBackground: color | pictureBackground }): Presentation {
     const slide = presentation.slideList[payload.slideIndex - 1];
     const newSlide: Slide = {
@@ -87,14 +90,14 @@ export function selectSlide(presentation: Presentation, slideIndex: number): Pre
         selectedSlides: newSelectedSlideList
     };
 }
-export function selectSlides(presentation:Presentation, slideIndex: number): Presentation {
+export function selectSlides(presentation: Presentation, slideIndex: number): Presentation {
     const slide = presentation.slideList[slideIndex];
-    const newSelectedSlideList = [...presentation.selectedSlides, slide];
+    presentation.selectedSlides.push(slide)
     return {
         ...presentation,
-        selectedSlides: newSelectedSlideList
     };
 }
+
 export function moveSlide(presentation: Presentation, oldSlideIndex: number, newSlideIndex: number): Presentation {
     const newSlideList = [...presentation.slideList];
     [newSlideList[oldSlideIndex], newSlideList[newSlideIndex]] = [newSlideList[newSlideIndex], newSlideList[oldSlideIndex]]

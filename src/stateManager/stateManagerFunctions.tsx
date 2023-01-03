@@ -3,25 +3,38 @@ import {
     createPresentation,
     createSlide,
     editSlideBackground,
-    removeSlide,
-    selectSlide
+    removeSlide, removeSlides,
+    selectSlide, selectSlides
 } from "../utils/functions";
+import {MouseEvent} from "react";
 import {dispatch} from "./stateManager";
 
 export const addSlideHandler = () => {
     dispatch(createSlide, {});
 }
 
-export const removeSlideHandler = (slideIndex: number) => {
-    dispatch(removeSlide, slideIndex);
+export const removeSlideHandler = (presentation: Presentation) => {
+    if (presentation.selectedSlides.length == 1) {
+        dispatch(removeSlide, presentation.selectedSlides[0].slideIndex);
+    }
+    else
+    {
+        dispatch(removeSlides, presentation.selectedSlides)
+    }
 }
 
 export const createPresentationHandler = () => {
     dispatch(createPresentation, {});
 }
 
-export const selectSlideHandler = (slideIndex: number) => {
-    dispatch(selectSlide, slideIndex);
+export const selectSlideHandler = (slideIndex: number, e: MouseEvent<HTMLDivElement>, selectedSlides: boolean) => {
+    if (e.ctrlKey)
+    {
+        dispatch(selectSlides, slideIndex)
+    }
+    else {
+        dispatch(selectSlide, slideIndex);
+    }
 }
 
 export const addBlockHandler = (slideIndex: number, inputContent: blockContent) => {

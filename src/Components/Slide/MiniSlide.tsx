@@ -7,7 +7,7 @@ const MiniSlide = (Props: {slideIndex: number, selected: boolean}) => {
         <div key={Props.slideIndex} className={style.miniSlide}>
             <span className={Props.slideIndex < 10 ? style.miniSlide__index : Props.selected ? style.miniSlide__index_doubleDigits : style.miniSlide__index}>{Props.slideIndex}</span>
             <div className={Props.selected ? style.miniSlide__borders : undefined}>
-                <div onClick={() => selectSlideHandler(Props.slideIndex - 1)} className={style.miniSlide__container}></div>
+                <div onClick={(e) => selectSlideHandler(Props.slideIndex - 1, e, Props.selected)} className={style.miniSlide__container}></div>
             </div>
         </div>
     );
