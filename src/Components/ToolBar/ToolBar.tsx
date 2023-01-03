@@ -5,13 +5,15 @@ import {
     addBlockHandler,
     addSlideHandler,
     editSlideBackgroundHandler,
-    removeSlideHandler
+    removeSlideHandler,
+    selectSlideHandler
 } from "../../stateManager/stateManagerFunctions";
-import {defaultTextType} from "../../utils/consts";
+import {defaultText, defaultTextType} from "../../utils/consts";
+import { dispatch, getState, setState } from '../../stateManager/stateManager';
 
 export function ToolBar(Props:{ presentation: Presentation }) {
 
-    const [inputSize, setInputSize] = useState(36);
+    const [inputSize, setInputSize] = useState(defaultText.fontSize);
     function increment(){
         setInputSize(inputSize + 1)
     }
@@ -27,7 +29,7 @@ export function ToolBar(Props:{ presentation: Presentation }) {
     const colorHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const colorInput = event.target.value;
         setColor(colorInput);
-        editSlideBackgroundHandler(Props.presentation.selectedSlides[0].slideIndex, color);
+        editSlideBackgroundHandler(Props.presentation.selectedSlides[0].slideIndex, color)
     }
     return (
         <div className={style.toolbar}>
@@ -80,7 +82,16 @@ export function ToolBar(Props:{ presentation: Presentation }) {
 
 
                 <button onClick={decrement} className={style.toolbar__blockFunctions__textSize_decrement}><img src={require('../../images/decrease-text.svg').default} alt={'DecreaseText'} /></button>
-                <input type={"number"} value={inputSize} onChange={e => setInputSize(e.target.valueAsNumber)} className={style.toolbar__blockFunction__editFontSize} alt={"EditFontSize"}/>
+                <input  type={"number"} 
+                        value={inputSize}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.currentTarget.blur();
+                            }
+                          }}  
+                        onChange={e => setInputSize(e.target.valueAsNumber)} 
+                        className={style.toolbar__blockFunction__editFontSize} 
+                        alt={"EditFontSize"}/>
                 <button onClick={increment} className={style.toolbar__blockFunctions__textSize_increment}><img src={require('../../images/increase-text.svg').default} alt={'IncreaseText'} /></button>
 
 

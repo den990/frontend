@@ -8,6 +8,14 @@ export function TextComponent(Props: {fontFamily: string, fontColor: string, fon
         fontSize: Props.fontSize
     }
     return (
-        <input type="textarea" className={styles.text} defaultValue={Props.symbols} style={style}/>
+        <input
+        onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.currentTarget.blur();}}
+        }
+        type="textarea" 
+        className={styles.text} 
+        defaultValue={Props.symbols} 
+        style={style}/>
     );
 }
