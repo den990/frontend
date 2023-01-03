@@ -13,11 +13,11 @@
     padding-left: 39px;
 }
 
-.toolbar__blockFunctions
-{
+.toolbar__blockFunctions {
     display: flex;
     align-items: center;
 }
+
 .toolbar__slideButtons__addButton {
     background: linear-gradient(94.98deg, rgba(0, 255, 25, 0.7) 10.5%, rgba(36, 255, 0, 0.7) 94.21%);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -67,7 +67,7 @@
 
 .toolbar__slideShowButton {
     display: flex;
-    border:none;
+    border: none;
     background: linear-gradient(94.98deg, rgba(0, 255, 209, 0.5) 10.5%, rgba(0, 133, 255, 0.5) 94.21%);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 45px;
@@ -81,19 +81,57 @@
     padding-left: 18px;
 }
 
-.toolbar__blockFunctions__primitiveButton{
+.toolbar__blockFunctions__primitiveButton {
     border: none;
     background: none;
     cursor: pointer;
 }
 
-.toolbar__blockFunctions__backgroundButton{
+.toolbar__blockFunctions__backgroundButton {
     border: none;
     background: none;
     cursor: pointer;
 }
 
-.toolbar__blockFunctions__expand{
+.toolbar__blockFunctions__backgroundButton__arrow {
+    padding-right: 15px;
+}
+
+.toolbar__blockFunctions__backgroundButton__arrow, .toolbar__blockFunctions__backgroundButton__arrow ul {
+    list-style: none;
+}
+
+.toolbar__blockFunctions__backgroundButton__arrow ul {
+    position: absolute;
+    display: none;
+    left: 42.5%;
+    top: 18.5%;
+    z-index: 1;
+}
+
+.toolbar__blockFunctions__backgroundButton__arrow__elem {
+    text-decoration: none ;
+    width: 239px;
+    background: linear-gradient(123.77deg, #373737 15.74%, #1F1E1E 91.49%);
+    color: #fff;
+    font: 600 24px/1.21 'Bold Montserrat';
+    text-align: center;
+    padding: 5px 5px;
+}
+
+.toolbar__blockFunctions__backgroundButton__arrow__elem:hover {
+    background: #0085FF;
+}
+
+.toolbar__blockFunctions__backgroundButton__arrow li:hover ul {
+    display: block;
+}
+
+.toolbar__blockFunctions__backgroundButton__arrow__elem__colorChooser {
+    margin-right: 15px;
+}
+
+.toolbar__blockFunctions__expand {
     vertical-align: super;
     padding-right: 20px;
     border: none;
@@ -101,7 +139,7 @@
     cursor: pointer;
 }
 
-.toolbar__blockFunction__editFontFamily{
+.toolbar__blockFunction__editFontFamily {
     border: 1px solid #BBBBBB;
     vertical-align: bottom;
     font: 400 16px/1.25 'Arial';
@@ -109,17 +147,18 @@
     width: 94px;
     height: 36px;
     background-color: #F2FFFA;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 
-.toolbar__blockFunctions__textSize_decrement{
+.toolbar__blockFunctions__textSize_decrement {
     border: none;
     background: none;
     vertical-align: bottom;
     padding: 3px 0px 0px 20px;
     cursor: pointer;
 }
+
 .toolbar__blockFunctions__textSize_increment {
     border: none;
     background: none;
@@ -128,7 +167,7 @@
     cursor: pointer;
 }
 
-.toolbar__blockFunction__editFontSize{
+.toolbar__blockFunction__editFontSize {
     background-color: #F2FFFA;
     vertical-align: bottom;
     text-align: center;
@@ -139,7 +178,7 @@
     height: 33px;
 }
 
-.toolbar__blockFunctions__textColor{
+.toolbar__blockFunctions__textColor {
     padding-left: 20px;
     padding-right: 20px;
     border: none;
@@ -147,7 +186,7 @@
     cursor: pointer;
 }
 
-.toolbar__blockFunctions__primitiveColor{
+.toolbar__blockFunctions__primitiveColor {
     border: none;
     background: none;
     padding-right: 20px;

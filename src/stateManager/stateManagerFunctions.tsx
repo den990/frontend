@@ -1,4 +1,11 @@
-import {createBlock, createPresentation, createSlide, removeSlide, selectSlide} from "../utils/functions";
+import {
+    createBlock,
+    createPresentation,
+    createSlide,
+    editSlideBackground,
+    removeSlide,
+    selectSlide
+} from "../utils/functions";
 import {dispatch} from "./stateManager";
 
 export const addSlideHandler = () => {
@@ -19,4 +26,12 @@ export const selectSlideHandler = (slideIndex: number) => {
 
 export const addBlockHandler = (slideIndex: number, inputContent: blockContent) => {
     dispatch(createBlock, {slideIndex, inputContent})
+}
+
+export const editSlideBackgroundHandler = (slideIndex: number, value: string) => {
+    const newColor: color = {
+        code: value
+    }
+    const newBackground: color | pictureBackground = newColor;
+    dispatch(editSlideBackground, {slideIndex, newBackground});
 }

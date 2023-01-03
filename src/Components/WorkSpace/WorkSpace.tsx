@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './WorkSpace.module.css';
+import styles from './WorkSpace.module.css';
 import {TextComponent} from "../Slide/Components/Text/TextComponent";
 
 export function WorkSpace(Props: {presentation: Presentation, slideIndex: number})
@@ -11,9 +11,14 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
         return null;
     });
 
+    const newBackground: string = Props.presentation.selectedSlides[0].background.code;
+    const style = {
+        background: newBackground
+    }
+
     return (
-        <div className={style.workspace__background}>
-            <div className={style.workspace__content}>
+        <div className={styles.workspace__background}>
+            <div className={styles.workspace__content} style={style}>
                 {textBlocks}
             </div>
         </div>

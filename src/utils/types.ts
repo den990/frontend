@@ -12,10 +12,10 @@ type Slide = {
 }
 
 type color = {
-    codeColor: string;
+    code: string;
 }
 type pictureBackground = {
-    url: string;
+    code: string;
 }
 type Block = {
     content: blockContent;

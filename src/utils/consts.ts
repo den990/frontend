@@ -1,5 +1,8 @@
 export const defaultColor: color = {
-    codeColor : '#000000'
+    code : '#000000'
+}
+export const defaultSlideColor: color = {
+    code: '#ffffff'
 }
 export const defaultText: text = {
     type: 'text',
@@ -15,5 +18,5 @@ export const defaultSlide: Slide = {
     slideIndex: 1,
     blockList: [],
     selectedBlockList: [],
-    background: defaultColor
+    background: defaultSlideColor
 }

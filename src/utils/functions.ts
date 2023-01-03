@@ -1,4 +1,4 @@
-import {defaultColor, defaultSlide} from "./consts";
+import {defaultSlide, defaultSlideColor} from "./consts";
 
 // presentation functions
 export function createPresentation(): Presentation {
@@ -27,7 +27,7 @@ export function createSlide(presentation: Presentation): Presentation {
         slideIndex: presentation.slideList.length + 1,
         blockList: [],
         selectedBlockList: [],
-        background: defaultColor
+        background: defaultSlideColor
     };
     const newSlideList = [...presentation.slideList, newSlide];
     return {
@@ -66,16 +66,16 @@ export function removeSlides(presentation: Presentation, slideIndexes: []): Pres
     });
     return presentation;
 }
-export function editSlideBackground(presentation: Presentation, slideIndex: number, newBackground: color | pictureBackground): Presentation {
-    const slide = presentation.slideList[slideIndex];
+export function editSlideBackground(presentation: Presentation, payload: { slideIndex: number, newBackground: color | pictureBackground }): Presentation {
+    const slide = presentation.slideList[payload.slideIndex - 1];
     const newSlide: Slide = {
         ...slide,
-        background: newBackground
+        background: payload.newBackground
     };
     return {
         ...presentation,
         slideList: presentation.slideList.map((currentSlide, index) => {
-            return (index === slideIndex) ? newSlide : currentSlide;
+            return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
         })
     }
 }

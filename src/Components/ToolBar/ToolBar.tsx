@@ -1,7 +1,12 @@
 import React from 'react';
 import {useState} from 'react';
 import style from './ToolBar.module.css';
-import {addBlockHandler, addSlideHandler, removeSlideHandler} from "../../stateManager/stateManagerFunctions";
+import {
+    addBlockHandler,
+    addSlideHandler,
+    editSlideBackgroundHandler,
+    removeSlideHandler
+} from "../../stateManager/stateManagerFunctions";
 import {defaultTextType} from "../../utils/consts";
 
 export function ToolBar(Props:{ presentation: Presentation }) {
@@ -18,6 +23,12 @@ export function ToolBar(Props:{ presentation: Presentation }) {
         }
     }
 
+    const [color, setColor] = useState("fff");
+    const colorHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const colorInput = event.target.value;
+        setColor(colorInput);
+        editSlideBackgroundHandler(Props.presentation.selectedSlides[0].slideIndex, color);
+    }
     return (
         <div className={style.toolbar}>
             <div className={style.toolbar__slideButtons}>
@@ -43,8 +54,24 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                 
 
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/picture.svg').default} alt={'PictureButton'} /></button>
-                <button className={style.toolbar__blockFunctions__backgroundButton}><img src={require('../../images/background.svg').default} alt={'BackgroundButton'} /></button>
-                <button className={style.toolbar__blockFunctions__expand}><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} /></button>
+                <img className={style.toolbar__blockFunctions__backgroundButton} src={require('../../images/background.svg').default} alt={'BackgroundButton'} />
+                <ul className={style.toolbar__blockFunctions__backgroundButton__arrow}>
+                    <li><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} />
+                        <ul>
+                            <li className={style.toolbar__blockFunctions__backgroundButton__arrow__elem}>Изображение</li>
+                            <li className={style.toolbar__blockFunctions__backgroundButton__arrow__elem}>
+                                <input
+                                    onChange={colorHandler}
+                                    className={style.toolbar__blockFunctions__backgroundButton__arrow__elem__colorChooser}
+                                    type='color'
+                                    id='colorChooser'
+                                    value={color}
+                                />
+                                <label htmlFor='colorChooser'>Цвет</label>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
 
                 <img className={style.toolbar__blockFunctions__dividingLine} src={require('../../images/dividing-line.svg').default} alt={'DividingLine'} />
 
