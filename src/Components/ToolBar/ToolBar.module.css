@@ -131,6 +131,10 @@
     margin-right: 15px;
 }
 
+.toolbar__blockFunctions__backgroundButton__arrow__elem__fileChooser {
+    display: none;
+}
+
 .toolbar__blockFunctions__expand {
     vertical-align: super;
     padding-right: 20px;

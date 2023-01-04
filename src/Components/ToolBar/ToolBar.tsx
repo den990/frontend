@@ -27,8 +27,15 @@ export function ToolBar(Props:{ presentation: Presentation }) {
     const colorHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const colorInput = event.target.value;
         setColor(colorInput);
-        editSlideBackgroundHandler(Props.presentation.selectedSlides[0].slideIndex, color)
+        editSlideBackgroundHandler(Props.presentation.selectedSlides[0].slideIndex, color, 'color')
     }
+
+    const fileHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const fileInput = event.target.value;
+        setColor(fileInput);
+        editSlideBackgroundHandler(Props.presentation.selectedSlides[0].slideIndex, fileInput, 'picture');
+    }
+
     return (
         <div className={style.toolbar}>
             <div className={style.toolbar__slideButtons}>
@@ -58,7 +65,16 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                 <ul className={style.toolbar__blockFunctions__backgroundButton__arrow}>
                     <li><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} />
                         <ul>
-                            <li className={style.toolbar__blockFunctions__backgroundButton__arrow__elem}>Изображение</li>
+                            <li className={style.toolbar__blockFunctions__backgroundButton__arrow__elem}>
+                                <input
+                                    onChange={fileHandler}
+                                    className={style.toolbar__blockFunctions__backgroundButton__arrow__elem__fileChooser}
+                                    type='file'
+                                    id='file-upload'
+                                    accept='.jpg, .jpeg, .png'
+                                />
+                                <label htmlFor='file-upload'>Изображение</label>
+                            </li>
                             <li className={style.toolbar__blockFunctions__backgroundButton__arrow__elem}>
                                 <input
                                     onChange={colorHandler}

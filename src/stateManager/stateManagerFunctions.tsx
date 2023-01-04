@@ -39,10 +39,18 @@ export const addBlockHandler = (slideIndex: number, inputContent: blockContent) 
     dispatch(createBlock, {slideIndex, inputContent})
 }
 
-export const editSlideBackgroundHandler = (slideIndex: number, value: string) => {
-    const newColor: color = {
-        code: value
+export const editSlideBackgroundHandler = (slideIndex: number, value: string, type: string) => {
+    let newBackground: color | pictureBackground;
+    if (type === 'color') {
+        newBackground = {
+            type: 'color',
+            code: value
+        }
+    } else {
+        newBackground = {
+            type: 'picture',
+            code: value
+        }
     }
-    const newBackground: color | pictureBackground = newColor;
     dispatch(editSlideBackground, {slideIndex, newBackground});
 }

@@ -15,9 +15,17 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
         return null;
     });
 
-    const newBackground: string = Props.presentation.selectedSlides[0].background.code;
-    const style = {
-        background: newBackground
+    const newBackground: color | pictureBackground = Props.presentation.selectedSlides[0].background;
+    console.log(newBackground);
+    let style;
+    if (newBackground.type === 'color') {
+        style = {
+            background: newBackground.code
+        }
+    } else {
+        style = {
+            background: 'url(' + newBackground.code + ') no-repeat'
+        }
     }
 
     return (

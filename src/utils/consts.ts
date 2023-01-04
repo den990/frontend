@@ -1,7 +1,9 @@
 export const defaultColor: color = {
+    type: 'color',
     code : '#000000'
 }
 export const defaultSlideColor: color = {
+    type: 'color',
     code: '#ffffff'
 }
 export const defaultText: text = {
