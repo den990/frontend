@@ -1,5 +1,4 @@
 import {defaultSlide, defaultSlideColor} from "./consts";
-import SlideList from "../Components/SlideList/SlideList";
 
 // presentation functions
 export function createPresentation(): Presentation {
@@ -36,22 +35,22 @@ export function createSlide(presentation: Presentation): Presentation {
         slideList: newSlideList
     };
 }
-export function removeSlide(presentation: Presentation, slideIndex: number): Presentation {
-    if (presentation.slideList.length === 1) {
-        return presentation;
-    }
+export function removeSlides(presentation:Presentation, slideIndexes: number[]): Presentation {
+    if (slideIndexes.length === 1) {
+        if (presentation.slideList.length === 1) {
+            return presentation;
+        }
         const slideList = presentation.slideList;
         const newSlideList = [];
-        let countNewSlideList = 0;
         let saveIndex = 0;
-        for (let i = 1; i < slideList.length; i++) {
-            if (slideList[i].slideIndex !== slideIndex) {
-                if (slideList[i].slideIndex < slideIndex) {
-                    newSlideList[countNewSlideList] = slideList[i];
+        for (let i = 0; i < slideList.length; i++) {
+            if (slideList[i].slideIndex !== slideIndexes[0]) {
+                if (slideList[i].slideIndex < slideIndexes[0]) {
+                    newSlideList.push(slideList[i]);
                 } else {
                     slideList[i].slideIndex--;
-                    newSlideList[countNewSlideList] = slideList[i];
-                    saveIndex = slideIndex - 1;
+                    newSlideList.push(slideList[i]);
+                    saveIndex = slideIndexes[0] - 1;
                 }
             }
         }
@@ -61,14 +60,37 @@ export function removeSlide(presentation: Presentation, slideIndex: number): Pre
             slideList: newSlideList,
             selectedSlides: newSelectedSlides
         };
+    }
+    else {
+        if (presentation.slideList.length === slideIndexes.length) {
+            return presentation;
+        }
+        slideIndexes.sort((a, b) => a - b);
+        let slideList = presentation.slideList;
+        let slideListCounter = 0;
+        while (slideIndexes.length !== 0) {
+            if (slideIndexes[0] !== slideList[slideListCounter].slideIndex) {
+                slideListCounter++;
+            } else {
+                const index = slideList.indexOf(slideList[slideListCounter], 0);
+                if (index > -1) {
+                    slideList.splice(index, 1);
+                }
+                slideIndexes.splice(0,1);
+            }
+        }
+        const newSlideList = slideList.map((slide, index) => {
+            slide.slideIndex = index + 1;
+            return slide;
+        });
+        const newSelectedSlides = [newSlideList[0]];
+        return {
+            ...presentation,
+            slideList: newSlideList,
+            selectedSlides: newSelectedSlides
+        };
+    }
 }
-export function removeSlides(presentation: Presentation, slideIndexes: []): Presentation {
-    slideIndexes.forEach((item) => {
-        removeSlide(presentation, item);
-    });
-    return presentation;
-}
-
 export function editSlideBackground(presentation: Presentation, payload: { slideIndex: number, newBackground: color | pictureBackground }): Presentation {
     const slide = presentation.slideList[payload.slideIndex - 1];
     const newSlide: Slide = {

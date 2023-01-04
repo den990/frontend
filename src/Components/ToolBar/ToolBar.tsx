@@ -6,10 +6,8 @@ import {
     addSlideHandler,
     editSlideBackgroundHandler,
     removeSlideHandler,
-    selectSlideHandler
 } from "../../stateManager/stateManagerFunctions";
 import {defaultText, defaultTextType} from "../../utils/consts";
-import { dispatch, getState, setState } from '../../stateManager/stateManager';
 
 export function ToolBar(Props:{ presentation: Presentation }) {
 
@@ -38,7 +36,7 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                     <img src={require('../../images/add-slide.svg').default} alt={'AddingSlide'} />
                     <span className={style.toolbar__slideButtons__addButton__text}>Добавить слайд</span>
                 </button>
-                <button onClick={() => removeSlideHandler(Props.presentation)} className={style.toolbar__slideButtons__deleteButton}>
+                <button onClick={() => removeSlideHandler(Props.presentation.selectedSlides)} className={style.toolbar__slideButtons__deleteButton}>
                     <img src={require('../../images/delete-slide.svg').default} alt={'DeletingSlide'} />
                 </button>
             </div>

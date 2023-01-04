@@ -3,7 +3,7 @@ import {
     createPresentation,
     createSlide,
     editSlideBackground,
-    removeSlide, removeSlides,
+    removeSlides,
     selectSlide, selectSlides
 } from "../utils/functions";
 import {MouseEvent} from "react";
@@ -13,14 +13,12 @@ export const addSlideHandler = () => {
     dispatch(createSlide, {});
 }
 
-export const removeSlideHandler = (presentation: Presentation) => {
-    if (presentation.selectedSlides.length == 1) {
-        dispatch(removeSlide, presentation.selectedSlides[0].slideIndex);
+export const removeSlideHandler = (selectedSlides: Slide[]) => {
+    let slideIndexes: number[] = [];
+    for (let i = 0; i < selectedSlides.length; i++) {
+        slideIndexes.push(selectedSlides[i].slideIndex);
     }
-    else
-    {
-        dispatch(removeSlides, presentation.selectedSlides)
-    }
+    dispatch(removeSlides, slideIndexes);
 }
 
 export const createPresentationHandler = () => {
