@@ -1,4 +1,6 @@
 import {
+    convertJsonToPresentation,
+    convertPresentationToJson,
     createBlock,
     createPresentation,
     createSlide,
@@ -53,4 +55,12 @@ export const editSlideBackgroundHandler = (slideIndex: number, value: string, ty
         }
     }
     dispatch(editSlideBackground, {slideIndex, newBackground});
+}
+
+export const saveAsJsonHandler = () => {
+    dispatch(convertPresentationToJson, {})
+}
+
+export const openJsonHandler = (json: string) => {
+    dispatch(convertJsonToPresentation, {json});
 }

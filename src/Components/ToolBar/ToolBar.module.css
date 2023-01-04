@@ -91,6 +91,42 @@
     border: none;
     background: none;
     cursor: pointer;
+    position: relative;
+    left: 20px;
+}
+
+.toolbar__blockFunctions__primitiveButton__arrow {
+    padding-right: 15px;
+}
+
+.toolbar__blockFunctions__primitiveButton__arrow, .toolbar__blockFunctions__primitiveButton__arrow ul {
+    list-style: none;
+}
+
+.toolbar__blockFunctions__primitiveButton__arrow ul {
+    position: absolute;
+    display: none;
+    left: 32%;
+    top: 18.5%;
+    z-index: 1;
+}
+
+.toolbar__blockFunctions__primitiveButton__arrow__elem {
+    width: 239px;
+    background: linear-gradient(123.77deg, #373737 15.74%, #1F1E1E 91.49%);
+    text-decoration: none;
+    color: #fff;
+    font: 600 24px/1.21 'Bold Montserrat';
+    text-align: center;
+    padding: 5px 5px;
+}
+
+.toolbar__blockFunctions__primitiveButton__arrow__elem:hover {
+    background: #0085FF;
+}
+
+.toolbar__blockFunctions__primitiveButton__arrow li:hover ul {
+    display: block;
 }
 
 .toolbar__blockFunctions__backgroundButton__arrow {

@@ -8,10 +8,21 @@ export function createPresentation(): Presentation {
         selectedSlides: [defaultSlide]
     };
 }
-export function savePresentation(presentation: Presentation): Presentation {
+export function convertPresentationToJson(presentation: Presentation): Presentation {
+    const json: string = JSON.stringify(presentation);
+    const blob = new Blob([json], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.setAttribute("href", URL.createObjectURL(blob));
+    link.setAttribute("download", presentation.name + "");
+    link.click();
     return presentation;
 }
-export function openPresentation(presentation: Presentation, file: object): Presentation {
+
+export function convertJsonToPresentation(presentation: Presentation, json: string): Presentation {
+    if (typeof json === "object") {
+        return json;
+    }
+    presentation = JSON.parse(json);
     return presentation;
 }
 export function renamePresentation(presentation: Presentation, inputName: string): Presentation {

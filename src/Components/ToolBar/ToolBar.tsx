@@ -57,7 +57,22 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                 </button>
 
                 <button className={style.toolbar__blockFunctions__primitiveButton}><img src={require('../../images/primitive.svg').default} alt={'PrimitiveButton'} /></button>
-                <button className={style.toolbar__blockFunctions__expand}><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} /></button>
+                <ul className={style.toolbar__blockFunctions__primitiveButton__arrow}>
+                    <li><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} />
+                        <ul>
+                            <li className={style.toolbar__blockFunctions__primitiveButton__arrow__elem}>
+                                <span>Треугольник</span>
+                            </li>
+                            <li className={style.toolbar__blockFunctions__primitiveButton__arrow__elem}>
+                                <span >Квадрат</span>
+                            </li>
+                            <li className={style.toolbar__blockFunctions__primitiveButton__arrow__elem}>
+                                <span >Круг</span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
                 
 
                 <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/picture.svg').default} alt={'PictureButton'} /></button>
