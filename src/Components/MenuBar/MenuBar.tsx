@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from './MenuBar.module.css';
 import { renamePresentation} from "../../utils/functions";
-import {createPresentationHandler, saveAsJsonHandler} from "../../stateManager/stateManagerFunctions";
+import {createPresentationHandler, openJsonHandler, saveAsJsonHandler} from "../../stateManager/stateManagerFunctions";
 
 export function MenuBar(Props: { presentation: Presentation }) {
     let name = Props.presentation.name
@@ -14,6 +14,19 @@ export function MenuBar(Props: { presentation: Presentation }) {
     const setTitle = () => {
         Props.presentation = renamePresentation(Props.presentation, namePresentation);
       };
+
+    const fileChangeHandle = (e: any) => {
+        const file: any  = e.target.files[0];
+        const reader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = () => {
+            let result = reader.result
+            if (typeof result === 'string') {
+                openJsonHandler(result);
+            }
+        }
+    }
+
 
     return (
         <div className={style.header}>
@@ -38,10 +51,14 @@ export function MenuBar(Props: { presentation: Presentation }) {
                   onClick={createPresentationHandler} 
                   className={style.header__action__create}>Создать
                 </button>
-                <button 
-                  onClick={(e) => console.log("Нужно сделать загрузку файла")} 
-                  className={style.header__action__open}>Открыть
-                </button>
+                <label htmlFor='json-file-handler' className={style.header__action__open__label}>Открыть</label>
+                <input
+                    onChange={fileChangeHandle}
+                    id='json-file-handler'
+                    type='file'
+                    accept='.txt'
+                    className={style.header__action__open}
+                />
                 <button 
                   onClick={saveAsJsonHandler} 
                   className={style.header__action__save}>Сохранить

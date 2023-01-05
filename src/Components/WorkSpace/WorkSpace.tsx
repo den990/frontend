@@ -21,7 +21,6 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
     });
 
     const newBackground: color | pictureBackground = Props.presentation.selectedSlides[0].background;
-    console.log(newBackground);
     let style;
     if (newBackground.type === 'color') {
         style = {

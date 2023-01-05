@@ -20,9 +20,6 @@ export function convertPresentationToJson(presentation: Presentation): Presentat
 }
 
 export function convertJsonToPresentation(presentation: Presentation, json: string): Presentation {
-    if (typeof json === "object") {
-        return json;
-    }
     presentation = JSON.parse(json);
     return presentation;
 }

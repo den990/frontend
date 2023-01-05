@@ -69,6 +69,10 @@
 }
 
 .header__action__open{
+    display: none;
+}
+
+.header__action__open__label {
     font: 700 20px/1.2 'Bold Montserrat', sans-serif;
     color: #464646;
     border: none;

@@ -62,5 +62,5 @@ export const saveAsJsonHandler = () => {
 }
 
 export const openJsonHandler = (json: string) => {
-    dispatch(convertJsonToPresentation, {json});
+    dispatch(convertJsonToPresentation, json);
 }
