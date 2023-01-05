@@ -32,8 +32,6 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
         }
     }
 
-    console.log(Props.presentation.selectedSlides)
-
     return (
         <div className={styles.workspace__background}>
             <div className={styles.workspace__content} style={style}>

@@ -29,7 +29,7 @@ export function MenuBar(Props: { presentation: Presentation }) {
 
     return (
         <div className={style.header}>
-            <button onClick={e => window.location.reload()} className={style.header__icon}></button>
+            <div className={style.header__icon}></div>
             <div className={style.header__input}>
                 <input 
                 onKeyDown={(e) => {
