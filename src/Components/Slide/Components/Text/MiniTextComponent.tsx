@@ -21,14 +21,13 @@ export function MiniTextComponent(Props: {
     }
 
     return (
-        <input
-        onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              e.currentTarget.blur();}}
-        }
-        type="textarea" 
-        className={styles.text} 
-        defaultValue={Props.symbols} 
-        style={style}/>
+        <div
+            onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                e.currentTarget.blur();}}
+            }
+            className={styles.text} 
+            style={style}>{Props.symbols} 
+        </div>
     );
 }

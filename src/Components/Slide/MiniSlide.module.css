@@ -17,9 +17,10 @@
 .miniSlide__container {
     width: 253px;
     height: 147px;
-    background: #fff;
+    position: relative;
     border: 1px solid #000;
     border-radius: 24px;
+    cursor: pointer;
 }
 
 .miniSlide__borders {
@@ -30,4 +31,23 @@
 
 .blockList{
     position: absolute;
+}
+
+
+.miniSlide__container::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(104, 103, 103, 0.301);
+    left: 0;
+    top: 0;
+    transition: opacity 0.7s;
+    border-radius: 20px;
+    
+    opacity: 0;
+  }
+  
+.miniSlide__container:hover::after {
+    opacity: 1;
 }
