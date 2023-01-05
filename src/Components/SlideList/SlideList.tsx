@@ -8,7 +8,8 @@ export function SlideList( Props: { slideList: Slide[], selectedSlides: Slide[]}
             key={index} 
             slideIndex={slide.slideIndex} 
             selected={Props.selectedSlides.some((Slide) => Slide.slideIndex === slide.slideIndex)}
-            background={slide.background.code} />
+            background={slide.background.code} 
+            blockList={slide.blockList}/>
     ));
     return (
         <div className={style.slideList}>
