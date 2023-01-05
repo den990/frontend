@@ -5,11 +5,15 @@ import {
     createPresentation,
     createSlide,
     editSlideBackground,
-    removeSlides,
+    removeSlides, renamePresentation,
     selectSlide, selectSlides
 } from "../utils/functions";
 import {MouseEvent} from "react";
 import {dispatch} from "./stateManager";
+
+export const renamePresentationHandler = (name: string) => {
+    dispatch(renamePresentation, name)
+}
 
 export const addSlideHandler = () => {
     dispatch(createSlide, {});

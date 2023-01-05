@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import style from './MenuBar.module.css';
-import { renamePresentation} from "../../utils/functions";
-import {createPresentationHandler, openJsonHandler, saveAsJsonHandler} from "../../stateManager/stateManagerFunctions";
+import {
+    createPresentationHandler,
+    openJsonHandler,
+    renamePresentationHandler,
+    saveAsJsonHandler
+} from "../../stateManager/stateManagerFunctions";
 
 export function MenuBar(Props: { presentation: Presentation }) {
     let name = Props.presentation.name
@@ -10,10 +14,6 @@ export function MenuBar(Props: { presentation: Presentation }) {
     useEffect(() => {
         setName(name);
       }, [name]);
-
-    const setTitle = () => {
-        Props.presentation = renamePresentation(Props.presentation, namePresentation);
-      };
 
     const fileChangeHandle = (e: any) => {
         const file: any  = e.target.files[0];
@@ -27,7 +27,6 @@ export function MenuBar(Props: { presentation: Presentation }) {
         }
     }
 
-
     return (
         <div className={style.header}>
             <button onClick={e => window.location.reload()} className={style.header__icon}></button>
@@ -36,7 +35,7 @@ export function MenuBar(Props: { presentation: Presentation }) {
                 onKeyDown={(e) => {
                     if (e.key === "Enter") {
                       e.currentTarget.blur();
-                      setTitle();
+                      renamePresentationHandler(namePresentation);
                     }
                   }}
                 onFocus={(e) => {
