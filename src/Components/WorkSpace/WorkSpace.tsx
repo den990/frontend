@@ -20,7 +20,7 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
         return null;
     });
 
-    const newBackground: color | pictureBackground = Props.presentation.selectedSlides[0].background;
+    const newBackground: color | pictureBackground = Props.presentation.slideList[Props.slideIndex - 1].background;
     let style;
     if (newBackground.type === 'color') {
         style = {
@@ -31,6 +31,8 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
             background: 'url(' + newBackground.code + ') no-repeat'
         }
     }
+
+    console.log(Props.presentation.selectedSlides)
 
     return (
         <div className={styles.workspace__background}>
