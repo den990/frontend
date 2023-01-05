@@ -34,9 +34,18 @@ export function MenuBar(Props: { presentation: Presentation }) {
                 value={namePresentation} />
             </div>
             <div className={style.header__action}>
-                <button onClick={createPresentationHandler} className={style.header__action__create}>Создать</button>
-                <button onClick={(e) => console.log("Нужно сделать загрузку файла")} className={style.header__action__open}>Открыть</button>
-                <button onClick={saveAsJsonHandler} className={style.header__action__save}>Сохранить</button>
+                <button 
+                  onClick={createPresentationHandler} 
+                  className={style.header__action__create}>Создать
+                </button>
+                <button 
+                  onClick={(e) => console.log("Нужно сделать загрузку файла")} 
+                  className={style.header__action__open}>Открыть
+                </button>
+                <button 
+                  onClick={saveAsJsonHandler} 
+                  className={style.header__action__save}>Сохранить
+                </button>
             </div>
         </div>
     );

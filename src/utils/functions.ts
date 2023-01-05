@@ -8,6 +8,7 @@ export function createPresentation(): Presentation {
         selectedSlides: [defaultSlide]
     };
 }
+
 export function convertPresentationToJson(presentation: Presentation): Presentation {
     const json: string = JSON.stringify(presentation);
     const blob = new Blob([json], { type: "text/plain" });
@@ -25,6 +26,7 @@ export function convertJsonToPresentation(presentation: Presentation, json: stri
     presentation = JSON.parse(json);
     return presentation;
 }
+
 export function renamePresentation(presentation: Presentation, inputName: string): Presentation {
     return{
         ...presentation,
@@ -46,6 +48,7 @@ export function createSlide(presentation: Presentation): Presentation {
         slideList: newSlideList
     };
 }
+
 export function removeSlides(presentation:Presentation, slideIndexes: number[]): Presentation {
     if (slideIndexes.length === 1) {
         if (presentation.slideList.length === 1) {
@@ -102,6 +105,7 @@ export function removeSlides(presentation:Presentation, slideIndexes: number[]):
         };
     }
 }
+
 export function editSlideBackground(presentation: Presentation, payload: { slideIndex: number, newBackground: color | pictureBackground }): Presentation {
     const slide = presentation.slideList[payload.slideIndex - 1];
     const newSlide: Slide = {
@@ -115,6 +119,7 @@ export function editSlideBackground(presentation: Presentation, payload: { slide
         })
     }
 }
+
 export function selectSlide(presentation: Presentation, slideIndex: number): Presentation {
     const slide = presentation.slideList[slideIndex];
     const newSelectedSlideList = [slide];
@@ -123,6 +128,7 @@ export function selectSlide(presentation: Presentation, slideIndex: number): Pre
         selectedSlides: newSelectedSlideList
     };
 }
+
 export function selectSlides(presentation: Presentation, slideIndex: number): Presentation {
     const slide = presentation.slideList[slideIndex];
     presentation.selectedSlides.push(slide)
@@ -149,8 +155,8 @@ export function createBlock(presentation: Presentation, payload: {slideIndex: nu
             x: 200,
             y: 200
         },
-        width: 50,
-        height: 50
+        width: 200,
+        height: 100
     }
     const newBlockList = [...presentation.slideList[payload.slideIndex - 1].blockList, newBlock];
     const newSlide = {
@@ -164,6 +170,7 @@ export function createBlock(presentation: Presentation, payload: {slideIndex: nu
         })
     };
 }
+
 export function removeBlock(presentation: Presentation, blockIndex: number, slideIndex: number): Presentation {
     const slideList = presentation.slideList;
     const slide = slideList[slideIndex];
@@ -178,6 +185,7 @@ export function removeBlock(presentation: Presentation, blockIndex: number, slid
         })
     };
 }
+
 export function selectBlock(presentation: Presentation, slideIndex: number, blockIndex: number): Presentation {
     const newSelectedBlock = presentation.slideList[slideIndex].blockList[blockIndex];
     const newSelectedBlockList = [...presentation.slideList[slideIndex].selectedBlockList, newSelectedBlock];
@@ -192,6 +200,7 @@ export function selectBlock(presentation: Presentation, slideIndex: number, bloc
         })
     };
 }
+
 export function moveBlock(presentation: Presentation, slideIndex: number, blockIndex: number, inputX: number, inputY: number ): Presentation {
     const slide = presentation.slideList[slideIndex];
     const block = slide.blockList[blockIndex];
@@ -214,6 +223,7 @@ export function moveBlock(presentation: Presentation, slideIndex: number, blockI
         })
     };
 }
+
 export function editBlockSize(presentation: Presentation, slideIndex: number, blockIndex: number, newWidth: number, newHeight: number): Presentation {
     const slide = presentation.slideList[slideIndex];
     const block = slide.blockList[blockIndex];
@@ -255,6 +265,7 @@ export function editFontFamily(presentation: Presentation, slideIndex: number, b
         })
     };
 }
+
 export function editFontSize(presentation: Presentation, slideIndex: number, blockIndex: number, newFontSize: string): Presentation {
     const slide = presentation.slideList[slideIndex];
     const block = slide.blockList[blockIndex];
@@ -274,6 +285,7 @@ export function editFontSize(presentation: Presentation, slideIndex: number, blo
         })
     };
 }
+
 export function editFontColor(presentation: Presentation, slideIndex: number, blockIndex: number, newFontColor: string): Presentation {
     const slide = presentation.slideList[slideIndex];
     const block = slide.blockList[blockIndex];
@@ -293,6 +305,7 @@ export function editFontColor(presentation: Presentation, slideIndex: number, bl
         })
     };
 }
+
 export function editTextSymbols(presentation: Presentation, slideIndex: number, blockIndex: number, newSymbols: string): Presentation {
     const slide = presentation.slideList[slideIndex];
     const block = slide.blockList[blockIndex];
@@ -312,6 +325,7 @@ export function editTextSymbols(presentation: Presentation, slideIndex: number, 
         })
     };
 }
+
 export function editPrimitiveBackground(presentation: Presentation, slideIndex: number, blockIndex: number, newPrimitiveBackground: string): Presentation {
     const slide = presentation.slideList[slideIndex];
     const block = slide.blockList[blockIndex];
@@ -331,6 +345,7 @@ export function editPrimitiveBackground(presentation: Presentation, slideIndex: 
         })
     };
 }
+
 export function editPrimitiveBorder(presentation: Presentation, slideIndex: number, blockIndex: number, newPrimitiveBorder: string): Presentation {
     const slide = presentation.slideList[slideIndex];
     const block = slide.blockList[blockIndex];

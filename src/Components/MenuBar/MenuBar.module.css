@@ -9,6 +9,7 @@
     background: #F2FFFA;
     align-items: center;
 }
+
 .header__icon {
     width: 96px;
     height: 96px;
@@ -18,6 +19,7 @@
     border: none;
     cursor: pointer;
 }
+
 .header__input
 {
     width: 20%;
@@ -26,11 +28,13 @@
     padding-left: 20px;
     display: flex;
 }
+
 .header__input__text
 {
     font: 600 24px/1.2 'Medium Montserrat', sans-serif;
     color: #000;
 }
+
 .header__action
 {
     display: flex;
@@ -39,6 +43,7 @@
     width: 25%;
     height: 50%;
 }
+
 .header__action__text
 {
     font: 700 20px/1.2 'Bold Montserrat', sans-serif;

@@ -39,26 +39,63 @@ export function ToolBar(Props:{ presentation: Presentation }) {
     return (
         <div className={style.toolbar}>
             <div className={style.toolbar__slideButtons}>
-                <button onClick={addSlideHandler} className={style.toolbar__slideButtons__addButton}>
-                    <img src={require('../../images/add-slide.svg').default} alt={'AddingSlide'} />
-                    <span className={style.toolbar__slideButtons__addButton__text}>Добавить слайд</span>
+                <button 
+                    onClick={addSlideHandler} 
+                    className={style.toolbar__slideButtons__addButton}>
+                    <img 
+                        src={require('../../images/add-slide.svg').default} 
+                        alt={'Добавить слайд'} 
+                    />
+                    <span 
+                        className={style.toolbar__slideButtons__addButton__text}>Добавить слайд
+                    </span>
                 </button>
-                <button onClick={() => removeSlideHandler(Props.presentation.selectedSlides)} className={style.toolbar__slideButtons__deleteButton}>
-                    <img src={require('../../images/delete-slide.svg').default} alt={'DeletingSlide'} />
+                <button 
+                    onClick={() => removeSlideHandler(Props.presentation.selectedSlides)} 
+                    className={style.toolbar__slideButtons__deleteButton}>
+                    <img 
+                        src={require('../../images/delete-slide.svg').default} 
+                        alt={'Удалить слайд'} 
+                    />
                 </button>
             </div>
             <div className={style.toolbar__blockFunctions}>
-                <img className={style.toolbar__blockFunctions__dividingLine} src={require('../../images/dividing-line.svg').default} alt={'DividingLine'} />
-
-                <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/redo.svg').default} alt={'RedoButton'} /></button>
-                <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/undo.svg').default} alt={'UndoButton'} /></button>
-                <button onClick={() => addBlockHandler(Props.presentation.selectedSlides[0].slideIndex, defaultTextType)} className={style.toolbar__blockFunctions__button}>
-                    <img src={require('../../images/text.svg').default} alt={'TextButton'} />
+                <img 
+                    className={style.toolbar__blockFunctions__dividingLine} 
+                    src={require('../../images/dividing-line.svg').default} 
+                    alt={'Линия разделения'} 
+                />
+                <button 
+                    className={style.toolbar__blockFunctions__button}>
+                    <img 
+                        src={require('../../images/redo.svg').default} 
+                        alt={'Отмена'}
+                    />
                 </button>
-
-                <button className={style.toolbar__blockFunctions__primitiveButton}><img src={require('../../images/primitive.svg').default} alt={'PrimitiveButton'} /></button>
+                <button 
+                    className={style.toolbar__blockFunctions__button}>
+                    <img 
+                        src={require('../../images/undo.svg').default} 
+                        alt={'Вперёд'} 
+                    />
+                </button>
+                <button 
+                    onClick={() => addBlockHandler(Props.presentation.selectedSlides[0].slideIndex, defaultTextType)} 
+                    className={style.toolbar__blockFunctions__button}>
+                    <img 
+                        src={require('../../images/text.svg').default} 
+                        alt={'Добавить текст'} 
+                    />
+                </button>
+                <button 
+                    className={style.toolbar__blockFunctions__primitiveButton}>
+                    <img 
+                        src={require('../../images/primitive.svg').default} 
+                        alt={'Добавить примитив'} 
+                    />
+                </button>
                 <ul className={style.toolbar__blockFunctions__primitiveButton__arrow}>
-                    <li><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} />
+                    <li><img src={require('../../images/arrow.svg').default} alt={'Развернуть'} />
                         <ul>
                             <li className={style.toolbar__blockFunctions__primitiveButton__arrow__elem}>
                                 <span>Треугольник</span>
@@ -72,13 +109,20 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                         </ul>
                     </li>
                 </ul>
-
-                
-
-                <button className={style.toolbar__blockFunctions__button}><img src={require('../../images/picture.svg').default} alt={'PictureButton'} /></button>
-                <img className={style.toolbar__blockFunctions__backgroundButton} src={require('../../images/background.svg').default} alt={'BackgroundButton'} />
+                <button 
+                    className={style.toolbar__blockFunctions__button}>
+                    <img 
+                        src={require('../../images/picture.svg').default} 
+                        alt={'Добавить картинку'} 
+                    />
+                </button>
+                <img 
+                    className={style.toolbar__blockFunctions__backgroundButton} 
+                    src={require('../../images/background.svg').default} 
+                    alt={'Изменить фон'} 
+                />
                 <ul className={style.toolbar__blockFunctions__backgroundButton__arrow}>
-                    <li><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} />
+                    <li><img src={require('../../images/arrow.svg').default} alt={'Развернуть'} />
                         <ul>
                             <li className={style.toolbar__blockFunctions__backgroundButton__arrow__elem}>
                                 <input
@@ -103,40 +147,93 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                         </ul>
                     </li>
                 </ul>
-
-                <img className={style.toolbar__blockFunctions__dividingLine} src={require('../../images/dividing-line.svg').default} alt={'DividingLine'} />
-
-                <input type={"button"} value="Arial" className={style.toolbar__blockFunction__editFontFamily} alt={"EditFontFamily"}/>
-                <button className={style.toolbar__blockFunctions__expand}><img src={require('../../images/arrow.svg').default} alt={'ExpandButton'} /></button>
-
-
-                <button onClick={decrement} className={style.toolbar__blockFunctions__textSize_decrement}><img src={require('../../images/decrease-text.svg').default} alt={'DecreaseText'} /></button>
-                <input  type={"number"} 
-                        value={inputSize}
-                        onKeyDown={(e) => {
-                            if (e.key === "Enter") {
-                              e.currentTarget.blur();
-                            }
-                          }}  
-                        onChange={e => setInputSize(e.target.valueAsNumber)} 
-                        className={style.toolbar__blockFunction__editFontSize} 
-                        alt={"EditFontSize"}/>
-                <button onClick={increment} className={style.toolbar__blockFunctions__textSize_increment}><img src={require('../../images/increase-text.svg').default} alt={'IncreaseText'} /></button>
-
-
-                <button className={style.toolbar__blockFunctions__textColor}><img src={require('../../images/text-color.svg').default} alt={'EditTextColor'} /></button>
-
-                <img className={style.toolbar__blockFunctions__dividingLine} src={require('../../images/dividing-line.svg').default} alt={'DividingLine'} />
-
-                <button className={style.toolbar__blockFunctions__primitiveColor}><img src={require('../../images/primitive-color-background.svg').default} alt={'EditPrimitiveColorBackground'} /></button>
-                <button className={style.toolbar__blockFunctions__primitiveColor}><img src={require('../../images/primitive-color-border.svg').default} alt={'EditPrimitiveColorBorder'} /></button>
-
-                <img className={style.toolbar__blockFunctions__dividingLine} src={require('../../images/dividing-line.svg').default} alt={'DividingLine'} />
+                <img 
+                    className={style.toolbar__blockFunctions__dividingLine} 
+                    src={require('../../images/dividing-line.svg').default} 
+                    alt={'Линия разделения'} 
+                />
+                <input 
+                    type={"button"} 
+                    value="Arial" 
+                    className={style.toolbar__blockFunction__editFontFamily} 
+                    alt={"Изменить шрифт"}
+                />
+                <button 
+                    className={style.toolbar__blockFunctions__expand}>
+                    <img 
+                        src={require('../../images/arrow.svg').default} 
+                        alt={'Развернуть'} 
+                    />
+                </button>
+                <button 
+                    onClick={decrement} 
+                    className={style.toolbar__blockFunctions__textSize_decrement}>
+                    <img 
+                        src={require('../../images/decrease-text.svg').default} 
+                        alt={'Уменьшить размер текста'} 
+                    />
+                </button>
+                <input  
+                    type={"number"} 
+                    value={inputSize}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            e.currentTarget.blur();
+                        }
+                    }}  
+                    onChange={e => setInputSize(e.target.valueAsNumber)} 
+                    className={style.toolbar__blockFunction__editFontSize} 
+                    alt={"Изменить размер текста"}
+                />
+                <button 
+                    onClick={increment} 
+                    className={style.toolbar__blockFunctions__textSize_increment}>
+                    <img 
+                        src={require('../../images/increase-text.svg').default} 
+                        alt={'Увеличить размер текста'} 
+                    />
+                </button>
+                <button 
+                    className={style.toolbar__blockFunctions__textColor}>
+                    <img 
+                        src={require('../../images/text-color.svg').default} 
+                        alt={'Изменить цвет текста'} 
+                    />
+                </button>
+                <img 
+                    className={style.toolbar__blockFunctions__dividingLine} 
+                    src={require('../../images/dividing-line.svg').default} 
+                    alt={'Линия разделения'} 
+                />
+                <button
+                    className={style.toolbar__blockFunctions__primitiveColor}>
+                    <img 
+                        src={require('../../images/primitive-color-background.svg').default} 
+                        alt={'Изменить цвет фона примитива'} 
+                    />
+                </button>
+                <button   
+                    className={style.toolbar__blockFunctions__primitiveColor}>
+                    <img 
+                        src={require('../../images/primitive-color-border.svg').default} 
+                        alt={'Изменить цвет границ примитива'} 
+                    />
+                </button>
+                <img 
+                    className={style.toolbar__blockFunctions__dividingLine} 
+                    src={require('../../images/dividing-line.svg').default} 
+                    alt={'Линия разделения'} 
+                />
             </div>
             <div className={style.toolbar__slideShow}>
                 <button className={style.toolbar__slideShowButton}>
-                    <img src={require('../../images/slide-show.svg').default} alt={'SlideShowButton'} />
-                    <span className={style.toolbar__slideShowButton__text}>Слайд-шоу</span>
+                    <img 
+                        src={require('../../images/slide-show.svg').default} 
+                        alt={'Слайд-шоу'} 
+                    />
+                    <span 
+                        className={style.toolbar__slideShowButton__text}>Слайд-шоу
+                    </span>
                 </button>
             </div>
         </div>

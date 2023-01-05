@@ -15,10 +15,12 @@ type color = {
     type: 'color';
     code: string;
 }
+
 type pictureBackground = {
     type: 'picture';
     code: string;
 }
+
 type Block = {
     content: blockContent;
     blockIndex: number;

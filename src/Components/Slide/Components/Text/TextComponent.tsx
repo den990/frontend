@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import useDragAndDrop from "../../../../hooks/useDragAndDrop";
 import styles from "./TextComponent.module.css";
 
-export function TextComponent(Props: {fontFamily: string, fontColor: string, fontSize: number, symbols: string}) {
+export function TextComponent(Props: {
+    fontFamily: string, 
+    fontColor: string, 
+    fontSize: number, 
+    symbols: string, 
+    id: string,
+    position: {x:number, y:number},
+    height: number,
+    width: number
+    }){
     const style = {
         fontFamily: Props.fontFamily,
         color: Props.fontColor,
-        fontSize: Props.fontSize
+        fontSize: Props.fontSize,
+        top: Props.position.y,
+        left: Props.position.x,
+        width: Props.width,
+        height: Props.height
     }
+    
+    useDragAndDrop(Props.id, Props.position.x, Props.position.y)
+
     return (
         <input
         onKeyDown={(e) => {
@@ -14,6 +31,7 @@ export function TextComponent(Props: {fontFamily: string, fontColor: string, fon
               e.currentTarget.blur();}}
         }
         type="textarea" 
+        id={Props.id}
         className={styles.text} 
         defaultValue={Props.symbols} 
         style={style}/>
