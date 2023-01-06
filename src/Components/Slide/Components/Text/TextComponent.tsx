@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useDragAndDrop from "../../../../hooks/useDragAndDrop";
-import { selectBlockHandler } from "../../../../stateManager/stateManagerFunctions";
+import { editTextSymbolsHandler, selectBlockHandler } from "../../../../stateManager/stateManagerFunctions";
 import styles from "./TextComponent.module.css";
 
 export function TextComponent(Props: {
@@ -27,6 +27,12 @@ export function TextComponent(Props: {
     }
     
     useDragAndDrop(Props.id, Props.position.x, Props.position.y)
+    const [symbols, setSymbols] = useState("Новый текст");
+    let symbolsHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        let symbolInput = event.target.value;
+        setSymbols(symbolInput);
+        editTextSymbolsHandler(Props.slideIndex, Props.blockIndex + 1, symbolInput);
+    }
 
     return (
         <input
@@ -38,7 +44,8 @@ export function TextComponent(Props: {
         type="textarea" 
         id={Props.id}
         className={styles.text} 
-        defaultValue={Props.symbols} 
+        value={Props.symbols}
+        onChange={symbolsHandler}
         style={style}/>
     );
 }

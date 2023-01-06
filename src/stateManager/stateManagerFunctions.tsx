@@ -77,7 +77,6 @@ export const selectBlockHandler = (slideIndex: number, blockIndex: number) => {
 }
 
 export const editFontSizeHandler = (slideIndex: number, blockIndex: number, newFontSize: number) => {
-    console.log(slideIndex, blockIndex, newFontSize)
     dispatch(editFontSize, {slideIndex, blockIndex, newFontSize})
 }
 

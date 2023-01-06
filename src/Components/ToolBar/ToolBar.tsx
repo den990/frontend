@@ -24,6 +24,9 @@ export function ToolBar(Props:{ presentation: Presentation }) {
         if (inputSize > 1)
         {
             setInputSize(inputSize - 1)
+            editFontSizeHandler(Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].slideIndex,
+            Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].selectedBlockList[0].blockIndex, 
+            inputSize - 1)
         }
     }
 

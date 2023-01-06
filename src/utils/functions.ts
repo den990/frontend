@@ -152,7 +152,7 @@ export function createBlock(presentation: Presentation, payload: {slideIndex: nu
             x: 200,
             y: 200
         },
-        width: 200,
+        width: 500,
         height: 100
     }
     const newBlockList = [...presentation.slideList[payload.slideIndex - 1].blockList, newBlock];
@@ -264,7 +264,8 @@ export function editFontFamily(presentation: Presentation, slideIndex: number, b
 }
 
 
-export function editFontSize(presentation: Presentation, payload:{slideIndex: number, blockIndex: number, newFontSize: number, df: string}): Presentation {
+export function editFontSize(presentation: Presentation, payload:{slideIndex: number, blockIndex: number, newFontSize: number}): Presentation {
+    console.log(payload.slideIndex, payload.blockIndex, payload.newFontSize)
     const slide = presentation.slideList[payload.slideIndex - 1];
     const block = slide.selectedBlockList[0];
     const data = {
@@ -315,22 +316,34 @@ export function editFontColor(presentation: Presentation, slideIndex: number, bl
     };
 }
 
-export function editTextSymbols(presentation: Presentation, slideIndex: number, blockIndex: number, newSymbols: string): Presentation {
-    const slide = presentation.slideList[slideIndex];
-    const block = slide.blockList[blockIndex];
+export function editTextSymbols(presentation: Presentation, payload:{slideIndex: number, blockIndex: number, newSymbols: string}): Presentation {
+    console.log(payload.slideIndex, payload.blockIndex, payload.newSymbols)
+    const slide = presentation.slideList[payload.slideIndex - 1];
+    const block = slide.selectedBlockList[0];
+    const data = {
+        ...block.content.data
+    };
+    const newData = {
+        ...data,
+        symbols: payload.newSymbols
+    }
+    const newContent = {
+        ...block.content,
+        data: newData
+    }
     const newBlock = {
         ...block,
-        symbols: newSymbols
+        content: newContent
     };
     const newSlide = {
         ...slide,
         blockList: slide.blockList.map(( currentBlock, index) => {
-            return (index === blockIndex) ? newBlock : currentBlock;
+            return (index === payload.blockIndex - 1) ? newBlock : currentBlock;
         })};
     return {
         ...presentation,
         slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index === slideIndex) ? newSlide : currentSlide;
+            return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
         })
     };
 }
