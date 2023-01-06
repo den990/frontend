@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useDragAndDrop from "../../../../hooks/useDragAndDrop";
+import { selectBlockHandler } from "../../../../stateManager/stateManagerFunctions";
 import styles from "./TextComponent.module.css";
 
 export function TextComponent(Props: {
@@ -10,9 +11,12 @@ export function TextComponent(Props: {
     id: string,
     position: {x:number, y:number},
     height: number,
-    width: number
+    width: number,
+    slideIndex: number,
+    blockIndex: number,
+    presentation: Presentation
     }){
-    const style = {
+    let style = {
         fontFamily: Props.fontFamily,
         color: Props.fontColor,
         fontSize: Props.fontSize,
@@ -30,6 +34,7 @@ export function TextComponent(Props: {
             if (e.key === "Enter") {
               e.currentTarget.blur();}}
         }
+        onClick={(e) => {selectBlockHandler(Props.slideIndex, Props.blockIndex, e)}}
         type="textarea" 
         id={Props.id}
         className={styles.text} 

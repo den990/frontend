@@ -15,7 +15,10 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
             position={block.position}
             width={block.width}
             height={block.height}
-            id={String(index + 1)}/>;
+            id={String(index + 1)}
+            slideIndex={Props.slideIndex}
+            blockIndex={index}
+            presentation={Props.presentation}/>;
         }
         return null;
     });

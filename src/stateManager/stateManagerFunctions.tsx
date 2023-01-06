@@ -4,8 +4,10 @@ import {
     createBlock,
     createPresentation,
     createSlide,
+    editFontSize,
     editSlideBackground,
     removeSlides, renamePresentation,
+    selectBlock,
     selectSlide, selectSlides
 } from "../utils/functions";
 import {MouseEvent} from "react";
@@ -67,4 +69,8 @@ export const saveAsJsonHandler = () => {
 
 export const openJsonHandler = (json: string) => {
     dispatch(convertJsonToPresentation, json);
+}
+
+export const selectBlockHandler = (slideIndex: number, blockIndex: number, e: MouseEvent<HTMLDivElement>) => {
+    dispatch(selectBlock, {slideIndex, blockIndex})
 }

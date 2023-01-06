@@ -183,17 +183,17 @@ export function removeBlock(presentation: Presentation, blockIndex: number, slid
     };
 }
 
-export function selectBlock(presentation: Presentation, slideIndex: number, blockIndex: number): Presentation {
-    const newSelectedBlock = presentation.slideList[slideIndex].blockList[blockIndex];
-    const newSelectedBlockList = [...presentation.slideList[slideIndex].selectedBlockList, newSelectedBlock];
+export function selectBlock(presentation: Presentation, payload: {slideIndex: number, blockIndex: number}): Presentation {
+    const newSelectedBlock = presentation.slideList[payload.slideIndex - 1].blockList[payload.blockIndex];
+    const newSelectedBlockList = [newSelectedBlock];
     const newSlide = {
-        ...presentation.slideList[slideIndex],
+        ...presentation.slideList[payload.slideIndex - 1],
         selectedBlockList: newSelectedBlockList
     }
     return {
         ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index === slideIndex) ? newSlide : currentSlide;
+        selectedSlides: presentation.selectedSlides.map(( currentSlide, index) => {
+            return (index === 0) ? newSlide : currentSlide;
         })
     };
 }
