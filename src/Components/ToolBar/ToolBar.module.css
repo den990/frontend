@@ -232,6 +232,13 @@
     cursor: pointer;
 }
 
+.toolbar__blockFunctions__colorTextChooser {
+    visibility :hidden;
+    width:0px;
+    padding:0;
+    margin:0;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;

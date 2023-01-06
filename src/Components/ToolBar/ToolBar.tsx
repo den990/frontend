@@ -4,6 +4,7 @@ import style from './ToolBar.module.css';
 import {
     addBlockHandler,
     addSlideHandler,
+    editFontColorHandler,
     editFontSizeHandler,
     editSlideBackgroundHandler,
     removeSlideHandler,
@@ -25,15 +26,23 @@ export function ToolBar(Props:{ presentation: Presentation }) {
         {
             setInputSize(inputSize - 1)
             editFontSizeHandler(Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].slideIndex,
-            Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].selectedBlockList[0].blockIndex, 
-            inputSize - 1)
+                                Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].selectedBlockList[0].blockIndex, 
+                                inputSize - 1)
         }
     }
 
-    const [color, setColor] = useState("fff");
-    const colorHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setColor(event.target.value);
-        editSlideBackgroundHandler(Props.presentation.selectedSlides[0].slideIndex, color, 'color')
+    const [colorBackground, setColorBackground] = useState("fff");
+    const colorBackgroundHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setColorBackground(event.target.value);
+        editSlideBackgroundHandler(Props.presentation.selectedSlides[0].slideIndex, colorBackground, 'color')
+    }
+
+    const [colorText, setColorText] = useState(defaultText.fontColor);
+    const fontColorHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setColorText(event.target.value);
+        editFontColorHandler(Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].slideIndex,
+                            Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].selectedBlockList[0].blockIndex, 
+                            colorText)
     }
 
     const fileHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -145,11 +154,11 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                             </li>
                             <li className={style.toolbar__blockFunctions__backgroundButton__arrow__elem}>
                                 <input
-                                    onChange={colorHandler}
+                                    onChange={colorBackgroundHandler}
                                     className={style.toolbar__blockFunctions__backgroundButton__arrow__elem__colorChooser}
                                     type='color'
                                     id='colorChooser'
-                                    value={color}
+                                    value={colorBackground}
                                 />
                                 <label htmlFor='colorChooser'>Цвет</label>
                             </li>
@@ -202,13 +211,20 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                         alt={'Увеличить размер текста'} 
                     />
                 </button>
-                <button 
-                    className={style.toolbar__blockFunctions__textColor}>
+                <input
+                    type={"color"}
+                    onChange={fontColorHandler}
+                    value={colorText}
+                    id="colorText"
+                    className={style.toolbar__blockFunctions__colorTextChooser}
+                />
+                <label htmlFor='colorText'
+                    className={style.toolbar__blockFunctions__textColor}>                    
                     <img 
                         src={require('../../images/text-color.svg').default} 
                         alt={'Изменить цвет текста'} 
                     />
-                </button>
+                </label>
                 <img 
                     className={style.toolbar__blockFunctions__dividingLine} 
                     src={require('../../images/dividing-line.svg').default} 
