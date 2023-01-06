@@ -387,3 +387,23 @@ export function editPrimitiveBorder(presentation: Presentation, slideIndex: numb
         })
     };
 }
+
+export function editBlockPosition(presentation: Presentation, payload:{slideIndex: number, blockIndex: number, coordX: number, coordY: number}): Presentation {
+    const slide = presentation.slideList[payload.slideIndex - 1];
+    const block = slide.selectedBlockList[0];
+    const newBlock = {
+        ...block,
+        position: {x: payload.coordX, y: payload.coordY},
+    };
+    const newSlide = {
+        ...slide,
+        blockList: slide.blockList.map(( currentBlock, index) => {
+            return (index === payload.blockIndex - 1) ? newBlock : currentBlock;
+        })};
+    return {
+        ...presentation,
+        slideList: presentation.slideList.map(( currentSlide, index) => {
+            return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
+        })
+    };
+}

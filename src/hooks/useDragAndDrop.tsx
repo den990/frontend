@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-function useDragAndDrop(id: string, coordX: number, coordY: number): void {
+function useDragAndDrop(id: string, coordX: number, coordY: number) {
   const isClicked = useRef<boolean>(false);
   
   const coords = useRef<{
@@ -59,7 +59,6 @@ function useDragAndDrop(id: string, coordX: number, coordY: number): void {
 
     return cleanup;
   }, [id])
-
+  return [coords.current.lastX, coords.current.lastY]
 }
-
 export default useDragAndDrop;

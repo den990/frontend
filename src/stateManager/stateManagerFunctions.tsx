@@ -4,6 +4,7 @@ import {
     createBlock,
     createPresentation,
     createSlide,
+    editBlockPosition,
     editFontSize,
     editSlideBackground,
     editTextSymbols,
@@ -82,4 +83,8 @@ export const editFontSizeHandler = (slideIndex: number, blockIndex: number, newF
 
 export const editTextSymbolsHandler = (slideIndex: number, blockIndex: number, newSymbols: string) => {
     dispatch(editTextSymbols, {slideIndex, blockIndex, newSymbols})
+}
+
+export const editBlockPositionHandler = (slideIndex: number, blockIndex: number, coordX: number, coordY: number) => {
+    dispatch(editBlockPosition, {slideIndex, blockIndex, coordX, coordY})
 }
