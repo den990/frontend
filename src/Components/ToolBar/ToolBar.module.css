@@ -81,13 +81,7 @@
     padding-left: 18px;
 }
 
-.toolbar__blockFunctions__primitiveButton {
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-
-.toolbar__blockFunctions__backgroundButton {
+.toolbar__blockFunctions__primitiveButton, .toolbar__blockFunctions__backgroundButton {
     border: none;
     background: none;
     cursor: pointer;
@@ -95,11 +89,11 @@
     left: 20px;
 }
 
-.toolbar__blockFunctions__primitiveButton__arrow {
+.toolbar__blockFunctions__primitiveButton__arrow, .toolbar__blockFunctions__backgroundButton__arrow, .toolbar__blockFunctions__imageButton {
     padding-right: 15px;
 }
 
-.toolbar__blockFunctions__primitiveButton__arrow, .toolbar__blockFunctions__primitiveButton__arrow ul {
+.toolbar__blockFunctions__primitiveButton__arrow, .toolbar__blockFunctions__primitiveButton__arrow ul, .toolbar__blockFunctions__backgroundButton__arrow, .toolbar__blockFunctions__backgroundButton__arrow ul, .toolbar__blockFunctions__imageButton, .toolbar__blockFunctions__imageButton ul {
     list-style: none;
 }
 
@@ -111,7 +105,7 @@
     z-index: 1;
 }
 
-.toolbar__blockFunctions__primitiveButton__arrow__elem {
+.toolbar__blockFunctions__primitiveButton__arrow__elem, .toolbar__blockFunctions__backgroundButton__arrow__elem, .toolbar__blockFunctions__imageButton__elem {
     width: 239px;
     background: linear-gradient(123.77deg, #373737 15.74%, #1F1E1E 91.49%);
     text-decoration: none;
@@ -121,53 +115,35 @@
     padding: 5px 5px;
 }
 
-.toolbar__blockFunctions__primitiveButton__arrow__elem:hover {
+.toolbar__blockFunctions__primitiveButton__arrow__elem:hover, .toolbar__blockFunctions__backgroundButton__arrow__elem:hover, .toolbar__blockFunctions__imageButton__elem:hover {
     background: #0085FF;
 }
 
-.toolbar__blockFunctions__primitiveButton__arrow li:hover ul {
+.toolbar__blockFunctions__primitiveButton__arrow li:hover ul, .toolbar__blockFunctions__backgroundButton__arrow li:hover ul, .toolbar__blockFunctions__imageButton li:hover ul {
     display: block;
-}
-
-.toolbar__blockFunctions__backgroundButton__arrow {
-    padding-right: 15px;
-}
-
-.toolbar__blockFunctions__backgroundButton__arrow, .toolbar__blockFunctions__backgroundButton__arrow ul {
-    list-style: none;
 }
 
 .toolbar__blockFunctions__backgroundButton__arrow ul {
     position: absolute;
     display: none;
-    left: 42.5%;
+    left: 43.5%;
     top: 18.5%;
     z-index: 1;
 }
 
-.toolbar__blockFunctions__backgroundButton__arrow__elem {
-    text-decoration: none ;
-    width: 239px;
-    background: linear-gradient(123.77deg, #373737 15.74%, #1F1E1E 91.49%);
-    color: #fff;
-    font: 600 24px/1.21 'Bold Montserrat';
-    text-align: center;
-    padding: 5px 5px;
-}
-
-.toolbar__blockFunctions__backgroundButton__arrow__elem:hover {
-    background: #0085FF;
-}
-
-.toolbar__blockFunctions__backgroundButton__arrow li:hover ul {
-    display: block;
+.toolbar__blockFunctions__imageButton ul {
+    position: absolute;
+    display: none;
+    left: 36.5%;
+    top: 20%;
+    z-index: 1;
 }
 
 .toolbar__blockFunctions__backgroundButton__arrow__elem__colorChooser {
     margin-right: 15px;
 }
 
-.toolbar__blockFunctions__backgroundButton__arrow__elem__fileChooser {
+.toolbar__blockFunctions__backgroundButton__arrow__elem__fileChooser, .toolbar__blockFunctions__imageButton__elem__fileChooser {
     display: none;
 }
 

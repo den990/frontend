@@ -9,13 +9,15 @@ export function TextComponent(Props: {
     fontSize: number, 
     symbols: string, 
     id: string,
-    position: {x:number, y:number},
+    position: {
+        x: number,
+        y: number
+    },
     height: number,
     width: number,
     slideIndex: number,
     blockIndex: number,
-    presentation: Presentation
-    }){
+    }) {
     let style = {
         fontFamily: Props.fontFamily,
         color: Props.fontColor,
@@ -36,7 +38,7 @@ export function TextComponent(Props: {
     let startX: number = Props.position.x;
     let startY: number = Props.position.y;
     let [coordX, coordY] = useDragAndDrop(Props.id, Props.position.x, Props.position.y);
-    if(startX !== coordX || startY !== coordY){
+    if (startX !== coordX || startY !== coordY) {
         editBlockPositionHandler(Props.slideIndex, Props.blockIndex + 1, coordX, coordY);
         let startX = coordX;
         let startY = coordY;

@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './WorkSpace.module.css';
 import {TextComponent} from "../Slide/Components/Text/TextComponent";
+import {ImageComponent} from "../Slide/Components/Image/ImageComponent";
 
 export function WorkSpace(Props: {presentation: Presentation, slideIndex: number})
 {
@@ -17,12 +18,18 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
             height={block.height}
             id={String(index + 1)}
             slideIndex={Props.slideIndex}
-            blockIndex={index}
-            presentation={Props.presentation}/>;
+            blockIndex={index}/>;
         }
         return null;
     });
 
+    const imageBlocks = Props.presentation.slideList[Props.slideIndex - 1].blockList.map((block, index) => {
+        if (block.content.data.type === 'picture') {
+            return <ImageComponent url={block.content.data.url} id={String(index + 1)} position={block.position} slideIndex={Props.slideIndex} blockIndex={index} />;
+        }
+        return null;
+    });
+    console.log(imageBlocks);
     const newBackground: color | pictureBackground = Props.presentation.slideList[Props.slideIndex - 1].background;
     let style;
     if (newBackground.type === 'color') {
@@ -40,6 +47,7 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
         <div className={styles.workspace__background}>
             <div className={styles.workspace__content} style={style}>
                 {textBlocks}
+                {imageBlocks}
             </div>
         </div>
     );

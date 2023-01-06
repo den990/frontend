@@ -44,7 +44,7 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                             Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].selectedBlockList[0].blockIndex, 
                             colorText)
     }
-
+    const [file, setFile] = useState('');
     const fileHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length > 0) {
             let url = URL.createObjectURL(event.target.files[0])
@@ -52,7 +52,20 @@ export function ToolBar(Props:{ presentation: Presentation }) {
             editSlideBackgroundHandler(Props.presentation.selectedSlides[0].slideIndex, url, 'picture' )
         }
     }
-    const [file, setFile] = useState('');
+    const imageBlockHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files.length > 0) {
+            let url = URL.createObjectURL(event.target.files[0])
+            setFile(url.toString())
+            const image: picture = {
+                type: 'picture',
+                url: url
+            }
+            const imageType: blockContent = {
+                data: image
+            }
+            addBlockHandler(Props.presentation.selectedSlides[0].slideIndex, imageType)
+        }
+    }
 
     return (
         <div className={style.toolbar}>
@@ -127,13 +140,25 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                         </ul>
                     </li>
                 </ul>
-                <button 
-                    className={style.toolbar__blockFunctions__button}>
-                    <img 
-                        src={require('../../images/picture.svg').default} 
-                        alt={'Добавить картинку'} 
-                    />
-                </button>
+                <ul className={style.toolbar__blockFunctions__imageButton}>
+                    <li><img src={require('../../images/picture.svg').default} alt={'Добавить картинку'}/>
+                        <ul>
+                            <li className={style.toolbar__blockFunctions__imageButton__elem}>
+                                <input
+                                    className={style.toolbar__blockFunctions__imageButton__elem__fileChooser}
+                                    type='file'
+                                    id='image-upload'
+                                    accept='.jpg, .jpeg, .png'
+                                    onChange={imageBlockHandler}
+                                />
+                                <label htmlFor='image-upload'>С компьютера</label>
+                            </li>
+                            <li className={style.toolbar__blockFunctions__imageButton__elem}>
+                                <span>Ссылка</span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
                 <img 
                     className={style.toolbar__blockFunctions__backgroundButton} 
                     src={require('../../images/background.svg').default} 

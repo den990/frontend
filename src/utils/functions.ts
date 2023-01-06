@@ -198,29 +198,6 @@ export function selectBlock(presentation: Presentation, payload: {slideIndex: nu
     };
 }
 
-export function moveBlock(presentation: Presentation, slideIndex: number, blockIndex: number, inputX: number, inputY: number ): Presentation {
-    const slide = presentation.slideList[slideIndex];
-    const block = slide.blockList[blockIndex];
-    const newBlock = {
-        ...block,
-        position: {
-            x: inputX,
-            y: inputY
-        }
-    }
-    const newSlide = {
-        ...slide,
-        blockList: slide.blockList.map(( currentBlock, index) => {
-            return (index === blockIndex) ? newBlock : currentBlock;
-        })};
-    return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index === slideIndex) ? newSlide : currentSlide;
-        })
-    };
-}
-
 export function editBlockSize(presentation: Presentation, slideIndex: number, blockIndex: number, newWidth: number, newHeight: number): Presentation {
     const slide = presentation.slideList[slideIndex];
     const block = slide.blockList[blockIndex];
