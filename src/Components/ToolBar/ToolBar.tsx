@@ -25,16 +25,18 @@ export function ToolBar(Props:{ presentation: Presentation }) {
 
     const [color, setColor] = useState("fff");
     const colorHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const colorInput = event.target.value;
-        setColor(colorInput);
+        setColor(event.target.value);
         editSlideBackgroundHandler(Props.presentation.selectedSlides[0].slideIndex, color, 'color')
     }
 
     const fileHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const fileInput = event.target.value;
-        setColor(fileInput);
-        editSlideBackgroundHandler(Props.presentation.selectedSlides[0].slideIndex, fileInput, 'picture');
+        if (event.target.files && event.target.files.length > 0) {
+            let url = URL.createObjectURL(event.target.files[0])
+            setFile(url.toString())
+            editSlideBackgroundHandler(Props.presentation.selectedSlides[0].slideIndex, url, 'picture' )
+        }
     }
+    const [file, setFile] = useState('');
 
     return (
         <div className={style.toolbar}>

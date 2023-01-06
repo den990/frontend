@@ -31,7 +31,8 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
         }
     } else {
         style = {
-            background: 'url(' + newBackground.code + ') no-repeat'
+            background: 'url(' + newBackground.code + ') no-repeat',
+            backgroundSize: 'cover'
         }
     }
 
