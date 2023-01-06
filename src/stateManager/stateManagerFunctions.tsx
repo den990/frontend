@@ -71,6 +71,6 @@ export const openJsonHandler = (json: string) => {
     dispatch(convertJsonToPresentation, json);
 }
 
-export const selectBlockHandler = (slideIndex: number, blockIndex: number, e: MouseEvent<HTMLDivElement>) => {
+export const selectBlockHandler = (slideIndex: number, blockIndex: number) => {
     dispatch(selectBlock, {slideIndex, blockIndex})
 }

@@ -34,7 +34,7 @@ export function TextComponent(Props: {
             if (e.key === "Enter") {
               e.currentTarget.blur();}}
         }
-        onClick={(e) => {selectBlockHandler(Props.slideIndex, Props.blockIndex, e)}}
+        onClick={(e) => {selectBlockHandler(Props.slideIndex, Props.blockIndex)}}
         type="textarea" 
         id={Props.id}
         className={styles.text} 
