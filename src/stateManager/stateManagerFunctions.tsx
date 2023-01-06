@@ -6,6 +6,7 @@ import {
     createSlide,
     editFontSize,
     editSlideBackground,
+    editTextSymbols,
     removeSlides, renamePresentation,
     selectBlock,
     selectSlide, selectSlides
@@ -73,4 +74,13 @@ export const openJsonHandler = (json: string) => {
 
 export const selectBlockHandler = (slideIndex: number, blockIndex: number) => {
     dispatch(selectBlock, {slideIndex, blockIndex})
+}
+
+export const editFontSizeHandler = (slideIndex: number, blockIndex: number, newFontSize: number) => {
+    console.log(slideIndex, blockIndex, newFontSize)
+    dispatch(editFontSize, {slideIndex, blockIndex, newFontSize})
+}
+
+export const editTextSymbolsHandler = (slideIndex: number, blockIndex: number, newSymbols: string) => {
+    dispatch(editTextSymbols, {slideIndex, blockIndex, newSymbols})
 }

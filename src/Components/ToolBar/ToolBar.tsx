@@ -4,6 +4,7 @@ import style from './ToolBar.module.css';
 import {
     addBlockHandler,
     addSlideHandler,
+    editFontSizeHandler,
     editSlideBackgroundHandler,
     removeSlideHandler,
 } from "../../stateManager/stateManagerFunctions";
@@ -14,6 +15,9 @@ export function ToolBar(Props:{ presentation: Presentation }) {
     const [inputSize, setInputSize] = useState(defaultText.fontSize);
     function increment(){
         setInputSize(inputSize + 1)
+        editFontSizeHandler(Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].slideIndex,
+                            Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].selectedBlockList[0].blockIndex, 
+                            inputSize + 1)
     }
 
     function decrement(){

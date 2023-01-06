@@ -192,8 +192,8 @@ export function selectBlock(presentation: Presentation, payload: {slideIndex: nu
     }
     return {
         ...presentation,
-        selectedSlides: presentation.selectedSlides.map(( currentSlide, index) => {
-            return (index === 0) ? newSlide : currentSlide;
+        slideList: presentation.slideList.map(( currentSlide, index) => {
+            return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
         })
     };
 }
@@ -263,22 +263,34 @@ export function editFontFamily(presentation: Presentation, slideIndex: number, b
     };
 }
 
-export function editFontSize(presentation: Presentation, slideIndex: number, blockIndex: number, newFontSize: string): Presentation {
-    const slide = presentation.slideList[slideIndex];
-    const block = slide.blockList[blockIndex];
+
+export function editFontSize(presentation: Presentation, payload:{slideIndex: number, blockIndex: number, newFontSize: number, df: string}): Presentation {
+    const slide = presentation.slideList[payload.slideIndex - 1];
+    const block = slide.selectedBlockList[0];
+    const data = {
+        ...block.content.data
+    };
+    const newData = {
+        ...data,
+        fontSize: payload.newFontSize
+    }
+    const newContent = {
+        ...block.content,
+        data: newData
+    }
     const newBlock = {
         ...block,
-        fontSize: newFontSize
+        content: newContent
     };
     const newSlide = {
         ...slide,
         blockList: slide.blockList.map(( currentBlock, index) => {
-            return (index === blockIndex) ? newBlock : currentBlock;
+            return (index === payload.blockIndex - 1) ? newBlock : currentBlock;
         })};
     return {
         ...presentation,
         slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index === slideIndex) ? newSlide : currentSlide;
+            return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
         })
     };
 }
