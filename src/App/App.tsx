@@ -8,7 +8,8 @@ import WorkSpace from "../Components/WorkSpace/WorkSpace";
 import {getState} from "../stateManager/stateManager";
 
 function App() {
-    const presentation: Presentation = getState();
+    const editor: Editor = getState();
+    const presentation: Presentation = editor.presentation;
     const presentationSlideList: Slide[] = presentation.slideList;
     const presentationSelectedSlideList: Slide[]= presentation.selectedSlides;
 
@@ -18,7 +19,7 @@ function App() {
 
     return (
       <div>
-          <MenuBar presentation={presentation} />
+          <MenuBar presentation={presentation}/>
           <ToolBar presentation={presentation}/>
           <div className={style.content}>
             <SlideList slideList={presentationSlideList} selectedSlides={presentationSelectedSlideList}/>

@@ -1,3 +1,13 @@
+type Editor = {
+    history: THistory;
+    presentation: Presentation;
+}
+
+type THistory = {
+    index: number;
+    states: Presentation[];
+}
+
 type Presentation = {
     name: string;
     slideList: Slide[];

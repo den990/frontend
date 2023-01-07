@@ -30,7 +30,6 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
         }
         return null;
     });
-    console.log(imageBlocks);
     const newBackground: color | pictureBackground = Props.presentation.slideList[Props.slideIndex - 1].background;
     let style;
     if (newBackground.type === 'color') {

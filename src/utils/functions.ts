@@ -1,57 +1,69 @@
 import {defaultSlide, defaultSlideColor} from "./consts";
 
 // presentation functions
-export function createPresentation(): Presentation {
+export function createPresentation(): Editor {
     return {
-        name: 'Новая презентация',
-        slideList: [defaultSlide],
-        selectedSlides: [defaultSlide]
+        history: {
+            index: 0,
+            states: []
+        },
+        presentation: {
+            name: 'Новая презентация',
+            slideList: [defaultSlide],
+            selectedSlides: [defaultSlide]
+        }
     };
 }
 
-export function convertPresentationToJson(presentation: Presentation): Presentation {
-    const json: string = JSON.stringify(presentation);
+export function convertPresentationToJson(editor: Editor): Editor {
+    const json: string = JSON.stringify(editor.presentation);
     const blob = new Blob([json], { type: "text/plain" });
     const link = document.createElement("a");
     link.setAttribute("href", URL.createObjectURL(blob));
-    link.setAttribute("download", presentation.name + "");
+    link.setAttribute("download", editor.presentation.name + ".json");
     link.click();
-    return presentation;
+    return editor;
 }
 
-export function convertJsonToPresentation(presentation: Presentation, json: string): Presentation {
-    presentation = JSON.parse(json);
-    return presentation;
+export function convertJsonToPresentation(editor: Editor, json: string): Editor {
+    editor.presentation = JSON.parse(json);
+    return editor;
 }
 
-export function renamePresentation(presentation: Presentation, inputName: string): Presentation {
-    return{
-        ...presentation,
-        name: inputName
+export function renamePresentation(editor: Editor, inputName: string): Editor {
+    return {
+        ...editor,
+        presentation: {
+            ...editor.presentation,
+            name: inputName
+        }
     };
 }
 
 // slide functions
-export function createSlide(presentation: Presentation): Presentation {
+export function createSlide(editor: Editor): Editor {
     const newSlide: Slide = {
-        slideIndex: presentation.slideList.length + 1,
+        slideIndex: editor.presentation.slideList.length + 1,
         blockList: [],
         selectedBlockList: [],
         background: defaultSlideColor
     };
-    const newSlideList = [...presentation.slideList, newSlide];
+    const newSlideList = [...editor.presentation.slideList, newSlide];
     return {
-        ...presentation,
-        slideList: newSlideList
+        ...editor,
+        presentation: {
+            ...editor.presentation,
+            slideList: newSlideList
+        }
     };
 }
 
-export function removeSlides(presentation:Presentation, slideIndexes: number[]): Presentation {
+export function removeSlides(editor: Editor, slideIndexes: number[]): Editor {
     if (slideIndexes.length === 1) {
-        if (presentation.slideList.length === 1) {
-            return presentation;
+        if (editor.presentation.slideList.length === 1) {
+            return editor;
         }
-        const slideList = presentation.slideList;
+        const slideList = editor.presentation.slideList;
         const newSlideList = [];
         let saveIndex = 0;
         for (let i = 0; i < slideList.length; i++) {
@@ -65,19 +77,22 @@ export function removeSlides(presentation:Presentation, slideIndexes: number[]):
                 }
             }
         }
-        const newSelectedSlides: Slide[] = [presentation.slideList[saveIndex]];
+        const newSelectedSlides: Slide[] = [editor.presentation.slideList[saveIndex]];
         return {
-            ...presentation,
-            slideList: newSlideList,
-            selectedSlides: newSelectedSlides
+            ...editor,
+            presentation: {
+                ...editor.presentation,
+                slideList: newSlideList,
+                selectedSlides: newSelectedSlides
+            }
         };
     }
     else {
-        if (presentation.slideList.length === slideIndexes.length) {
-            return presentation;
+        if (editor.presentation.slideList.length === slideIndexes.length) {
+            return editor;
         }
         slideIndexes.sort((a, b) => a - b);
-        let slideList = presentation.slideList;
+        let slideList = editor.presentation.slideList;
         let slideListCounter = 0;
         while (slideIndexes.length !== 0) {
             if (slideIndexes[0] !== slideList[slideListCounter].slideIndex) {
@@ -96,41 +111,50 @@ export function removeSlides(presentation:Presentation, slideIndexes: number[]):
         });
         const newSelectedSlides = [newSlideList[0]];
         return {
-            ...presentation,
-            slideList: newSlideList,
-            selectedSlides: newSelectedSlides
+            ...editor,
+            presentation: {
+                ...editor.presentation,
+                slideList: newSlideList,
+                selectedSlides: newSelectedSlides
+            }
         };
     }
 }
 
-export function editSlideBackground(presentation: Presentation, payload: { slideIndex: number, newBackground: color | pictureBackground }): Presentation {
-    const slide = presentation.slideList[payload.slideIndex - 1];
+export function editSlideBackground(editor: Editor, payload: { slideIndex: number, newBackground: color | pictureBackground }): Editor {
+    const slide = editor.presentation.slideList[payload.slideIndex - 1];
     const newSlide: Slide = {
         ...slide,
         background: payload.newBackground
     };
     return {
-        ...presentation,
-        slideList: presentation.slideList.map((currentSlide, index) => {
-            return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
-        })
+        ...editor,
+        presentation: {
+            ...editor.presentation,
+            slideList: editor.presentation.slideList.map((currentSlide, index) => {
+                return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
+            })
+        }
     }
 }
 
-export function selectSlide(presentation: Presentation, slideIndex: number): Presentation {
-    const slide = presentation.slideList[slideIndex];
+export function selectSlide(editor: Editor, slideIndex: number): Editor {
+    const slide = editor.presentation.slideList[slideIndex];
     const newSelectedSlideList = [slide];
     return {
-        ...presentation,
-        selectedSlides: newSelectedSlideList
+        ...editor,
+        presentation: {
+            ...editor.presentation,
+            selectedSlides: newSelectedSlideList
+        }
     };
 }
 
-export function selectSlides(presentation: Presentation, slideIndex: number): Presentation {
-    const slide = presentation.slideList[slideIndex];
-    presentation.selectedSlides.push(slide)
+export function selectSlides(editor: Editor, slideIndex: number): Editor {
+    const slide = editor.presentation.slideList[slideIndex];
+    editor.presentation.selectedSlides.push(slide)
     return {
-        ...presentation,
+        ...editor,
     };
 }
 
@@ -144,10 +168,10 @@ export function moveSlide(presentation: Presentation, oldSlideIndex: number, new
 }
 
 // block functions
-export function createBlock(presentation: Presentation, payload: {slideIndex: number, inputContent: blockContent}): Presentation {
+export function createBlock(editor: Editor, payload: {slideIndex: number, inputContent: blockContent}): Editor {
     const newBlock = {
         content: payload.inputContent,
-        blockIndex: presentation.slideList[payload.slideIndex - 1].blockList.length + 1,
+        blockIndex: editor.presentation.slideList[payload.slideIndex - 1].blockList.length + 1,
         position: {
             x: 200,
             y: 200
@@ -155,16 +179,19 @@ export function createBlock(presentation: Presentation, payload: {slideIndex: nu
         width: 500,
         height: 100
     }
-    const newBlockList = [...presentation.slideList[payload.slideIndex - 1].blockList, newBlock];
+    const newBlockList = [...editor.presentation.slideList[payload.slideIndex - 1].blockList, newBlock];
     const newSlide = {
-        ...presentation.slideList[payload.slideIndex - 1],
+        ...editor.presentation.slideList[payload.slideIndex - 1],
         blockList: newBlockList
     }
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
-        })
+        ...editor,
+        presentation: {
+            ...editor.presentation,
+            slideList: editor.presentation.slideList.map(( currentSlide, index) => {
+                return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
+            })
+        }
     };
 }
 
@@ -183,18 +210,21 @@ export function removeBlock(presentation: Presentation, blockIndex: number, slid
     };
 }
 
-export function selectBlock(presentation: Presentation, payload: {slideIndex: number, blockIndex: number}): Presentation {
-    const newSelectedBlock = presentation.slideList[payload.slideIndex - 1].blockList[payload.blockIndex];
+export function selectBlock(editor: Editor, payload: {slideIndex: number, blockIndex: number}): Editor {
+    const newSelectedBlock = editor.presentation.slideList[payload.slideIndex - 1].blockList[payload.blockIndex];
     const newSelectedBlockList = [newSelectedBlock];
     const newSlide = {
-        ...presentation.slideList[payload.slideIndex - 1],
+        ...editor.presentation.slideList[payload.slideIndex - 1],
         selectedBlockList: newSelectedBlockList
     }
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
-        })
+        ...editor,
+        presentation: {
+            ...editor.presentation,
+            slideList: editor.presentation.slideList.map(( currentSlide, index) => {
+                return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
+            })
+        }
     };
 }
 
@@ -220,10 +250,9 @@ export function editBlockSize(presentation: Presentation, slideIndex: number, bl
 }
 
 // content of block functions
-export function editFontFamily(presentation: Presentation, payload: {slideIndex: number, blockIndex: number, newFontFamily: string}): Presentation {
-    const slide = presentation.slideList[payload.slideIndex - 1];
+export function editFontFamily(editor: Editor, payload: {slideIndex: number, blockIndex: number, newFontFamily: string}): Editor {
+    const slide = editor.presentation.slideList[payload.slideIndex - 1];
     const block = slide.selectedBlockList[0];
-    console.log(payload.newFontFamily)
     const data = {
         ...block.content.data
     };
@@ -239,24 +268,26 @@ export function editFontFamily(presentation: Presentation, payload: {slideIndex:
         ...block,
         content: newContent
     };
-    console.log(newBlock)
     const newSlide = {
         ...slide,
         blockList: slide.blockList.map(( currentBlock, index) => {
             return (index === payload.blockIndex - 1) ? newBlock : currentBlock;
     })};
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
-        })
+        ...editor,
+        presentation: {
+            ...editor.presentation,
+            slideList: editor.presentation.slideList.map(( currentSlide, index) => {
+                return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
+            })
+        }
+
     };
 }
 
 
-export function editFontSize(presentation: Presentation, payload:{slideIndex: number, blockIndex: number, newFontSize: number}): Presentation {
-    console.log(payload.slideIndex, payload.blockIndex, payload.newFontSize)
-    const slide = presentation.slideList[payload.slideIndex - 1];
+export function editFontSize(editor: Editor, payload:{slideIndex: number, blockIndex: number, newFontSize: number}): Editor {
+    const slide = editor.presentation.slideList[payload.slideIndex - 1];
     const block = slide.selectedBlockList[0];
     const data = {
         ...block.content.data
@@ -279,15 +310,18 @@ export function editFontSize(presentation: Presentation, payload:{slideIndex: nu
             return (index === payload.blockIndex - 1) ? newBlock : currentBlock;
         })};
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
-        })
+        ...editor,
+        presentation: {
+            ...editor.presentation,
+            slideList: editor.presentation.slideList.map(( currentSlide, index) => {
+                return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
+            })
+        }
     };
 }
 
-export function editFontColor(presentation: Presentation, payload:{slideIndex: number, blockIndex: number, newFontColor: string}): Presentation {
-    const slide = presentation.slideList[payload.slideIndex - 1];
+export function editFontColor(editor: Editor, payload:{slideIndex: number, blockIndex: number, newFontColor: string}): Editor {
+    const slide = editor.presentation.slideList[payload.slideIndex - 1];
     const block = slide.selectedBlockList[0];
     const data = {
         ...block.content.data
@@ -310,16 +344,18 @@ export function editFontColor(presentation: Presentation, payload:{slideIndex: n
             return (index === payload.blockIndex - 1) ? newBlock : currentBlock;
         })};
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
-        })
+        ...editor,
+        presentation: {
+            ...editor.presentation,
+            slideList: editor.presentation.slideList.map(( currentSlide, index) => {
+                return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
+            })
+        }
     };
 }
 
-export function editTextSymbols(presentation: Presentation, payload:{slideIndex: number, blockIndex: number, newSymbols: string}): Presentation {
-    console.log(payload.slideIndex, payload.blockIndex, payload.newSymbols)
-    const slide = presentation.slideList[payload.slideIndex - 1];
+export function editTextSymbols(editor: Editor, payload:{slideIndex: number, blockIndex: number, newSymbols: string}): Editor {
+    const slide = editor.presentation.slideList[payload.slideIndex - 1];
     const block = slide.selectedBlockList[0];
     const data = {
         ...block.content.data
@@ -336,17 +372,19 @@ export function editTextSymbols(presentation: Presentation, payload:{slideIndex:
         ...block,
         content: newContent
     };
-    console.log(newBlock);
     const newSlide = {
         ...slide,
         blockList: slide.blockList.map(( currentBlock, index) => {
             return (index === payload.blockIndex - 1) ? newBlock : currentBlock;
         })};
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
-        })
+        ...editor,
+        presentation: {
+            ...editor.presentation,
+            slideList: editor.presentation.slideList.map(( currentSlide, index) => {
+                return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
+            })
+        }
     };
 }
 
@@ -390,8 +428,8 @@ export function editPrimitiveBorder(presentation: Presentation, slideIndex: numb
     };
 }
 
-export function editBlockPosition(presentation: Presentation, payload:{slideIndex: number, blockIndex: number, coordX: number, coordY: number}): Presentation {
-    const slide = presentation.slideList[payload.slideIndex - 1];
+export function editBlockPosition(editor: Editor, payload:{slideIndex: number, blockIndex: number, coordX: number, coordY: number}): Editor {
+    const slide = editor.presentation.slideList[payload.slideIndex - 1];
     const block = slide.selectedBlockList[0];
     const newBlock = {
         ...block,
@@ -403,9 +441,57 @@ export function editBlockPosition(presentation: Presentation, payload:{slideInde
             return (index === payload.blockIndex - 1) ? newBlock : currentBlock;
         })};
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
-        })
+        ...editor,
+        presentation: {
+            ...editor.presentation,
+            slideList: editor.presentation.slideList.map(( currentSlide, index) => {
+                return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
+            })
+        }
     };
+}
+
+// отменить
+export function undo(editor: Editor): Editor {
+    const newEditor: Editor = {
+        ...editor,
+    };
+
+    if (editor.history.index > 0) {
+        newEditor.history.index = editor.history.index - 1;
+        newEditor.presentation = editor.history.states[newEditor.history.index];
+    }
+
+
+    return newEditor;
+}
+// вернуть
+export function redo(editor: Editor): Editor {
+    const newEditor: Editor = {
+        ...editor,
+    };
+
+    if (editor.history.index < editor.history.states.length - 1) {
+        newEditor.history.index = editor.history.index + 1;
+        newEditor.presentation = editor.history.states[newEditor.history.index];
+    }
+
+    return newEditor;
+}
+
+export function updateHistory(editor: Editor): Editor {
+    const newEditor: Editor = {
+        ...editor,
+        history: {
+            ...editor.history,
+            index: editor.history.index + 1,
+        },
+    };
+
+    const newStates = newEditor.history.states.filter((value, id) =>
+        id <= newEditor.history.index && value)
+
+    newEditor.history.states = [...newStates, editor.presentation]
+
+    return newEditor;
 }

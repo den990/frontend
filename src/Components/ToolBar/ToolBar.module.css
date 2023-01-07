@@ -139,10 +139,6 @@
     z-index: 1;
 }
 
-.toolbar__blockFunctions__backgroundButton__arrow__elem__colorChooser {
-    margin-right: 15px;
-}
-
 .toolbar__blockFunctions__backgroundButton__arrow__elem__fileChooser, .toolbar__blockFunctions__imageButton__elem__fileChooser {
     display: none;
 }
@@ -170,7 +166,7 @@
     border: none;
     background: none;
     vertical-align: bottom;
-    padding: 3px 0px 0px 20px;
+    padding: 3px 0 0 20px;
     cursor: pointer;
 }
 
@@ -178,7 +174,7 @@
     border: none;
     background: none;
     vertical-align: bottom;
-    padding: 3px 0px 0px 0px;
+    padding: 3px 0 0 0;
     cursor: pointer;
 }
 
@@ -208,9 +204,9 @@
     cursor: pointer;
 }
 
-.toolbar__blockFunctions__colorTextChooser {
+.toolbar__blockFunctions__colorTextChooser, .toolbar__blockFunctions__backgroundButton__arrow__elem__colorChooser {
     visibility :hidden;
-    width:0px;
+    width:0;
     padding:0;
     margin:0;
 }

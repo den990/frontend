@@ -8,7 +8,7 @@ import {
     editFontSizeHandler,
     editFontFamilyHandler,
     editSlideBackgroundHandler,
-    removeSlideHandler,
+    removeSlideHandler, redoHandler, undoHandler,
 } from "../../stateManager/stateManagerFunctions";
 import {defaultText, defaultTextType} from "../../utils/consts";
 
@@ -105,17 +105,19 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                     src={require('../../images/dividing-line.svg').default} 
                     alt={'Линия разделения'} 
                 />
-                <button 
+                <button
+                    onClick={undoHandler}
                     className={style.toolbar__blockFunctions__button}>
                     <img 
-                        src={require('../../images/redo.svg').default} 
+                        src={require('../../images/undo.svg').default}
                         alt={'Отмена'}
                     />
                 </button>
-                <button 
+                <button
+                    onClick={redoHandler}
                     className={style.toolbar__blockFunctions__button}>
                     <img 
-                        src={require('../../images/undo.svg').default} 
+                        src={require('../../images/redo.svg').default}
                         alt={'Вперёд'} 
                     />
                 </button>
