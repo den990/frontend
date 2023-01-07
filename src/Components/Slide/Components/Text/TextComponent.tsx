@@ -49,7 +49,7 @@ export function TextComponent(Props: {
 
 
     return (
-        <div className={styles.jopa}>
+        <div className={styles.textBlock}>
             <textarea
             onKeyDown={(e) => {
 

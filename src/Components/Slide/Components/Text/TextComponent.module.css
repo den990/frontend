@@ -6,8 +6,8 @@
     overflow: hidden;
 }
 
-.jopa {
-    resize: both;
+.textBlock {
+    resize: unset;
     overflow: hidden;
 }
 .text:active, .text:hover, .text:focus {
