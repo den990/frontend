@@ -52,10 +52,11 @@ export function ToolBar(Props:{ presentation: Presentation }) {
             editSlideBackgroundHandler(Props.presentation.selectedSlides[0].slideIndex, url, 'picture' )
         }
     }
+    const [image, setImage] = useState('');
     const imageBlockHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length > 0) {
             let url = URL.createObjectURL(event.target.files[0])
-            setFile(url.toString())
+            setImage(url.toString())
             const image: picture = {
                 type: 'picture',
                 url: url
