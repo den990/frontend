@@ -288,7 +288,7 @@ export function editFontSize(presentation: Presentation, payload:{slideIndex: nu
 
 export function editFontColor(presentation: Presentation, payload:{slideIndex: number, blockIndex: number, newFontColor: string}): Presentation {
     const slide = presentation.slideList[payload.slideIndex - 1];
-    const block = slide.selectedBlockList[payload.blockIndex];
+    const block = slide.selectedBlockList[0];
     const data = {
         ...block.content.data
     };
