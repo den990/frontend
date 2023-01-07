@@ -32,6 +32,13 @@ export function ToolBar(Props:{ presentation: Presentation }) {
         }
     }
 
+    function inputFontSize(){
+        setInputSize(inputSize)
+        editFontSizeHandler(Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].slideIndex,
+            Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].selectedBlockList[0].blockIndex,
+            inputSize - 1)
+    }
+
     const [colorBackground, setColorBackground] = useState("fff");
     const colorBackgroundHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setColorBackground(event.target.value);
@@ -219,9 +226,10 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                     onKeyDown={(e) => {
                         if (e.key === "Enter") {
                             e.currentTarget.blur();
-                        }
+                            inputFontSize();
+                        };
                     }}  
-                    onChange={e => setInputSize(e.target.valueAsNumber)} 
+                    onChange={e => setInputSize(e.target.valueAsNumber)}
                     className={style.toolbar__blockFunction__editFontSize} 
                     alt={"Изменить размер текста"}
                 />

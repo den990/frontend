@@ -96,6 +96,5 @@ export const editFontColorHandler = (slideIndex: number, blockIndex: number, new
 }
 
 export const editFontFamilyHandler = (slideIndex: number, blockIndex: number, newFontFamily: string) => {
-    console.log(newFontFamily);
     dispatch(editFontFamily,{slideIndex, blockIndex, newFontFamily})
 }
