@@ -1,10 +1,15 @@
 .text {
     border: none;
     background-color: transparent;
-    position: absolute;
     cursor: pointer;
+    position: absolute;
+    overflow: hidden;
 }
 
+.jopa {
+    resize: both;
+    overflow: hidden;
+}
 .text:active, .text:hover, .text:focus {
     outline-color: #c8fce8;
 }

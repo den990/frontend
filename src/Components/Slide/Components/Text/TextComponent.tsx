@@ -17,6 +17,7 @@ export function TextComponent(Props: {
     width: number,
     slideIndex: number,
     blockIndex: number,
+    presentation: Presentation;
     }) {
     let style = {
         fontFamily: Props.fontFamily,
@@ -29,10 +30,11 @@ export function TextComponent(Props: {
     }
 
     const [symbols, setSymbols] = useState("Новый текст");
-    let symbolsHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    let symbolsHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         let symbolInput = event.target.value;
         setSymbols(symbolInput);
         editTextSymbolsHandler(Props.slideIndex, Props.blockIndex + 1, symbolInput);
+        selectBlockHandler(Props.slideIndex, Props.blockIndex)
     }
 
     let startX: number = Props.position.x;
@@ -40,24 +42,29 @@ export function TextComponent(Props: {
     let [coordX, coordY] = useDragAndDrop(Props.id, Props.position.x, Props.position.y);
     if (startX !== coordX || startY !== coordY) {
         editBlockPositionHandler(Props.slideIndex, Props.blockIndex + 1, coordX, coordY);
-        let startX = coordX;
-        let startY = coordY;
+        selectBlockHandler(Props.slideIndex, Props.blockIndex)
+        startX = coordX;
+        startY = coordY;
     }
 
 
     return (
-        <input
-        onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              e.currentTarget.blur();}}
-        }
-        onClick={(e) => {selectBlockHandler(Props.slideIndex, Props.blockIndex)}}
-        type="textarea" 
-        id={Props.id}
-        className={styles.text}
-        autoComplete="off"
-        value={Props.symbols}
-        onChange={symbolsHandler}
-        style={style}/>
+        <div className={styles.jopa}>
+            <textarea
+            onKeyDown={(e) => {
+
+                console.log(Props.presentation)
+            }
+            }
+            onClick={(e) => {
+                selectBlockHandler(Props.slideIndex, Props.blockIndex)
+            }}
+            id={Props.id}
+            className={styles.text}
+            autoComplete="off"
+            value={Props.symbols}
+            onChange={(e) => symbolsHandler(e)}
+            style={style}/>
+        </div>
     );
 }

@@ -8,7 +8,7 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
     const textBlocks = Props.presentation.slideList[Props.slideIndex - 1].blockList.map((block, index) => {
         if (block.content.data.type === 'text') {
             return <TextComponent 
-            key={index} 
+            key={index}
             fontFamily={block.content.data.fontFamily} 
             fontColor={block.content.data.fontColor} 
             fontSize={block.content.data.fontSize} 
@@ -18,7 +18,8 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
             height={block.height}
             id={String(index + 1)}
             slideIndex={Props.slideIndex}
-            blockIndex={index}/>;
+            blockIndex={index}
+            presentation={Props.presentation}/>;
         }
         return null;
     });
