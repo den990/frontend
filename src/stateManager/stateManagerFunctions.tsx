@@ -7,6 +7,7 @@ import {
     editBlockPosition,
     editFontColor,
     editFontSize,
+    editFontFamily,
     editSlideBackground,
     editTextSymbols,
     removeSlides, renamePresentation,
@@ -92,4 +93,9 @@ export const editBlockPositionHandler = (slideIndex: number, blockIndex: number,
 
 export const editFontColorHandler = (slideIndex: number, blockIndex: number, newFontColor: string) => {
     dispatch(editFontColor, {slideIndex, blockIndex, newFontColor})
+}
+
+export const editFontFamilyHandler = (slideIndex: number, blockIndex: number, newFontFamily: string) => {
+    console.log(newFontFamily);
+    dispatch(editFontFamily,{slideIndex, blockIndex, newFontFamily})
 }

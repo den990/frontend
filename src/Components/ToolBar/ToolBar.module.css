@@ -215,6 +215,61 @@
     margin:0;
 }
 
+.toolbar__blockFunction__editFontFamily_Arial {
+    border: 1px solid #BBBBBB;
+    vertical-align: bottom;
+    font: 600 16px/1.25 'Arial';
+    text-align: center;
+    width: 94px;
+    height: 36px;
+    background-color: #F2FFFA;
+    cursor: pointer;
+}
+
+.toolbar__blockFunction__editFontFamily_TimesNewRoman{
+    border: 1px solid #BBBBBB;
+    vertical-align: bottom;
+    font: 600 16px/1.25 'Times New Roman';
+    text-align: center;
+    width: 94px;
+    height: 36px;
+    background-color: #F2FFFA;
+    cursor: pointer;
+}
+
+.toolbar__blockFunction__editFontFamily_Montserrat{
+    border: 1px solid #BBBBBB;
+    vertical-align: bottom;
+    font: 400 16px/1.25 'Medium Montserrat';
+    text-align: center;
+    width: 94px;
+    height: 36px;
+    background-color: #F2FFFA;
+    cursor: pointer;
+}
+
+.toolbar__blockFunction__editFontFamily_Roboto{
+    border: 1px solid #BBBBBB;
+    vertical-align: bottom;
+    font: 600 16px/1.25 'Roboto';
+    text-align: center;
+    width: 94px;
+    height: 36px;
+    background-color: #F2FFFA;
+    cursor: pointer;
+}
+
+.toolbar__blockFunction__editFontFamily_Tahoma{
+    border: 1px solid #BBBBBB;
+    vertical-align: bottom;
+    font: 600 16px/1.25 'Tahoma';
+    text-align: center;
+    width: 94px;
+    height: 36px;
+    background-color: #F2FFFA;
+    cursor: pointer;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;

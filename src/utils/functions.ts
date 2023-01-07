@@ -220,22 +220,35 @@ export function editBlockSize(presentation: Presentation, slideIndex: number, bl
 }
 
 // content of block functions
-export function editFontFamily(presentation: Presentation, slideIndex: number, blockIndex: number, newFontFamily: string): Presentation {
-    const slide = presentation.slideList[slideIndex];
-    const block = slide.blockList[blockIndex];
+export function editFontFamily(presentation: Presentation, payload: {slideIndex: number, blockIndex: number, newFontFamily: string}): Presentation {
+    const slide = presentation.slideList[payload.slideIndex - 1];
+    const block = slide.selectedBlockList[0];
+    console.log(payload.newFontFamily)
+    const data = {
+        ...block.content.data
+    };
+    const newData = {
+        ...data,
+        fontFamily: payload.newFontFamily
+    }
+    const newContent = {
+        ...block.content,
+        data: newData
+    }
     const newBlock = {
         ...block,
-        fontFamily: newFontFamily
+        content: newContent
     };
+    console.log(newBlock)
     const newSlide = {
         ...slide,
         blockList: slide.blockList.map(( currentBlock, index) => {
-            return (index === blockIndex) ? newBlock : currentBlock;
+            return (index === payload.blockIndex - 1) ? newBlock : currentBlock;
     })};
     return {
         ...presentation,
         slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index === slideIndex) ? newSlide : currentSlide;
+            return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
         })
     };
 }

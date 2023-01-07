@@ -6,6 +6,7 @@ import {
     addSlideHandler,
     editFontColorHandler,
     editFontSizeHandler,
+    editFontFamilyHandler,
     editSlideBackgroundHandler,
     removeSlideHandler,
 } from "../../stateManager/stateManagerFunctions";
@@ -196,19 +197,14 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                     src={require('../../images/dividing-line.svg').default} 
                     alt={'Линия разделения'} 
                 />
-                <input 
-                    type={"button"} 
-                    value="Arial" 
-                    className={style.toolbar__blockFunction__editFontFamily} 
-                    alt={"Изменить шрифт"}
-                />
-                <button 
-                    className={style.toolbar__blockFunctions__expand}>
-                    <img 
-                        src={require('../../images/arrow.svg').default} 
-                        alt={'Развернуть'} 
-                    />
-                </button>
+                <select placeholder={"Выберите шрифт"} className={style.toolbar__blockFunction__editFontFamily}
+                        onChange={(event) => {editFontFamilyHandler(Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].slideIndex, Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].selectedBlockList[0].blockIndex, event.target.value)}}>
+                    <option value={"Arial"} className={style.toolbar__blockFunction__editFontFamily_Arial}>Arial</option>
+                    <option value={"Times New Roman"} className={style.toolbar__blockFunction__editFontFamily_TimesNewRoman}>Times New Roman</option>
+                    <option value={"Medium Montserrat"} className={style.toolbar__blockFunction__editFontFamily_Montserrat}>Montserrat </option>
+                    <option value={"Roboto"} className={style.toolbar__blockFunction__editFontFamily_Roboto}>Roboto </option>
+                    <option value={"Tahoma"} className={style.toolbar__blockFunction__editFontFamily_Tahoma}>Tahoma </option>
+                </select>
                 <button 
                     onClick={decrement} 
                     className={style.toolbar__blockFunctions__textSize_decrement}>
