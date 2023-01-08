@@ -42,7 +42,6 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
             backgroundSize: 'cover'
         }
     }
-
     return (
         <div className={styles.workspace__background}>
             <div className={styles.workspace__content} style={style}>
