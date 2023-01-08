@@ -12,7 +12,7 @@ import {
     editTextSymbols,
     removeSlides, renamePresentation,
     selectBlock,
-    selectSlide, selectSlides, undo, redo, updateHistory
+    selectSlide, selectSlides, undo, redo, updateHistory, removeBlock
 } from "../utils/functions";
 import {MouseEvent} from "react";
 import {dispatch} from "./stateManager";
@@ -31,7 +31,7 @@ export const updateHistoryHandler = () => {
 
 export const renamePresentationHandler = (name: string) => {
     updateHistoryHandler();
-    dispatch(renamePresentation, name)
+    dispatch(renamePresentation, name);
 }
 
 export const addSlideHandler = () => {
@@ -55,7 +55,7 @@ export const createPresentationHandler = () => {
 export const selectSlideHandler = (slideIndex: number, e: MouseEvent<HTMLDivElement>, selectedSlides: boolean) => {
     if (e.ctrlKey)
     {
-        dispatch(selectSlides, slideIndex)
+        dispatch(selectSlides, slideIndex);
     }
     else {
         dispatch(selectSlide, slideIndex);
@@ -64,7 +64,7 @@ export const selectSlideHandler = (slideIndex: number, e: MouseEvent<HTMLDivElem
 
 export const addBlockHandler = (slideIndex: number, inputContent: blockContent) => {
     updateHistoryHandler();
-    dispatch(createBlock, {slideIndex, inputContent})
+    dispatch(createBlock, {slideIndex, inputContent});
 }
 
 export const editSlideBackgroundHandler = (slideIndex: number, value: string, type: string) => {
@@ -93,22 +93,22 @@ export const openJsonHandler = (json: string) => {
 }
 
 export const selectBlockHandler = (slideIndex: number, blockIndex: number) => {
-    dispatch(selectBlock, {slideIndex, blockIndex})
+    dispatch(selectBlock, {slideIndex, blockIndex});
 }
 
 export const editFontSizeHandler = (slideIndex: number, blockIndex: number, newFontSize: number) => {
     updateHistoryHandler();
-    dispatch(editFontSize, {slideIndex, blockIndex, newFontSize})
+    dispatch(editFontSize, {slideIndex, blockIndex, newFontSize});
 }
 
 export const editTextSymbolsHandler = (slideIndex: number, blockIndex: number, newSymbols: string) => {
     updateHistoryHandler();
-    dispatch(editTextSymbols, {slideIndex, blockIndex, newSymbols})
+    dispatch(editTextSymbols, {slideIndex, blockIndex, newSymbols});
 }
 
 export const editBlockPositionHandler = (slideIndex: number, blockIndex: number, coordX: number, coordY: number) => {
     updateHistoryHandler();
-    dispatch(editBlockPosition, {slideIndex, blockIndex, coordX, coordY})
+    dispatch(editBlockPosition, {slideIndex, blockIndex, coordX, coordY});
 }
 
 export const editFontColorHandler = (slideIndex: number, blockIndex: number, newFontColor: string) => {
@@ -118,5 +118,10 @@ export const editFontColorHandler = (slideIndex: number, blockIndex: number, new
 
 export const editFontFamilyHandler = (slideIndex: number, blockIndex: number, newFontFamily: string) => {
     updateHistoryHandler();
-    dispatch(editFontFamily,{slideIndex, blockIndex, newFontFamily})
+    dispatch(editFontFamily,{slideIndex, blockIndex, newFontFamily});
+}
+
+export const removeBlockHandler = (slideIndex: number, blockIndex: number) => {
+    updateHistoryHandler();
+    dispatch(removeBlock, {slideIndex, blockIndex});
 }

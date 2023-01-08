@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./MiniTextComponent.module.css";
 
 export function MiniTextComponent(Props: {

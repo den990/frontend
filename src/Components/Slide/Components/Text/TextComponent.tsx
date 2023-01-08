@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import useDragAndDrop from "../../../../hooks/useDragAndDrop";
-import { editBlockPositionHandler, editTextSymbolsHandler, selectBlockHandler } from "../../../../stateManager/stateManagerFunctions";
+import {
+    editBlockPositionHandler,
+    editTextSymbolsHandler,
+    removeBlockHandler,
+    selectBlockHandler
+} from "../../../../stateManager/stateManagerFunctions";
 import styles from "./TextComponent.module.css";
 
 export function TextComponent(Props: {
@@ -52,10 +57,11 @@ export function TextComponent(Props: {
         <div className={styles.textBlock}>
             <textarea
             onKeyDown={(e) => {
-
-                console.log(Props.presentation)
-            }
-            }
+                if (e.key === 'Delete') {
+                    removeBlockHandler(Props.presentation.slideList[Props.presentation.selectedSlides[0].slideIndex - 1].slideIndex, Props.presentation.slideList[Props.presentation.selectedSlides[0].slideIndex - 1].selectedBlockList[0].blockIndex)
+                    console.log(Props.presentation);
+                }
+            }}
             onClick={(e) => {
                 selectBlockHandler(Props.slideIndex, Props.blockIndex)
             }}

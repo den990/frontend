@@ -194,19 +194,33 @@ export function createBlock(editor: Editor, payload: {slideIndex: number, inputC
         }
     };
 }
-
-export function removeBlock(presentation: Presentation, blockIndex: number, slideIndex: number): Presentation {
-    const slideList = presentation.slideList;
-    const slide = slideList[slideIndex];
+export function removeBlock(editor: Editor, payload: {blockIndex: number, slideIndex: number}): Editor {
+    const slideList = editor.presentation.slideList;
+    const slide = slideList[payload.slideIndex - 1];
+    const blockList = slide.blockList;
+    const newBlockList = [];
+    for (let i = 0; i < blockList.length; i++) {
+        if (blockList[i].blockIndex !== payload.blockIndex - 1) {
+            if (blockList[i].blockIndex < payload.blockIndex - 1) {
+                newBlockList.push(blockList[i]);
+            } else {
+                blockList[i].blockIndex--;
+                newBlockList.push(blockList[i]);
+            }
+        }
+    }
     const newSlide = {
         ...slide,
-        blockList: slide.blockList.filter((block, index) => index !== slideIndex)
+        blockList: newBlockList
     }
     return {
-        ...presentation,
-        slideList: presentation.slideList.map(( currentSlide, index) => {
-            return (index === slideIndex) ? newSlide : currentSlide;
-        })
+        ...editor,
+        presentation: {
+            ...editor.presentation,
+            slideList: editor.presentation.slideList.map(( currentSlide, index) => {
+                return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
+            })
+        }
     };
 }
 

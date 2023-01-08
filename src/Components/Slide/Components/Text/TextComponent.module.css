@@ -10,6 +10,7 @@
     resize: unset;
     overflow: hidden;
 }
+
 .text:active, .text:hover, .text:focus {
     outline-color: #c8fce8;
 }
