@@ -59,7 +59,6 @@ export function TextComponent(Props: {
             onKeyDown={(e) => {
                 if (e.key === 'Delete') {
                     removeBlockHandler(Props.presentation.slideList[Props.presentation.selectedSlides[0].slideIndex - 1].slideIndex, Props.presentation.slideList[Props.presentation.selectedSlides[0].slideIndex - 1].selectedBlockList[0].blockIndex)
-                    console.log(Props.presentation);
                 }
             }}
             onClick={(e) => {

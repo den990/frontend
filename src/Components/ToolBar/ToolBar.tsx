@@ -122,7 +122,9 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                     />
                 </button>
                 <button 
-                    onClick={() => addBlockHandler(Props.presentation.slideList[Props.presentation.selectedSlides[0].slideIndex - 1].slideIndex, defaultTextType)}
+                    onClick={() => {
+                        addBlockHandler(Props.presentation.slideList[Props.presentation.selectedSlides[0].slideIndex - 1].slideIndex, defaultTextType);
+                    }}
                     className={style.toolbar__blockFunctions__button}>
                     <img 
                         src={require('../../images/text.svg').default} 

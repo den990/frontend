@@ -200,8 +200,8 @@ export function removeBlock(editor: Editor, payload: {blockIndex: number, slideI
     const blockList = slide.blockList;
     const newBlockList = [];
     for (let i = 0; i < blockList.length; i++) {
-        if (blockList[i].blockIndex !== payload.blockIndex - 1) {
-            if (blockList[i].blockIndex < payload.blockIndex - 1) {
+        if (blockList[i].blockIndex !== payload.blockIndex) {
+            if (blockList[i].blockIndex < payload.blockIndex) {
                 newBlockList.push(blockList[i]);
             } else {
                 blockList[i].blockIndex--;
@@ -211,7 +211,8 @@ export function removeBlock(editor: Editor, payload: {blockIndex: number, slideI
     }
     const newSlide = {
         ...slide,
-        blockList: newBlockList
+        blockList: newBlockList,
+        selectedBlockList: []
     }
     return {
         ...editor,
