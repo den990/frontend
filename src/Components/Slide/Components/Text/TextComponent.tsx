@@ -45,7 +45,7 @@ export function TextComponent(Props: {
         let [coordX, coordY] = useDragAndDrop(Props.id, Props.position.x, Props.position.y);
         if (Number(Props.id[0]) === Props.slideIndex) {
             if (targets !== null) {
-                if ((startX !== coordX && startY !== coordY) && (targets.id === Props.id)) {
+                if ((startX !== coordX) && (startY !== coordY) && (targets.id === Props.id)) {
                     {
                         editBlockPositionHandler(Props.slideIndex, Props.blockIndex + 1, coordX, coordY);
                     }
@@ -66,10 +66,6 @@ export function TextComponent(Props: {
             }}
             onClick={(e) => {
                 selectBlockHandler(Props.slideIndex, Props.blockIndex);
-                for (let i = 0; i < Props.presentation.slideList[Props.presentation.selectedSlides[0].slideIndex -1].selectedBlockList.length; i++)
-                {
-                    console.log(i);
-                }
             }}
             id={Props.id}
             className={styles.text}

@@ -34,7 +34,7 @@ export function ImageComponent(Props: {
     let [coordX, coordY] = useDragAndDrop(Props.id, Props.position.x, Props.position.y);
     if (Number(Props.id[0]) === Props.slideIndex) {
         if (targets !== null) {
-            if ((startX !== coordX && startY !== coordY) && (targets.id === Props.id)) {
+            if ((startX !== coordX && startY !== coordY) && (targets.id !== Props.id)) {
                 {
                     editBlockPositionHandler(Props.slideIndex, Props.blockIndex + 1, coordX, coordY);
                 }

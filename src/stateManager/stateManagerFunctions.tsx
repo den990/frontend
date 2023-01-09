@@ -12,7 +12,7 @@ import {
     editTextSymbols,
     removeSlides, renamePresentation,
     selectBlock,
-    selectSlide, selectSlides, undo, redo, updateHistory, removeBlock
+    selectSlide, selectSlides, undo, redo, updateHistory, removeBlock, unselectedBlock
 } from "../utils/functions";
 import {MouseEvent} from "react";
 import {dispatch} from "./stateManager";
@@ -124,4 +124,8 @@ export const editFontFamilyHandler = (slideIndex: number, blockIndex: number, ne
 export const removeBlockHandler = (slideIndex: number, blockIndex: number) => {
     updateHistoryHandler();
     dispatch(removeBlock, {slideIndex, blockIndex});
+}
+export const unselectedBlockHandler = (slideIndex: number) => {
+    updateHistoryHandler();
+    dispatch(unselectedBlock,  {slideIndex})
 }

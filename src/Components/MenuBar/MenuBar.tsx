@@ -56,7 +56,7 @@ export function MenuBar(Props: { presentation: Presentation }) {
                     onChange={fileChangeHandle}
                     id='json-file-handler'
                     type='file'
-                    accept='.txt'
+                    accept='.json'
                     className={style.header__action__open}
                 />
                 <button 

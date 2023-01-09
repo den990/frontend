@@ -510,3 +510,20 @@ export function updateHistory(editor: Editor): Editor {
 
     return newEditor;
 }
+export function unselectedBlock(editor: Editor, payload:{slideIndex: number}): Editor {
+    const newSelectedBlockList: Block[] = [];
+    const newSlide = {
+        ...editor.presentation.slideList[payload.slideIndex],
+        selectedBlockList : newSelectedBlockList
+    }
+    return {
+        ...editor,
+        presentation: {
+            ...editor.presentation,
+            slideList: editor.presentation.slideList.map(( currentSlide, index) => {
+                return (index === payload.slideIndex) ? newSlide : currentSlide;
+            }),
+        }
+    };
+
+}

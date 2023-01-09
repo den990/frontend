@@ -6,7 +6,7 @@ import {ImageComponent} from "../Slide/Components/Image/ImageComponent";
 export function WorkSpace(Props: {presentation: Presentation, slideIndex: number})
 {
     const textBlocks = Props.presentation.slideList[Props.slideIndex - 1].blockList.map((block, index) => {
-        if ((block.content.data.type === 'text') && (Props.slideIndex === Props.presentation.selectedSlides[0].slideIndex)) {
+        if ((block.content.data.type === 'text')) {
             return <TextComponent 
             key={index}
             fontFamily={block.content.data.fontFamily} 
@@ -44,7 +44,8 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
     }
     return (
         <div className={styles.workspace__background}>
-            <div className={styles.workspace__content} style={style}>
+            <div className={styles.workspace__content} style={style}
+            onClick={(e) => console.log(Props.presentation)}>
                 {textBlocks}
                 {imageBlocks}
             </div>
