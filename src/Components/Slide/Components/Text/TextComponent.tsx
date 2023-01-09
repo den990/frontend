@@ -33,24 +33,27 @@ export function TextComponent(Props: {
         width: Props.width,
         height: Props.height
     }
-
     const [symbols, setSymbols] = useState("Новый текст");
     let symbolsHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         let symbolInput = event.target.value;
         setSymbols(symbolInput);
         editTextSymbolsHandler(Props.slideIndex, Props.blockIndex + 1, symbolInput);
-        selectBlockHandler(Props.slideIndex, Props.blockIndex)
     }
-
-    let startX: number = Props.position.x;
-    let startY: number = Props.position.y;
-    let [coordX, coordY] = useDragAndDrop(Props.id, Props.position.x, Props.position.y);
-    if (startX !== coordX || startY !== coordY) {
-        editBlockPositionHandler(Props.slideIndex, Props.blockIndex + 1, coordX, coordY);
-        selectBlockHandler(Props.slideIndex, Props.blockIndex)
-        startX = coordX;
-        startY = coordY;
-    }
+    let targets = document.getElementById(Props.id);
+        let startX: number = Props.position.x;
+        let startY: number = Props.position.y;
+        let [coordX, coordY] = useDragAndDrop(Props.id, Props.position.x, Props.position.y);
+        if (Number(Props.id[0]) === Props.slideIndex) {
+            if (targets !== null) {
+                if ((startX !== coordX && startY !== coordY) && (targets.id === Props.id)) {
+                    {
+                        editBlockPositionHandler(Props.slideIndex, Props.blockIndex + 1, coordX, coordY);
+                    }
+                    coordX = 0;
+                    coordY = 0;
+                }
+            }
+        }
 
 
     return (
@@ -62,7 +65,11 @@ export function TextComponent(Props: {
                 }
             }}
             onClick={(e) => {
-                selectBlockHandler(Props.slideIndex, Props.blockIndex)
+                selectBlockHandler(Props.slideIndex, Props.blockIndex);
+                for (let i = 0; i < Props.presentation.slideList[Props.presentation.selectedSlides[0].slideIndex -1].selectedBlockList.length; i++)
+                {
+                    console.log(i);
+                }
             }}
             id={Props.id}
             className={styles.text}

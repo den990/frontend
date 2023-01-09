@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-function useDragAndDrop(id: string, coordX: number, coordY: number) {
+export function useDragAndDrop(id: string, coordX: number, coordY: number) {
   const isClicked = useRef<boolean>(false);
   
   const coords = useRef<{
@@ -18,9 +18,10 @@ function useDragAndDrop(id: string, coordX: number, coordY: number) {
   useEffect(() => {
 
     const target = document.getElementById(id);
+    console.log(id);
     if (!target) throw new Error("Элемента с заданным ID не существует!");
 
-    const container = target.parentElement;
+    const container = target;
     if (!container) throw new Error("У элемента отсутствует родительский элемент!");
 
     const onMouseDown = (e: MouseEvent) => {

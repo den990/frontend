@@ -1,3 +1,15 @@
 .image {
     position: absolute;
 }
+
+.image_block {
+    position: absolute;
+    resize: both;
+    overflow: hidden;
+    border: 1px dashed;
+    object-fit: fill;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    padding: 5px;
+    background-size: cover;
+}

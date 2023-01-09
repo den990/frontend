@@ -6,7 +6,7 @@ import {ImageComponent} from "../Slide/Components/Image/ImageComponent";
 export function WorkSpace(Props: {presentation: Presentation, slideIndex: number})
 {
     const textBlocks = Props.presentation.slideList[Props.slideIndex - 1].blockList.map((block, index) => {
-        if (block.content.data.type === 'text') {
+        if ((block.content.data.type === 'text') && (Props.slideIndex === Props.presentation.selectedSlides[0].slideIndex)) {
             return <TextComponent 
             key={index}
             fontFamily={block.content.data.fontFamily} 
@@ -16,7 +16,7 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
             position={block.position}
             width={block.width}
             height={block.height}
-            id={String(index + 1)}
+            id={String(Props.slideIndex) + "Slide" +String(index + 1)}
             slideIndex={Props.slideIndex}
             blockIndex={index}
             presentation={Props.presentation}/>;
@@ -26,7 +26,7 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
 
     const imageBlocks = Props.presentation.slideList[Props.slideIndex - 1].blockList.map((block, index) => {
         if (block.content.data.type === 'picture') {
-            return <ImageComponent url={block.content.data.url} id={String(index + 1)} position={block.position} slideIndex={Props.slideIndex} blockIndex={index} />;
+            return <ImageComponent url={block.content.data.url} id={String(Props.slideIndex) + "Slide" +String(index + 1)} position={block.position} slideIndex={Props.slideIndex} blockIndex={index} width={block.width} height={block.height} presentation={Props.presentation} />;
         }
         return null;
     });
