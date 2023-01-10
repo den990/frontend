@@ -12,7 +12,7 @@ import {
     editTextSymbols,
     removeSlides, renamePresentation,
     selectBlock,
-    selectSlide, selectSlides, undo, redo, updateHistory, removeBlock, unselectedBlock
+    selectSlide, selectSlides, undo, redo, updateHistory, removeBlock, unselectedBlock, editBlockSize
 } from "../utils/functions";
 import {MouseEvent} from "react";
 import {dispatch} from "./stateManager";
@@ -128,4 +128,8 @@ export const removeBlockHandler = (slideIndex: number, blockIndex: number) => {
 export const unselectedBlockHandler = (slideIndex: number) => {
     updateHistoryHandler();
     dispatch(unselectedBlock,  {slideIndex})
+}
+export const editBlockSizeHandler = (slideIndex: number, blockIndex: number, newWidth: number, newHeight: number) => {
+    updateHistoryHandler();
+    dispatch(editBlockSize, {slideIndex, blockIndex, newWidth, newHeight})
 }

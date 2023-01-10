@@ -12,31 +12,34 @@ import {
 } from "../../stateManager/stateManagerFunctions";
 import {defaultText, defaultTextType} from "../../utils/consts";
 
-export function ToolBar(Props:{ presentation: Presentation }) {
+export function ToolBar(Props:{ presentation: Presentation}) {
 
     const [inputSize, setInputSize] = useState(defaultText.fontSize);
     function increment(){
-        setInputSize(inputSize + 1)
-        editFontSizeHandler(Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].slideIndex,
-                            Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].selectedBlockList[0].blockIndex, 
-                            inputSize + 1)
+        if (inputSize < 100) {
+            setInputSize(inputSize + 1)
+            editFontSizeHandler(Props.presentation.selectedSlides[0].slideIndex,
+                                Props.presentation.selectedSlides[0].selectedBlockList[0].blockIndex,
+                                inputSize + 1)
+        }
     }
 
     function decrement(){
         if (inputSize > 1)
         {
             setInputSize(inputSize - 1)
-            editFontSizeHandler(Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].slideIndex,
-                                Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].selectedBlockList[0].blockIndex, 
+            editFontSizeHandler(Props.presentation.selectedSlides[0].slideIndex,
+                                Props.presentation.selectedSlides[0].selectedBlockList[0].blockIndex,
                                 inputSize - 1)
         }
     }
 
     function inputFontSize(){
+        if (inputSize > 1 && inputSize < 100)
         setInputSize(inputSize)
-        editFontSizeHandler(Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].slideIndex,
-            Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].selectedBlockList[0].blockIndex,
-            inputSize - 1)
+        editFontSizeHandler(Props.presentation.selectedSlides[0].slideIndex,
+                            Props.presentation.selectedSlides[0].selectedBlockList[0].blockIndex,
+                            inputSize - 1)
     }
 
     const [colorBackground, setColorBackground] = useState("fff");
@@ -48,8 +51,8 @@ export function ToolBar(Props:{ presentation: Presentation }) {
     const [colorText, setColorText] = useState(defaultText.fontColor);
     const fontColorHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setColorText(event.target.value);
-        editFontColorHandler(Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].slideIndex,
-                            Props.presentation.slideList[(Props.presentation.selectedSlides[0].slideIndex) - 1].selectedBlockList[0].blockIndex, 
+        editFontColorHandler(Props.presentation.selectedSlides[0].slideIndex,
+                            Props.presentation.selectedSlides[0].selectedBlockList[0].blockIndex,
                             colorText)
     }
     const [file, setFile] = useState('');
@@ -131,15 +134,8 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                         alt={'Добавить текст'} 
                     />
                 </button>
-                <button 
-                    className={style.toolbar__blockFunctions__primitiveButton}>
-                    <img 
-                        src={require('../../images/primitive.svg').default} 
-                        alt={'Добавить примитив'} 
-                    />
-                </button>
                 <ul className={style.toolbar__blockFunctions__primitiveButton__arrow}>
-                    <li><img src={require('../../images/arrow.svg').default} alt={'Развернуть'} />
+                    <li><img src={require('../../images/primitive.svg').default}  alt={'Развернуть'} />
                         <ul>
                             <li className={style.toolbar__blockFunctions__primitiveButton__arrow__elem}>
                                 <span>Треугольник</span>
@@ -172,13 +168,8 @@ export function ToolBar(Props:{ presentation: Presentation }) {
                         </ul>
                     </li>
                 </ul>
-                <img 
-                    className={style.toolbar__blockFunctions__backgroundButton} 
-                    src={require('../../images/background.svg').default} 
-                    alt={'Изменить фон'} 
-                />
                 <ul className={style.toolbar__blockFunctions__backgroundButton__arrow}>
-                    <li><img src={require('../../images/arrow.svg').default} alt={'Развернуть'} />
+                    <li><img src={require('../../images/background.svg').default}  alt={'Развернуть'} />
                         <ul>
                             <li className={style.toolbar__blockFunctions__backgroundButton__arrow__elem}>
                                 <input

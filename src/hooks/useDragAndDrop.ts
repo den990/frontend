@@ -1,6 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+import {
+  editBlockPositionHandler
+} from "../stateManager/stateManagerFunctions";
 
-export function useDragAndDrop(id: string, coordX: number, coordY: number) {
+export function useDragAndDrop(slideIndex: number, blockIndex: number, id: string, coordX: number, coordY: number) {
   const isClicked = useRef<boolean>(false);
   
   const coords = useRef<{
@@ -18,10 +21,9 @@ export function useDragAndDrop(id: string, coordX: number, coordY: number) {
   useEffect(() => {
 
     const target = document.getElementById(id);
-    console.log(id);
     if (!target) throw new Error("Элемента с заданным ID не существует!");
 
-    const container = target;
+    const container = target.parentElement;
     if (!container) throw new Error("У элемента отсутствует родительский элемент!");
 
     const onMouseDown = (e: MouseEvent) => {
@@ -34,6 +36,7 @@ export function useDragAndDrop(id: string, coordX: number, coordY: number) {
       isClicked.current = false;
       coords.current.lastX = target.offsetLeft;
       coords.current.lastY = target.offsetTop;
+      editBlockPositionHandler(slideIndex, blockIndex, coords.current.lastX, coords.current.lastY);
     }
 
     const onMouseMove = (e: MouseEvent) => {
@@ -60,6 +63,5 @@ export function useDragAndDrop(id: string, coordX: number, coordY: number) {
 
     return cleanup;
   }, [id])
-  return [coords.current.lastX, coords.current.lastY]
 }
 export default useDragAndDrop;

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import useDragAndDrop from "../../../../hooks/useDragAndDrop";
 import {
-    editBlockPositionHandler,
     editTextSymbolsHandler,
     removeBlockHandler,
-    selectBlockHandler
+    selectBlockHandler, unselectedBlockHandler
 } from "../../../../stateManager/stateManagerFunctions";
 import styles from "./TextComponent.module.css";
 
@@ -12,8 +11,7 @@ export function TextComponent(Props: {
     fontFamily: string, 
     fontColor: string, 
     fontSize: number, 
-    symbols: string, 
-    id: string,
+    symbols: string,
     position: {
         x: number,
         y: number
@@ -37,37 +35,25 @@ export function TextComponent(Props: {
     let symbolsHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         let symbolInput = event.target.value;
         setSymbols(symbolInput);
-        editTextSymbolsHandler(Props.slideIndex, Props.blockIndex + 1, symbolInput);
+        editTextSymbolsHandler(Props.slideIndex, Props.blockIndex, symbolInput);
     }
-    let targets = document.getElementById(Props.id);
-        let startX: number = Props.position.x;
-        let startY: number = Props.position.y;
-        let [coordX, coordY] = useDragAndDrop(Props.id, Props.position.x, Props.position.y);
-        if (Number(Props.id[0]) === Props.slideIndex) {
-            if (targets !== null) {
-                if ((startX !== coordX) && (startY !== coordY) && (targets.id === Props.id)) {
-                    {
-                        editBlockPositionHandler(Props.slideIndex, Props.blockIndex + 1, coordX, coordY);
-                    }
-                    coordX = 0;
-                    coordY = 0;
-                }
-            }
-        }
 
+    let idBlocks = Math.random()
+    useDragAndDrop(Props.slideIndex, Props.blockIndex, String(idBlocks), Props.position.x, Props.position.y);
 
     return (
         <div className={styles.textBlock}>
             <textarea
+            onClick={(e) => {{selectBlockHandler(Props.slideIndex, Props.blockIndex)}}}
             onKeyDown={(e) => {
-                if (e.key === 'Delete') {
-                    removeBlockHandler(Props.presentation.slideList[Props.presentation.selectedSlides[0].slideIndex - 1].slideIndex, Props.presentation.slideList[Props.presentation.selectedSlides[0].slideIndex - 1].selectedBlockList[0].blockIndex)
+                if (e.key === "Shift") {
+                    unselectedBlockHandler(Props.slideIndex);
+                    e.currentTarget.blur()}
+                if (e.key === "Delete") {
+                    removeBlockHandler(Props.slideIndex, Props.blockIndex)
                 }
             }}
-            onClick={(e) => {
-                selectBlockHandler(Props.slideIndex, Props.blockIndex);
-            }}
-            id={Props.id}
+            id={String(idBlocks)}
             className={styles.text}
             autoComplete="off"
             value={Props.symbols}

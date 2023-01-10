@@ -1,12 +1,16 @@
 import React from 'react';
 import styles from './WorkSpace.module.css';
 import {TextComponent} from "../Slide/Components/Text/TextComponent";
-import {ImageComponent} from "../Slide/Components/Image/ImageComponent";
+import {ImageComponent} from "../Slide/Components/Image/ImageComponent"
 
 export function WorkSpace(Props: {presentation: Presentation, slideIndex: number})
 {
+
+
+
     const textBlocks = Props.presentation.slideList[Props.slideIndex - 1].blockList.map((block, index) => {
         if ((block.content.data.type === 'text')) {
+
             return <TextComponent 
             key={index}
             fontFamily={block.content.data.fontFamily} 
@@ -16,9 +20,9 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
             position={block.position}
             width={block.width}
             height={block.height}
-            id={String(Props.slideIndex) + "Slide" +String(index + 1)}
+
             slideIndex={Props.slideIndex}
-            blockIndex={index}
+            blockIndex={block.blockIndex}
             presentation={Props.presentation}/>;
         }
         return null;
@@ -26,7 +30,14 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
 
     const imageBlocks = Props.presentation.slideList[Props.slideIndex - 1].blockList.map((block, index) => {
         if (block.content.data.type === 'picture') {
-            return <ImageComponent url={block.content.data.url} id={String(Props.slideIndex) + "Slide" +String(index + 1)} position={block.position} slideIndex={Props.slideIndex} blockIndex={index} width={block.width} height={block.height} presentation={Props.presentation} />;
+            return <ImageComponent url={block.content.data.url}
+
+                                   position={block.position}
+                                   slideIndex={Props.slideIndex}
+                                   blockIndex={block.blockIndex}
+                                   width={block.width}
+                                   height={block.height}
+                                   presentation={Props.presentation} />;
         }
         return null;
     });
@@ -42,10 +53,10 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
             backgroundSize: 'cover'
         }
     }
+
     return (
         <div className={styles.workspace__background}>
-            <div className={styles.workspace__content} style={style}
-            onClick={(e) => console.log(Props.presentation)}>
+            <div className={styles.workspace__content} style={style}>
                 {textBlocks}
                 {imageBlocks}
             </div>

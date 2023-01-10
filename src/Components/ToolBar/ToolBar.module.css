@@ -100,7 +100,7 @@
 .toolbar__blockFunctions__primitiveButton__arrow ul {
     position: absolute;
     display: none;
-    left: 32%;
+    left: 34%;
     top: 18.5%;
     z-index: 1;
 }
@@ -134,8 +134,8 @@
 .toolbar__blockFunctions__imageButton ul {
     position: absolute;
     display: none;
-    left: 36.5%;
-    top: 20%;
+    left: 38.5%;
+    top: 18.5%;
     z-index: 1;
 }
 
