@@ -23,8 +23,8 @@ export function ImageComponent(Props: {
     let style = {
         top: Props.position.y,
         left: Props.position.x,
-        "width": "200px",
-        "height": "200px",
+        width: Props.width,
+        height: Props.height,
         "background-image": "url("+ Props.url + ")",
     }
 

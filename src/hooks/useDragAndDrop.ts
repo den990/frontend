@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import {
-  editBlockPositionHandler
+  editBlockPositionHandler, editBlockSizeHandler
 } from "../stateManager/stateManagerFunctions";
 
 export function useDragAndDrop(slideIndex: number, blockIndex: number, id: string, coordX: number, coordY: number) {
@@ -30,6 +30,9 @@ export function useDragAndDrop(slideIndex: number, blockIndex: number, id: strin
       isClicked.current = true;
       coords.current.startX = e.clientX;
       coords.current.startY = e.clientY;
+      const height = target.offsetHeight;
+      const width = target.offsetWidth;
+      editBlockSizeHandler(slideIndex, blockIndex, width, height);
     }
 
     const onMouseUp = (e: MouseEvent) => {
