@@ -2,15 +2,57 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
-    position: absolute;
-    overflow: hidden;
-}
-
-.textBlock {
-    resize: unset;
     overflow: hidden;
 }
 
 .text:active, .text:hover, .text:focus {
-    outline-color: #c8fce8;
+   outline: none;
+}
+
+.resizable_box {
+    position: absolute;
+    border: 2px solid red;
+    width: 200px;
+    height: 200px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 15px;
+    min-height: 15px;
+    overflow: hidden;
+}
+.resizer {
+    position: absolute;
+    background: white;
+}
+.rr {
+    cursor: col-resize;
+    height: 100%;
+    right: 0;
+    top: 0;
+    width: 5px;
+}
+.rl {
+    cursor: col-resize;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 5px;
+}
+
+.rt {
+    cursor: row-resize;
+    height: 5px;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.rb {
+    cursor: row-resize;
+    height: 5px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }

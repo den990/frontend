@@ -1,7 +1,5 @@
-import { useEffect, useRef } from "react";
-import {
-  editBlockPositionHandler
-} from "../stateManager/stateManagerFunctions";
+import {useEffect, useRef} from "react";
+import {editBlockPositionHandler} from "../stateManager/stateManagerFunctions";
 
 export function useDragAndDrop(slideIndex: number, blockIndex: number, id: string, coordX: number, coordY: number) {
   const isClicked = useRef<boolean>(false);
@@ -54,14 +52,12 @@ export function useDragAndDrop(slideIndex: number, blockIndex: number, id: strin
     container.addEventListener('mousemove', onMouseMove);
     container.addEventListener('mouseleave', onMouseUp);
 
-    const cleanup = () => {
+    return () => {
       target.removeEventListener('mousedown', onMouseDown);
       target.removeEventListener('mouseup', onMouseUp);
       container.removeEventListener('mousemove', onMouseMove);
       container.removeEventListener('mouseleave', onMouseUp);
-    }
-
-    return cleanup;
-  }, [id])
+    };
+  }, [id, blockIndex, slideIndex])
 }
 export default useDragAndDrop;
