@@ -8,10 +8,10 @@ export function MiniImageComponent(Props: {
     url: string
 }){
     const style = {
-        top: (Props.position.y/8),
-        left: (Props.position.x/8),
-        width: (Props.width/5.5),
-        height: (Props.height/5.5),
+        top: (Props.position.y/6),
+        left: (Props.position.x/5.76),
+        width: (Props.width/5.76),
+        height: (Props.height/6),
         "background-image": "url("+ Props.url + ")",
         "background-repeat": "no-repeat"
     }
