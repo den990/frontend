@@ -5,9 +5,6 @@ import {ImageComponent} from "../Slide/Components/Image/ImageComponent"
 
 export function WorkSpace(Props: {presentation: Presentation, slideIndex: number})
 {
-
-
-
     const textBlocks = Props.presentation.slideList[Props.slideIndex - 1].blockList.map((block, index) => {
         if ((block.content.data.type === 'text')) {
 
@@ -27,11 +24,10 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
         }
         return null;
     });
-
     const imageBlocks = Props.presentation.slideList[Props.slideIndex - 1].blockList.map((block, index) => {
         if (block.content.data.type === 'picture') {
             return <ImageComponent url={block.content.data.url}
-
+                                   key={index}
                                    position={block.position}
                                    slideIndex={Props.slideIndex}
                                    blockIndex={block.blockIndex}
@@ -53,7 +49,6 @@ export function WorkSpace(Props: {presentation: Presentation, slideIndex: number
             backgroundSize: 'cover'
         }
     }
-
     return (
         <div className={styles.workspace__background}>
             <div className={styles.workspace__content} style={style}>

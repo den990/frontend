@@ -38,7 +38,6 @@ export function useDragAndDrop(slideIndex: number, blockIndex: number, id: strin
         width = target.offsetWidth - 12;
       }
       editBlockSizeHandler(slideIndex, blockIndex, width, height);
-      console.log(width, height);
     }
 
     const onMouseUp = (e: MouseEvent) => {
