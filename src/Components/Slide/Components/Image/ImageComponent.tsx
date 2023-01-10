@@ -1,12 +1,7 @@
 import React from "react";
-import {
-    editBlockPositionHandler, editBlockSizeHandler,
-    removeBlockHandler,
-    selectBlockHandler, unselectedBlockHandler
-} from "../../../../stateManager/stateManagerFunctions";
+import { selectBlockHandler } from "../../../../stateManager/stateManagerFunctions";
 import useDragAndDrop from "../../../../hooks/useDragAndDrop";
 import styles from "./ImageComponent.module.css";
-import * as url from "url";
 
 export function ImageComponent(Props: {
     url: string
@@ -29,7 +24,7 @@ export function ImageComponent(Props: {
     }
 
     let idBlocks = Math.random()
-    useDragAndDrop(Props.slideIndex, Props.blockIndex, String(idBlocks), Props.position.x, Props.position.y);
+    useDragAndDrop(Props.slideIndex, Props.blockIndex, String(idBlocks), Props.position.x, Props.position.y, 'picture');
 
     return (
         <div style={{position: "absolute"}}>

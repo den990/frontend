@@ -1,9 +1,7 @@
-import { useEffect, useRef } from "react";
-import {
-  editBlockPositionHandler, editBlockSizeHandler
-} from "../stateManager/stateManagerFunctions";
+import {useEffect, useRef} from "react";
+import {editBlockPositionHandler, editBlockSizeHandler} from "../stateManager/stateManagerFunctions";
 
-export function useDragAndDrop(slideIndex: number, blockIndex: number, id: string, coordX: number, coordY: number) {
+export function useDragAndDrop(slideIndex: number, blockIndex: number, id: string, coordX: number, coordY: number, type: string) {
   const isClicked = useRef<boolean>(false);
   
   const coords = useRef<{
@@ -30,9 +28,17 @@ export function useDragAndDrop(slideIndex: number, blockIndex: number, id: strin
       isClicked.current = true;
       coords.current.startX = e.clientX;
       coords.current.startY = e.clientY;
-      const height = target.offsetHeight;
-      const width = target.offsetWidth;
+      let height;
+      let width;
+      if (type === 'text') {
+        height = target.offsetHeight - 4;
+        width = target.offsetWidth - 4;
+      } else {
+        height = target.offsetHeight - 12;
+        width = target.offsetWidth - 12;
+      }
       editBlockSizeHandler(slideIndex, blockIndex, width, height);
+      console.log(width, height);
     }
 
     const onMouseUp = (e: MouseEvent) => {
@@ -57,14 +63,12 @@ export function useDragAndDrop(slideIndex: number, blockIndex: number, id: strin
     container.addEventListener('mousemove', onMouseMove);
     container.addEventListener('mouseleave', onMouseUp);
 
-    const cleanup = () => {
+    return () => {
       target.removeEventListener('mousedown', onMouseDown);
       target.removeEventListener('mouseup', onMouseUp);
       container.removeEventListener('mousemove', onMouseMove);
       container.removeEventListener('mouseleave', onMouseUp);
-    }
-
-    return cleanup;
-  }, [id])
+    };
+  }, [id, slideIndex, blockIndex, type])
 }
 export default useDragAndDrop;

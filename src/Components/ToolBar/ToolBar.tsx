@@ -222,7 +222,7 @@ export function ToolBar(Props:{ presentation: Presentation}) {
                         if (e.key === "Enter") {
                             e.currentTarget.blur();
                             inputFontSize();
-                        };
+                        }
                     }}  
                     onChange={e => setInputSize(e.target.valueAsNumber)}
                     className={style.toolbar__blockFunction__editFontSize} 

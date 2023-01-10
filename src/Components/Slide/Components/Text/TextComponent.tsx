@@ -39,12 +39,12 @@ export function TextComponent(Props: {
     }
 
     let idBlocks = Math.random()
-    useDragAndDrop(Props.slideIndex, Props.blockIndex, String(idBlocks), Props.position.x, Props.position.y);
+    useDragAndDrop(Props.slideIndex, Props.blockIndex, String(idBlocks), Props.position.x, Props.position.y, 'text');
 
     return (
         <div className={styles.textBlock}>
             <textarea
-            onClick={(e) => {{selectBlockHandler(Props.slideIndex, Props.blockIndex)}}}
+            onClick={(e) => {selectBlockHandler(Props.slideIndex, Props.blockIndex)}}
             onKeyDown={(e) => {
                 if (e.key === "Shift") {
                     unselectedBlockHandler(Props.slideIndex);
