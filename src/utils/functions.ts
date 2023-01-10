@@ -481,7 +481,6 @@ export function unselectedBlock(editor: Editor, payload:{slideIndex: number}): E
             slideList: editor.presentation.slideList.map(( currentSlide, index) => {
                 return (index === payload.slideIndex - 1) ? newSlide : currentSlide;
             }),
-            selectedSlides: [newSlide]
         }
     };
 
