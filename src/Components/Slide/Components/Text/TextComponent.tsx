@@ -46,7 +46,7 @@ export function TextComponent(Props: {
             <textarea
             onClick={(e) => {selectBlockHandler(Props.slideIndex, Props.blockIndex)}}
             onKeyDown={(e) => {
-                if (e.key === "Shift") {
+                if (e.key === "Alt") {
                     unselectedBlockHandler(Props.slideIndex);
                     e.currentTarget.blur()}
                 if (e.key === "Delete") {

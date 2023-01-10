@@ -37,7 +37,7 @@ export function ImageComponent(Props: {
                  id={String(idBlocks)}
                  tabIndex={Math.random()}
                  onKeyDown={(e) => {
-                     if (e.key === "Shift") {
+                     if (e.key === "Alt") {
                          unselectedBlockHandler(Props.slideIndex);
                          e.currentTarget.blur()}
                      if (e.key === "Delete") {
