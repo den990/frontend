@@ -4,10 +4,20 @@ import {selectSlideHandler, unselectedBlockHandler} from "../../stateManager/sta
 import { MiniTextComponent } from "./Components/Text/MiniTextComponent";
 import {MiniImageComponent} from "./Components/Image/MiniImageComponent";
 
-const MiniSlide = (Props: {slideIndex: number, selected: boolean, background: string, blockList: Block[]}) => {
-    let styleContainer = {
-        background: Props.background
+const MiniSlide = (Props: {slideIndex: number, selected: boolean, background: string, blockList: Block[], backgroundType: string}) => {
+    let styleContainer;
+
+    if (Props.backgroundType === 'color') {
+        styleContainer = {
+            background: Props.background
+        }
+    } else {
+        styleContainer = {
+            background: 'url('+ Props.background + ') no-repeat',
+            backgroundSize: 'cover'
+        }
     }
+
 
     const textBlocks = Props.blockList.map((block, index) => {
         if (block.content.data.type === 'text') {
