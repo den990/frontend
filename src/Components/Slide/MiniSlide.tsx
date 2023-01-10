@@ -2,6 +2,7 @@ import React from "react";
 import style from "./MiniSlide.module.css";
 import {selectSlideHandler, unselectedBlockHandler} from "../../stateManager/stateManagerFunctions";
 import { MiniTextComponent } from "./Components/Text/MiniTextComponent";
+import {MiniImageComponent} from "./Components/Image/MiniImageComponent";
 
 const MiniSlide = (Props: {slideIndex: number, selected: boolean, background: string, blockList: Block[]}) => {
     let styleContainer = {
@@ -19,6 +20,15 @@ const MiniSlide = (Props: {slideIndex: number, selected: boolean, background: st
             position={block.position}
             width={block.width}
             height={block.height}/>;
+        }
+        if (block.content.data.type === 'picture'){
+            return <MiniImageComponent
+                key={index}
+                position={block.position}
+                height={block.height}
+                width={block.width}
+                url = {block.content.data.url}
+            />
         }
         return null;
     });
