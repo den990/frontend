@@ -53,11 +53,9 @@ export const createPresentationHandler = () => {
 }
 
 export const selectSlideHandler = (slideIndex: number, e: MouseEvent<HTMLDivElement>, selectedSlides: boolean) => {
-    if (e.ctrlKey)
-    {
+    if (e.ctrlKey) {
         dispatch(selectSlides, slideIndex);
-    }
-    else {
+    } else {
         dispatch(selectSlide, slideIndex);
     }
 }
@@ -70,14 +68,14 @@ export const addBlockHandler = (slideIndex: number, inputContent: blockContent) 
 export const editSlideBackgroundHandler = (slideIndex: number, value: string, type: string) => {
     updateHistoryHandler();
     let newBackground: color | pictureBackground;
-    if (type === 'color') {
+    if (type === "color") {
         newBackground = {
-            type: 'color',
+            type: "color",
             code: value
         }
     } else {
         newBackground = {
-            type: 'picture',
+            type: "picture",
             code: value
         }
     }
@@ -118,7 +116,7 @@ export const editFontColorHandler = (slideIndex: number, blockIndex: number, new
 
 export const editFontFamilyHandler = (slideIndex: number, blockIndex: number, newFontFamily: string) => {
     updateHistoryHandler();
-    dispatch(editFontFamily,{slideIndex, blockIndex, newFontFamily});
+    dispatch(editFontFamily, {slideIndex, blockIndex, newFontFamily});
 }
 
 export const removeBlockHandler = (slideIndex: number, blockIndex: number) => {
@@ -127,7 +125,7 @@ export const removeBlockHandler = (slideIndex: number, blockIndex: number) => {
 }
 export const unselectedBlockHandler = (slideIndex: number) => {
     updateHistoryHandler();
-    dispatch(unselectedBlock,  {slideIndex})
+    dispatch(unselectedBlock, {slideIndex})
 }
 export const editBlockSizeHandler = (slideIndex: number, blockIndex: number, newWidth: number, newHeight: number) => {
     updateHistoryHandler();

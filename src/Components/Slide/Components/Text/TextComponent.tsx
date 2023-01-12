@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import useDragAndDrop from "../../../../hooks/useDragAndDrop";
 import {
     editTextSymbolsHandler,
@@ -8,9 +8,9 @@ import {
 import styles from "./TextComponent.module.css";
 
 export function TextComponent(Props: {
-    fontFamily: string, 
-    fontColor: string, 
-    fontSize: number, 
+    fontFamily: string,
+    fontColor: string,
+    fontSize: number,
     symbols: string,
     position: {
         x: number,
@@ -21,7 +21,7 @@ export function TextComponent(Props: {
     slideIndex: number,
     blockIndex: number,
     presentation: Presentation;
-    }) {
+}) {
     let style = {
         fontFamily: Props.fontFamily,
         color: Props.fontColor,
@@ -39,26 +39,29 @@ export function TextComponent(Props: {
     }
 
     let idBlocks = Math.random()
-    useDragAndDrop(Props.slideIndex, Props.blockIndex, String(idBlocks), Props.position.x, Props.position.y, 'text');
+    useDragAndDrop(Props.slideIndex, Props.blockIndex, String(idBlocks), Props.position.x, Props.position.y, "text");
 
     return (
         <div className={styles.textBlock}>
             <textarea
-            onClick={(e) => {selectBlockHandler(Props.slideIndex, Props.blockIndex)}}
-            onKeyDown={(e) => {
-                if (e.key === "Alt") {
-                    unselectedBlockHandler(Props.slideIndex);
-                    e.currentTarget.blur()}
-                if (e.key === "Delete") {
-                    removeBlockHandler(Props.slideIndex, Props.blockIndex)
-                }
-            }}
-            id={String(idBlocks)}
-            className={styles.text}
-            autoComplete="off"
-            value={Props.symbols}
-            onChange={(e) => symbolsHandler(e)}
-            style={style}/>
+                onClick={(e) => {
+                    selectBlockHandler(Props.slideIndex, Props.blockIndex)
+                }}
+                onKeyDown={(e) => {
+                    if (e.key === "Alt") {
+                        unselectedBlockHandler(Props.slideIndex);
+                        e.currentTarget.blur()
+                    }
+                    if (e.key === "Delete") {
+                        removeBlockHandler(Props.slideIndex, Props.blockIndex)
+                    }
+                }}
+                id={String(idBlocks)}
+                className={styles.text}
+                autoComplete="off"
+                value={Props.symbols}
+                onChange={(e) => symbolsHandler(e)}
+                style={style}/>
         </div>
     );
 }

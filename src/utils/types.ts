@@ -22,12 +22,12 @@ type Slide = {
 }
 
 type color = {
-    type: 'color';
+    type: "color";
     code: string;
 }
 
 type pictureBackground = {
-    type: 'picture';
+    type: "picture";
     code: string;
 }
 
@@ -43,11 +43,11 @@ type Block = {
 }
 
 type blockContent = {
-    data:  primitive | picture | text;
+    data: primitive | picture | text;
 }
 
 type text = {
-    type: 'text';
+    type: "text";
     fontFamily: string;
     fontColor: string;
     fontSize: number;
@@ -55,25 +55,25 @@ type text = {
 }
 
 type picture = {
-    type: 'picture';
+    type: "picture";
     url: string;
 }
 
 type primitive = {
-    type: 'primitive';
+    type: "primitive";
     content: Triangle | Rectangle | Circle;
     background: string;
     border: string;
 }
 
 type Triangle = {
-    type: 'Triangle';
+    type: "Triangle";
 }
 
 type Rectangle = {
-    type: 'Rectangle';
+    type: "Rectangle";
 }
 
 type Circle = {
-    type: 'Circle';
+    type: "Circle";
 }

@@ -1,19 +1,19 @@
 export const defaultColor: color = {
-    type: 'color',
-    code : '#000000'
+    type: "color",
+    code: "#000"
 }
 
 export const defaultSlideColor: color = {
-    type: 'color',
-    code: '#ffffff'
+    type: "color",
+    code: "#fff"
 }
 
 export const defaultText: text = {
-    type: 'text',
-    fontFamily: 'Arial',
-    fontColor: '#000000',
+    type: "text",
+    fontFamily: "Arial",
+    fontColor: "#000",
     fontSize: 32,
-    symbols: 'Новый текст'
+    symbols: "Новый текст"
 }
 
 export const defaultTextType: blockContent = {

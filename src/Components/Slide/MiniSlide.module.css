@@ -29,7 +29,7 @@
     margin-left: 8px;
 }
 
-.blockList{
+.blockList {
     position: absolute;
 }
 
@@ -44,10 +44,9 @@
     top: 0;
     transition: opacity 0.7s;
     border-radius: 20px;
-    
     opacity: 0;
-  }
-  
+}
+
 .miniSlide__container:hover::after {
     opacity: 1;
 }

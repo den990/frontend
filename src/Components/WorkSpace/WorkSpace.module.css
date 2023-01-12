@@ -4,15 +4,15 @@
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    background: #DDDEDE;
+    background: #dddede;
     align-items: center;
     overflow: hidden;
 }
 
 .workspace__content {
     box-sizing: border-box;
-    background: #FFFFFF;
-    border: 1px solid #000000;
+    background: #fff;
+    border: 1px solid #000;
     width: 95%;
     height: 92%;
 }

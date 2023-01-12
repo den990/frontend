@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import style from './MenuBar.module.css';
 import {
     createPresentationHandler,
@@ -14,15 +14,15 @@ export function MenuBar(Props: { presentation: Presentation }) {
 
     useEffect(() => {
         setName(name);
-      }, [name]);
+    }, [name]);
 
     const fileChangeHandle = (e: any) => {
-        const file: any  = e.target.files[0];
+        const file: any = e.target.files[0];
         const reader = new FileReader();
         reader.readAsText(file);
         reader.onload = () => {
             let result = reader.result
-            if (typeof result === 'string') {
+            if (typeof result === "string") {
                 openJsonHandler(result);
             }
         }
@@ -32,36 +32,36 @@ export function MenuBar(Props: { presentation: Presentation }) {
         <div className={style.header}>
             <div className={style.header__icon}></div>
             <div className={style.header__input}>
-                <input 
-                onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.currentTarget.blur();
-                      renamePresentationHandler(namePresentation);
-                    }
-                  }}
-                onFocus={(e) => {
+                <input
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            e.currentTarget.blur();
+                            renamePresentationHandler(namePresentation);
+                        }
+                    }}
+                    onFocus={(e) => {
                         e.currentTarget.select();
-                      }}
-                onChange={(e) => setName(e.target.value)}
-                className={style.header__input__namePresentation} 
-                value={namePresentation} />
+                    }}
+                    onChange={(e) => setName(e.target.value)}
+                    className={style.header__input__namePresentation}
+                    value={namePresentation}/>
             </div>
             <div className={style.header__action}>
-                <button 
-                  onClick={createPresentationHandler} 
-                  className={style.header__action__create}>Создать
+                <button
+                    onClick={createPresentationHandler}
+                    className={style.header__action__create}>Создать
                 </button>
-                <label htmlFor='json-file-handler' className={style.header__action__open__label}>Открыть</label>
+                <label htmlFor="json-file-handler" className={style.header__action__open__label}>Открыть</label>
                 <input
                     onChange={fileChangeHandle}
-                    id='json-file-handler'
-                    type='file'
-                    accept='.json'
+                    id="json-file-handler"
+                    type="file"
+                    accept=".json"
                     className={style.header__action__open}
                 />
-                <button 
-                  onClick={saveAsJsonHandler} 
-                  className={style.header__action__save}>Сохранить
+                <button
+                    onClick={saveAsJsonHandler}
+                    className={style.header__action__save}>Сохранить
                 </button>
                 <button
                     onClick={() => savePresentationAsPDF(Props.presentation)}
