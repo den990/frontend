@@ -6,7 +6,7 @@ import {
     renamePresentationHandler,
     saveAsJsonHandler
 } from "../../stateManager/stateManagerFunctions";
-import {savePresentationAsPDF} from "../../stateManager/exportToPDF";
+import {savePresentationAsPDF} from "../../utils/exportToPDF";
 
 export function MenuBar(Props: { presentation: Presentation }) {
     let name = Props.presentation.name
